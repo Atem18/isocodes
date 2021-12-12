@@ -1,5 +1,9 @@
 # isocodes
 
+isocodes provides you access to lists of various ISO standards (e.g. country, language, language scripts, and currency names).
+
+The data is coming from https://salsa.debian.org/iso-codes-team/iso-codes, many thanks to them.
+
 # Installation
 
     pip install isocodes
@@ -70,6 +74,19 @@ Same as countries but you replace countries by language_families
 
 ## Script names (ISO 15924)
 Same as countries but you replace countries by script_names
+
+## Translations
+
+Translations are included in this project with gettext support. The domain names are to be found on https://salsa.debian.org/iso-codes-team/iso-codes
+
+### Example
+
+    >>> import gettext
+    >>> import isocodes
+    >>> french = gettext.translation('iso_639-2', isocodes.LOCALES_DIR, languages=['fr'])
+    >>> french.install()
+    >>> _("French")
+    'français'
 
 # Develop
 

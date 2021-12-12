@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "isocodes"
-version = "2021.12.12"
+version = "2021.12.13"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 authors = ["Atem18 <contact@atemlire.io>"]
 

@@ -5,6 +5,8 @@ from typing import Generator
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOCALES_DIR = f"{BASE_DIR}/isocodes/share/locale"
+
 
 class ISO:
     def __init__(self, iso_key: str) -> None:
