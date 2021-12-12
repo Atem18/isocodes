@@ -1,0 +1,22 @@
+name: Test iso-codes
+on: [pull_request]
+jobs:
+  pytest:
+    name: Run tests
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Poetry
+        run: python -m pip install poetry --user
+      - name: Install dev dependencies
+        run: poetry install
+      - name: Run Tox
+        run: poetry run tox -e py

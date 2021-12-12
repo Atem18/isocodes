@@ -1,0 +1,3 @@
+[submodule "iso-codes/vendor/iso-codes"]
+	path = iso-codes/vendor/iso-codes
+	url = https://salsa.debian.org/iso-codes-team/iso-codes.git
