@@ -1,4 +1,4 @@
-# iso-codes
+# isocodes
 
 # Installation
 
