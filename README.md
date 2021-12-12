@@ -2,7 +2,7 @@
 
 # Installation
 
-    pip install iso-codes
+    pip install isocodes
 
 # Usage
 
