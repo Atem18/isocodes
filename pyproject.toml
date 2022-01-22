@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/Atem18/isocodes"
 repository = "https://github.com/Atem18/isocodes"
-keywords = ["iso]
+keywords = ["iso"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
