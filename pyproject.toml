@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "isocodes"
-version = "2022.02.06"
+version = "2022.03.19"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 authors = ["Atem18 <contact@atemlire.io>"]
 license = "MIT"
@@ -23,6 +23,9 @@ mkdocs = "^1.2.2"
 mkdocs-material = "^8.0.0"
 mkdocstrings = "^0.16.0"
 black = "^21.9b0"
+tox = "^3.24.5"
+mypy = "^0.941"
+flake8 = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -16,6 +16,9 @@ class ISO:
         ) as iso_file:
             self.data: list[dict] = json.load(iso_file)[self.iso_key]
 
+    def __len__(self) -> int:
+        return len(self.data)
+
     def _name_from_index(self, index: str) -> Generator[tuple, None, None]:
         return ((element[index], element["name"]) for element in self.data)
 
