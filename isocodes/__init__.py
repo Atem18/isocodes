@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Generator, List
+from typing import Dict, Generator, List
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +14,7 @@ class ISO:
         with open(
             f"{BASE_DIR}/isocodes/share/iso-codes/json/iso_{self.iso_key}.json"
         ) as iso_file:
-            self.data: List[dict] = json.load(iso_file)[self.iso_key]
+            self.data: List[Dict] = json.load(iso_file)[self.iso_key]
 
     def __len__(self) -> int:
         return len(self.data)
@@ -25,12 +25,12 @@ class ISO:
     def _sorted_by_index(self, index: str) -> List[tuple]:
         return sorted(((element[index], element) for element in self.data))
 
-    def get(self, **kwargs) -> dict[str, str]:
+    def get(self, **kwargs) -> Dict[str, str]:
         key: str = next(iter(kwargs))
         return [element for element in self.data if element[key] == kwargs[key]][0]
 
     @property
-    def items(self) -> List[dict]:
+    def items(self) -> List[Dict]:
         return self.data
 
 
