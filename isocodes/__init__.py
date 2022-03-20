@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Generator
+from typing import Generator, List
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +14,7 @@ class ISO:
         with open(
             f"{BASE_DIR}/isocodes/share/iso-codes/json/iso_{self.iso_key}.json"
         ) as iso_file:
-            self.data: list[dict] = json.load(iso_file)[self.iso_key]
+            self.data: List[dict] = json.load(iso_file)[self.iso_key]
 
     def __len__(self) -> int:
         return len(self.data)
@@ -22,7 +22,7 @@ class ISO:
     def _name_from_index(self, index: str) -> Generator[tuple, None, None]:
         return ((element[index], element["name"]) for element in self.data)
 
-    def _sorted_by_index(self, index: str) -> list[tuple]:
+    def _sorted_by_index(self, index: str) -> List[tuple]:
         return sorted(((element[index], element) for element in self.data))
 
     def get(self, **kwargs) -> dict[str, str]:
@@ -30,25 +30,25 @@ class ISO:
         return [element for element in self.data if element[key] == kwargs[key]][0]
 
     @property
-    def items(self) -> list[dict]:
+    def items(self) -> List[dict]:
         return self.data
 
 
 class Countries(ISO):
     @property
-    def by_alpha_2(self) -> list[tuple]:
+    def by_alpha_2(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_2")
 
     @property
-    def by_alpha_3(self) -> list[tuple]:
+    def by_alpha_3(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> list[tuple]:
+    def by_numeric(self) -> List[tuple]:
         return self._sorted_by_index(index="numeric")
 
     @property
@@ -58,11 +58,11 @@ class Countries(ISO):
 
 class Languages(ISO):
     @property
-    def by_alpha_3(self) -> list[tuple]:
+    def by_alpha_3(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
@@ -72,15 +72,15 @@ class Languages(ISO):
 
 class Currencies(ISO):
     @property
-    def by_alpha_3(self) -> list[tuple]:
+    def by_alpha_3(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> list[tuple]:
+    def by_numeric(self) -> List[tuple]:
         return self._sorted_by_index(index="numeric")
 
     @property
@@ -90,15 +90,15 @@ class Currencies(ISO):
 
 class SubdivisionsCountries(ISO):
     @property
-    def by_code(self) -> list[tuple]:
+    def by_code(self) -> List[tuple]:
         return self._sorted_by_index(index="code")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_type(self) -> list[tuple]:
+    def by_type(self) -> List[tuple]:
         return self._sorted_by_index(index="type")
 
     @property
@@ -108,27 +108,27 @@ class SubdivisionsCountries(ISO):
 
 class FormerCountries(ISO):
     @property
-    def by_alpha_2(self) -> list[tuple]:
+    def by_alpha_2(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_2")
 
     @property
-    def by_alpha_3(self) -> list[tuple]:
+    def by_alpha_3(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_alpha_4(self) -> list[tuple]:
+    def by_alpha_4(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_4")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> list[tuple]:
+    def by_numeric(self) -> List[tuple]:
         return self._sorted_by_index(index="numeric")
 
     @property
-    def by_withdrawal_date(self) -> list[tuple]:
+    def by_withdrawal_date(self) -> List[tuple]:
         return self._sorted_by_index(index="withdrawal_date")
 
     @property
@@ -138,19 +138,19 @@ class FormerCountries(ISO):
 
 class ExtendedLanguages(ISO):
     @property
-    def by_alpha_3(self) -> list[tuple]:
+    def by_alpha_3(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_scope(self) -> list[tuple]:
+    def by_scope(self) -> List[tuple]:
         return self._sorted_by_index(index="scope")
 
     @property
-    def by_type(self) -> list[tuple]:
+    def by_type(self) -> List[tuple]:
         return self._sorted_by_index(index="type")
 
     @property
@@ -160,11 +160,11 @@ class ExtendedLanguages(ISO):
 
 class LanguageFamilies(ISO):
     @property
-    def by_alpha_3(self) -> list[tuple]:
+    def by_alpha_3(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
@@ -174,15 +174,15 @@ class LanguageFamilies(ISO):
 
 class ScriptNames(ISO):
     @property
-    def by_alpha_4(self) -> list[tuple]:
+    def by_alpha_4(self) -> List[tuple]:
         return self._sorted_by_index(index="alpha_4")
 
     @property
-    def by_name(self) -> list[tuple]:
+    def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> list[tuple]:
+    def by_numeric(self) -> List[tuple]:
         return self._sorted_by_index(index="numeric")
 
     @property
