@@ -419,6 +419,10 @@ Source: <http://www.loc.gov/standards/iso639-2/>
 		iso_639_2T_code="cmc"
 		name="Chamic languages" />
 	<iso_639_entry
+		iso_639_2B_code="cnr"
+		iso_639_2T_code="cnr"
+		name="Montenegrin" />
+	<iso_639_entry
 		iso_639_2B_code="cop"
 		iso_639_2T_code="cop"
 		name="Coptic" />

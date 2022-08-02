@@ -89,7 +89,7 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 	<iso_4217_entry
 		letter_code="AZN"
 		numeric_code="944"
-		currency_name="Azerbaijanian Manat" />
+		currency_name="Azerbaijan Manat" />
 	<iso_4217_entry
 		letter_code="BAM"
 		numeric_code="977"
@@ -127,6 +127,10 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		numeric_code="068"
 		currency_name="Boliviano" />
 	<iso_4217_entry
+		letter_code="BOV"
+		numeric_code="984"
+		currency_name="Mvdol" />
+	<iso_4217_entry
 		letter_code="BRL"
 		numeric_code="986"
 		currency_name="Brazilian Real" />
@@ -159,9 +163,21 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		numeric_code="976"
 		currency_name="Congolese Franc" />
 	<iso_4217_entry
+		letter_code="CHE"
+		numeric_code="947"
+		currency_name="WIR Euro" />
+	<iso_4217_entry
 		letter_code="CHF"
 		numeric_code="756"
 		currency_name="Swiss Franc" />
+	<iso_4217_entry
+		letter_code="CHW"
+		numeric_code="948"
+		currency_name="WIR Franc" />
+	<iso_4217_entry
+		letter_code="CLF"
+		numeric_code="990"
+		currency_name="Unidad de Fomento" />
 	<iso_4217_entry
 		letter_code="CLP"
 		numeric_code="152"
@@ -174,6 +190,10 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		letter_code="COP"
 		numeric_code="170"
 		currency_name="Colombian Peso" />
+	<iso_4217_entry
+		letter_code="COU"
+		numeric_code="970"
+		currency_name="Unidad de Valor Real" />
 	<iso_4217_entry
 		letter_code="CRC"
 		numeric_code="188"
@@ -257,7 +277,7 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 	<iso_4217_entry
 		letter_code="GNF"
 		numeric_code="324"
-		currency_name="Guinea Franc" />
+		currency_name="Guinean Franc" />
 	<iso_4217_entry
 		letter_code="GTQ"
 		numeric_code="320"
@@ -337,7 +357,7 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 	<iso_4217_entry
 		letter_code="KMF"
 		numeric_code="174"
-		currency_name="Comoro Franc" />
+		currency_name="Comorian Franc" />
 	<iso_4217_entry
 		letter_code="KPW"
 		numeric_code="408"
@@ -361,7 +381,7 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 	<iso_4217_entry
 		letter_code="LAK"
 		numeric_code="418"
-		currency_name="Kip" />
+		currency_name="Lao Kip" />
 	<iso_4217_entry
 		letter_code="LBP"
 		numeric_code="422"
@@ -411,8 +431,8 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		numeric_code="446"
 		currency_name="Pataca" />
 	<iso_4217_entry
-		letter_code="MRO"
-		numeric_code="478"
+		letter_code="MRU"
+		numeric_code="929"
 		currency_name="Ouguiya" />
 	<iso_4217_entry
 		letter_code="MUR"
@@ -430,6 +450,10 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		letter_code="MXN"
 		numeric_code="484"
 		currency_name="Mexican Peso" />
+	<iso_4217_entry
+		letter_code="MXV"
+		numeric_code="979"
+		currency_name="Mexican Unidad de Inversion (UDI)" />
 	<iso_4217_entry
 		letter_code="MYR"
 		numeric_code="458"
@@ -543,6 +567,10 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		numeric_code="654"
 		currency_name="Saint Helena Pound" />
 	<iso_4217_entry
+		letter_code="SLE"
+		numeric_code="925"
+		currency_name="Leone" />
+	<iso_4217_entry
 		letter_code="SLL"
 		numeric_code="694"
 		currency_name="Leone" />
@@ -559,8 +587,8 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		numeric_code="728"
 		currency_name="South Sudanese Pound" />
 	<iso_4217_entry
-		letter_code="STD"
-		numeric_code="678"
+		letter_code="STN"
+		numeric_code="930"
 		currency_name="Dobra" />
 	<iso_4217_entry
 		letter_code="SVC"
@@ -623,17 +651,33 @@ Source: <http://www.bsi-global.com/en/Standards-and-Publications/Industry-Sector
 		numeric_code="840"
 		currency_name="US Dollar" />
 	<iso_4217_entry
+		letter_code="USN"
+		numeric_code="997"
+		currency_name="US Dollar (Next day)" />
+	<iso_4217_entry
+		letter_code="UYI"
+		numeric_code="940"
+		currency_name="Uruguay Peso en Unidades Indexadas (UI)" />
+	<iso_4217_entry
 		letter_code="UYU"
 		numeric_code="858"
 		currency_name="Peso Uruguayo" />
+	<iso_4217_entry
+		letter_code="UYW"
+		numeric_code="927"
+		currency_name="Unidad Previsional" />
 	<iso_4217_entry
 		letter_code="UZS"
 		numeric_code="860"
 		currency_name="Uzbekistan Sum" />
 	<iso_4217_entry
-		letter_code="VEF"
-		numeric_code="937"
-		currency_name="Bolívar" />
+		letter_code="VED"
+		numeric_code="926"
+		currency_name="Bolívar Soberano" />
+	<iso_4217_entry
+		letter_code="VES"
+		numeric_code="928"
+		currency_name="Bolívar Soberano" />
 	<iso_4217_entry
 		letter_code="VND"
 		numeric_code="704"

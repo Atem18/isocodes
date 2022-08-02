@@ -10,7 +10,7 @@ rm -rf "$SHARE_DIR"
 
 cd "$UPSTREAM_DIR" || exit
 
-git pull origin main
+git checkout v4.11.0
 
 ./configure --prefix "$BASE_DIR"
 

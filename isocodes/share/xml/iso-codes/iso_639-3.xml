@@ -572,15 +572,15 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Adabe"
-		name="Adabe" />
+		reference_name="Atauran"
+		name="Atauran" />
 	<iso_639_3_entry
 		id="add"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Dzodinka"
-		name="Dzodinka" />
+		reference_name="Lidzonka"
+		name="Lidzonka" />
 	<iso_639_3_entry
 		id="ade"
 		status="Active"
@@ -1343,14 +1343,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Airoran"
 		name="Airoran" />
 	<iso_639_3_entry
-		id="ais"
-		status="Active"
-		scope="I"
-		type="L"
-		inverted_name="Amis, Nataoran"
-		reference_name="Nataoran Amis"
-		name="Amis, Nataoran" />
-	<iso_639_3_entry
 		id="ait"
 		status="Active"
 		scope="I"
@@ -1383,8 +1375,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Aja (Sudan)"
-		name="Aja (Sudan)" />
+		reference_name="Aja (South Sudan)"
+		name="Aja (South Sudan)" />
 	<iso_639_3_entry
 		id="ajg"
 		status="Active"
@@ -1415,13 +1407,12 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="South Levantine Arabic"
 		name="Arabic, South Levantine" />
 	<iso_639_3_entry
-		id="ajt"
+		id="ajs"
 		status="Active"
 		scope="I"
 		type="L"
-		inverted_name="Arabic, Judeo-Tunisian"
-		reference_name="Judeo-Tunisian Arabic"
-		name="Arabic, Judeo-Tunisian" />
+		reference_name="Algerian Jewish Sign Language"
+		name="Algerian Jewish Sign Language" />
 	<iso_639_3_entry
 		id="aju"
 		status="Active"
@@ -2198,13 +2189,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Angoram"
 		name="Angoram" />
 	<iso_639_3_entry
-		id="aoh"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Arma"
-		name="Arma" />
-	<iso_639_3_entry
 		id="aoi"
 		status="Active"
 		scope="I"
@@ -2495,6 +2479,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Arigidi"
 		name="Arigidi" />
 	<iso_639_3_entry
+		id="aqk"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Aninka"
+		name="Aninka" />
+	<iso_639_3_entry
 		id="aqm"
 		status="Active"
 		scope="I"
@@ -2730,13 +2721,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Casuarina Coast Asmat"
 		name="Asmat, Casuarina Coast" />
 	<iso_639_3_entry
-		id="asd"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Asas"
-		name="Asas" />
-	<iso_639_3_entry
 		id="ase"
 		status="Active"
 		scope="I"
@@ -2748,8 +2732,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Australian Sign Language"
-		name="Australian Sign Language" />
+		reference_name="Auslan"
+		name="Auslan" />
 	<iso_639_3_entry
 		id="asg"
 		status="Active"
@@ -3657,14 +3641,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ayu"
 		name="Ayu" />
 	<iso_639_3_entry
-		id="ayy"
-		status="Active"
-		scope="I"
-		type="E"
-		inverted_name="Ayta, Tayabas"
-		reference_name="Tayabas Ayta"
-		name="Ayta, Tayabas" />
-	<iso_639_3_entry
 		id="ayz"
 		status="Active"
 		scope="I"
@@ -4085,14 +4061,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Befang"
 		name="Befang" />
 	<iso_639_3_entry
-		id="bbz"
-		status="Active"
-		scope="I"
-		type="L"
-		inverted_name="Creole Arabic, Babalia"
-		reference_name="Babalia Creole Arabic"
-		name="Creole Arabic, Babalia" />
-	<iso_639_3_entry
 		id="bca"
 		status="Active"
 		scope="I"
@@ -4170,8 +4138,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bunaba"
-		name="Bunaba" />
+		reference_name="Bunuba"
+		name="Bunuba" />
 	<iso_639_3_entry
 		id="bcl"
 		status="Active"
@@ -4325,8 +4293,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Baka (Sudan)"
-		name="Baka (Sudan)" />
+		reference_name="Baka (South Sudan)"
+		name="Baka (South Sudan)" />
 	<iso_639_3_entry
 		id="bdi"
 		status="Active"
@@ -4339,8 +4307,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bai"
-		name="Bai" />
+		reference_name="Bai (South Sudan)"
+		name="Bai (South Sudan)" />
 	<iso_639_3_entry
 		id="bdk"
 		status="Active"
@@ -5181,13 +5149,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Bissa"
 		name="Bissa" />
 	<iso_639_3_entry
-		id="bic"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Bikaru"
-		name="Bikaru" />
-	<iso_639_3_entry
 		id="bid"
 		status="Active"
 		scope="I"
@@ -5215,13 +5176,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Biangai"
 		name="Biangai" />
-	<iso_639_3_entry
-		id="bij"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Vaghat-Ya-Bijim-Legeri"
-		name="Vaghat-Ya-Bijim-Legeri" />
 	<iso_639_3_entry
 		id="bik"
 		status="Active"
@@ -5720,13 +5674,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Buol"
 		name="Buol" />
 	<iso_639_3_entry
-		id="blg"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Balau"
-		name="Balau" />
-	<iso_639_3_entry
 		id="blh"
 		status="Active"
 		scope="I"
@@ -5767,8 +5714,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Beli (Sudan)"
-		name="Beli (Sudan)" />
+		reference_name="Beli (South Sudan)"
+		name="Beli (South Sudan)" />
 	<iso_639_3_entry
 		id="bln"
 		status="Active"
@@ -5824,8 +5771,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bolo"
-		name="Bolo" />
+		reference_name="Kibala"
+		name="Kibala" />
 	<iso_639_3_entry
 		id="blw"
 		status="Active"
@@ -5896,8 +5843,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bom"
-		name="Bom" />
+		reference_name="Bom-Kim"
+		name="Bom-Kim" />
 	<iso_639_3_entry
 		id="bmg"
 		status="Active"
@@ -6390,12 +6337,12 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Daakaka"
 		name="Daakaka" />
 	<iso_639_3_entry
-		id="bpb"
+		id="bpc"
 		status="Active"
 		scope="I"
-		type="E"
-		reference_name="Barbacoas"
-		name="Barbacoas" />
+		type="L"
+		reference_name="Mbuk"
+		name="Mbuk" />
 	<iso_639_3_entry
 		id="bpd"
 		status="Active"
@@ -6403,6 +6350,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Banda-Banda"
 		name="Banda-Banda" />
+	<iso_639_3_entry
+		id="bpe"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Bauni"
+		name="Bauni" />
 	<iso_639_3_entry
 		id="bpg"
 		status="Active"
@@ -6735,8 +6689,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Lave"
-		name="Lave" />
+		reference_name="Brao"
+		name="Brao" />
 	<iso_639_3_entry
 		id="brc"
 		status="Active"
@@ -6765,8 +6719,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bera"
-		name="Bera" />
+		reference_name="Bira"
+		name="Bira" />
 	<iso_639_3_entry
 		id="brg"
 		status="Active"
@@ -8033,8 +7987,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bidyara"
-		name="Bidyara" />
+		reference_name="Bidjara"
+		name="Bidjara" />
 	<iso_639_3_entry
 		id="byn"
 		status="Active"
@@ -8600,13 +8554,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Carabayo"
 		name="Carabayo" />
 	<iso_639_3_entry
-		id="cca"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Cauca"
-		name="Cauca" />
-	<iso_639_3_entry
 		id="ccc"
 		status="Active"
 		scope="I"
@@ -8708,13 +8655,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Chiru"
 		name="Chiru" />
-	<iso_639_3_entry
-		id="cdg"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Chamari"
-		name="Chamari" />
 	<iso_639_3_entry
 		id="cdh"
 		status="Active"
@@ -8840,6 +8780,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Centúúm"
 		name="Centúúm" />
 	<iso_639_3_entry
+		id="cey"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Chin, Ekai"
+		reference_name="Ekai Chin"
+		name="Chin, Ekai" />
+	<iso_639_3_entry
 		id="cfa"
 		status="Active"
 		scope="I"
@@ -8953,7 +8901,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="chh"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Chinook"
 		name="Chinook" />
 	<iso_639_3_entry
@@ -9277,6 +9225,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Cibak"
 		name="Cibak" />
+	<iso_639_3_entry
+		id="ckm"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Chakavian"
+		name="Chakavian" />
 	<iso_639_3_entry
 		id="ckn"
 		status="Active"
@@ -9615,6 +9570,28 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Con"
 		name="Con" />
+	<iso_639_3_entry
+		id="cnp"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Chinese, Northern Ping"
+		reference_name="Northern Ping Chinese"
+		name="Chinese, Northern Ping" />
+	<iso_639_3_entry
+		id="cnq"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Chung"
+		name="Chung" />
+	<iso_639_3_entry
+		id="cnr"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Montenegrin"
+		name="Montenegrin" />
 	<iso_639_3_entry
 		id="cns"
 		status="Active"
@@ -10210,6 +10187,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Sochiapam Chinantec"
 		name="Chinantec, Sochiapam" />
 	<iso_639_3_entry
+		id="csp"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Chinese, Southern Ping"
+		reference_name="Southern Ping Chinese"
+		name="Chinese, Southern Ping" />
+	<iso_639_3_entry
 		id="csq"
 		status="Active"
 		scope="I"
@@ -10256,6 +10241,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Swampy Cree"
 		name="Cree, Swampy" />
 	<iso_639_3_entry
+		id="csx"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Cambodian Sign Language"
+		name="Cambodian Sign Language" />
+	<iso_639_3_entry
 		id="csy"
 		status="Active"
 		scope="I"
@@ -10282,7 +10274,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="ctc"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Chetco"
 		name="Chetco" />
 	<iso_639_3_entry
@@ -10377,6 +10369,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Chol"
 		name="Chol" />
 	<iso_639_3_entry
+		id="cty"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Moundadan Chetty"
+		name="Moundadan Chetty" />
+	<iso_639_3_entry
 		id="ctz"
 		status="Active"
 		scope="I"
@@ -10406,13 +10405,6 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Chinantec, Usila"
 		reference_name="Usila Chinantec"
 		name="Chinantec, Usila" />
-	<iso_639_3_entry
-		id="cug"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Cung"
-		name="Cung" />
 	<iso_639_3_entry
 		id="cuh"
 		status="Active"
@@ -10514,6 +10506,13 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Cuicatec, Tepeuxila"
 		reference_name="Tepeuxila Cuicatec"
 		name="Cuicatec, Tepeuxila" />
+	<iso_639_3_entry
+		id="cuy"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Cuitlatec"
+		name="Cuitlatec" />
 	<iso_639_3_entry
 		id="cvg"
 		status="Active"
@@ -11270,13 +11269,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ndra'ngith"
 		name="Ndra'ngith" />
 	<iso_639_3_entry
-		id="dgu"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Degaru"
-		name="Degaru" />
-	<iso_639_3_entry
 		id="dgw"
 		status="Active"
 		scope="I"
@@ -11519,13 +11511,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Dimasa"
 		name="Dimasa" />
 	<iso_639_3_entry
-		id="dit"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Dirari"
-		name="Dirari" />
-	<iso_639_3_entry
 		id="diu"
 		status="Active"
 		scope="I"
@@ -11646,8 +11631,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Djauan"
-		name="Djauan" />
+		reference_name="Jawoyn"
+		name="Jawoyn" />
 	<iso_639_3_entry
 		id="djo"
 		status="Active"
@@ -11683,6 +11668,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Dakpakha"
 		name="Dakpakha" />
+	<iso_639_3_entry
+		id="dkg"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kadung"
+		name="Kadung" />
 	<iso_639_3_entry
 		id="dkk"
 		status="Active"
@@ -11776,6 +11768,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Dugwor"
 		name="Dugwor" />
+	<iso_639_3_entry
+		id="dmf"
+		status="Active"
+		scope="I"
+		type="E"
+		reference_name="Medefaidrin"
+		name="Medefaidrin" />
 	<iso_639_3_entry
 		id="dmg"
 		status="Active"
@@ -11920,6 +11919,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Dzùùngoo"
 		name="Dzùùngoo" />
+	<iso_639_3_entry
+		id="dno"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ndrulo"
+		name="Ndrulo" />
 	<iso_639_3_entry
 		id="dnr"
 		status="Active"
@@ -12159,8 +12165,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="C'lela"
-		name="C'lela" />
+		reference_name="C'Lela"
+		name="C'Lela" />
 	<iso_639_3_entry
 		id="drl"
 		status="Active"
@@ -12191,13 +12197,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Dura"
 		name="Dura" />
-	<iso_639_3_entry
-		id="drr"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Dororo"
-		name="Dororo" />
 	<iso_639_3_entry
 		id="drs"
 		status="Active"
@@ -12266,7 +12265,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="dsn"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Dusner"
 		name="Dusner" />
 	<iso_639_3_entry
@@ -12283,6 +12282,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Tadaksahak"
 		name="Tadaksahak" />
+	<iso_639_3_entry
+		id="dsz"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Mardin Sign Language"
+		name="Mardin Sign Language" />
 	<iso_639_3_entry
 		id="dta"
 		status="Active"
@@ -12418,13 +12424,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Duna"
 		name="Duna" />
-	<iso_639_3_entry
-		id="dud"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Hun-Saare"
-		name="Hun-Saare" />
 	<iso_639_3_entry
 		id="due"
 		status="Active"
@@ -12585,6 +12584,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Diri"
 		name="Diri" />
 	<iso_639_3_entry
+		id="dwk"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Kui, Dawik"
+		reference_name="Dawik Kui"
+		name="Kui, Dawik" />
+	<iso_639_3_entry
 		id="dwr"
 		status="Active"
 		scope="I"
@@ -12619,6 +12626,14 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Dhuwaya"
 		name="Dhuwaya" />
+	<iso_639_3_entry
+		id="dwz"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Rai, Dewas"
+		reference_name="Dewas Rai"
+		name="Rai, Dewas" />
 	<iso_639_3_entry
 		id="dya"
 		status="Active"
@@ -12690,8 +12705,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Dyaabugay"
-		name="Dyaabugay" />
+		reference_name="Djabugay"
+		name="Djabugay" />
 	<iso_639_3_entry
 		id="dza"
 		status="Active"
@@ -12742,6 +12757,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Karenggapa"
 		name="Karenggapa" />
+	<iso_639_3_entry
+		id="ebc"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Beginci"
+		name="Beginci" />
 	<iso_639_3_entry
 		id="ebg"
 		status="Active"
@@ -12842,6 +12864,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Emilian"
 		name="Emilian" />
 	<iso_639_3_entry
+		id="egm"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Benamanga"
+		name="Benamanga" />
+	<iso_639_3_entry
 		id="ego"
 		status="Active"
 		scope="I"
@@ -12855,6 +12884,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="A"
 		reference_name="Egyptian (Ancient)"
 		name="Egyptian (Ancient)" />
+	<iso_639_3_entry
+		id="ehs"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Miyakubo Sign Language"
+		name="Miyakubo Sign Language" />
 	<iso_639_3_entry
 		id="ehu"
 		status="Active"
@@ -12897,14 +12933,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Ekajuk"
 		name="Ekajuk" />
-	<iso_639_3_entry
-		id="ekc"
-		status="Active"
-		scope="I"
-		type="E"
-		inverted_name="Karnic, Eastern"
-		reference_name="Eastern Karnic"
-		name="Karnic, Eastern" />
 	<iso_639_3_entry
 		id="eke"
 		status="Active"
@@ -13110,6 +13138,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Northern Emberá"
 		name="Emberá, Northern" />
 	<iso_639_3_entry
+		id="emq"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Minyag, Eastern"
+		reference_name="Eastern Minyag"
+		name="Minyag, Eastern" />
+	<iso_639_3_entry
 		id="ems"
 		status="Active"
 		scope="I"
@@ -13143,10 +13179,17 @@ Source: <http://www.sil.org/iso639-3/>
 		id="emy"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		inverted_name="Mayan, Epigraphic"
 		reference_name="Epigraphic Mayan"
 		name="Mayan, Epigraphic" />
+	<iso_639_3_entry
+		id="emz"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Mbessa"
+		name="Mbessa" />
 	<iso_639_3_entry
 		id="ena"
 		status="Active"
@@ -13254,8 +13297,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Enwan (Edu State)"
-		name="Enwan (Edu State)" />
+		reference_name="Enwan (Edo State)"
+		name="Enwan (Edo State)" />
 	<iso_639_3_entry
 		id="enw"
 		status="Active"
@@ -13723,8 +13766,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Palor"
-		name="Palor" />
+		reference_name="Paloor"
+		name="Paloor" />
 	<iso_639_3_entry
 		id="far"
 		status="Active"
@@ -13836,6 +13879,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Fyer"
 		name="Fyer" />
+	<iso_639_3_entry
+		id="fif"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Faifi"
+		name="Faifi" />
 	<iso_639_3_entry
 		id="fij"
 		part1_code="fj"
@@ -14074,7 +14124,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="frk"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Frankish"
 		name="Frankish" />
 	<iso_639_3_entry
@@ -14508,8 +14558,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Karadjeri"
-		name="Karadjeri" />
+		reference_name="Karajarri"
+		name="Karajarri" />
 	<iso_639_3_entry
 		id="gbe"
 		status="Active"
@@ -14902,6 +14952,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Gade"
 		name="Gade" />
 	<iso_639_3_entry
+		id="gef"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Gerai"
+		name="Gerai" />
+	<iso_639_3_entry
 		id="geg"
 		status="Active"
 		scope="I"
@@ -15033,8 +15090,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Guragone"
-		name="Guragone" />
+		reference_name="Gurr-goni"
+		name="Gurr-goni" />
 	<iso_639_3_entry
 		id="ggg"
 		status="Active"
@@ -15088,7 +15145,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="ghc"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		inverted_name="Gaelic, Hiberno-Scottish"
 		reference_name="Hiberno-Scottish Gaelic"
 		name="Gaelic, Hiberno-Scottish" />
@@ -15163,8 +15220,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kitja"
-		name="Kitja" />
+		reference_name="Kija"
+		name="Kija" />
 	<iso_639_3_entry
 		id="gib"
 		status="Active"
@@ -15187,6 +15244,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Gidar"
 		name="Gidar" />
 	<iso_639_3_entry
+		id="gie"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Gaɓogbo"
+		name="Gaɓogbo" />
+	<iso_639_3_entry
 		id="gig"
 		status="Active"
 		scope="I"
@@ -15200,6 +15264,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Githabul"
 		name="Githabul" />
+	<iso_639_3_entry
+		id="gii"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Girirra"
+		name="Girirra" />
 	<iso_639_3_entry
 		id="gil"
 		status="Active"
@@ -15297,13 +15368,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="South Giziga"
 		name="Giziga, South" />
 	<iso_639_3_entry
-		id="gji"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Geji"
-		name="Geji" />
-	<iso_639_3_entry
 		id="gjk"
 		status="Active"
 		scope="I"
@@ -15346,6 +15410,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Guya"
 		name="Guya" />
+	<iso_639_3_entry
+		id="gkd"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Magɨ (Madang Province)"
+		name="Magɨ (Madang Province)" />
 	<iso_639_3_entry
 		id="gke"
 		status="Active"
@@ -15392,6 +15463,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Scottish Gaelic"
 		name="Gaelic, Scottish" />
 	<iso_639_3_entry
+		id="glb"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Belning"
+		name="Belning" />
+	<iso_639_3_entry
 		id="glc"
 		status="Active"
 		scope="I"
@@ -15429,13 +15507,6 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Pashai, Northwest"
 		reference_name="Northwest Pashai"
 		name="Pashai, Northwest" />
-	<iso_639_3_entry
-		id="gli"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Guliguli"
-		name="Guliguli" />
 	<iso_639_3_entry
 		id="glj"
 		status="Active"
@@ -15559,6 +15630,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Gimnime"
 		name="Gimnime" />
 	<iso_639_3_entry
+		id="gmr"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Mirning"
+		name="Mirning" />
+	<iso_639_3_entry
 		id="gmu"
 		status="Active"
 		scope="I"
@@ -15651,12 +15729,19 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Gooniyandi"
 		name="Gooniyandi" />
 	<iso_639_3_entry
+		id="gnj"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ngen"
+		name="Ngen" />
+	<iso_639_3_entry
 		id="gnk"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="//Gana"
-		name="//Gana" />
+		reference_name="ǁGana"
+		name="ǁGana" />
 	<iso_639_3_entry
 		id="gnl"
 		status="Active"
@@ -15878,6 +15963,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Gavar"
 		name="Gavar" />
+	<iso_639_3_entry
+		id="gov"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Goo"
+		name="Goo" />
 	<iso_639_3_entry
 		id="gow"
 		status="Active"
@@ -16229,8 +16321,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Gurinji"
-		name="Gurinji" />
+		reference_name="Gurindji"
+		name="Gurindji" />
 	<iso_639_3_entry
 		id="guf"
 		status="Active"
@@ -16480,8 +16572,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kalami"
-		name="Kalami" />
+		reference_name="Gawri"
+		name="Gawri" />
 	<iso_639_3_entry
 		id="gwd"
 		status="Active"
@@ -16522,8 +16614,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="/Gwi"
-		name="/Gwi" />
+		reference_name="ǀGwi"
+		name="ǀGwi" />
 	<iso_639_3_entry
 		id="gwm"
 		status="Active"
@@ -16653,6 +16745,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Guyanese Creole English"
 		name="Creole English, Guyanese" />
 	<iso_639_3_entry
+		id="gyo"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Gyalsumdo"
+		name="Gyalsumdo" />
+	<iso_639_3_entry
 		id="gyr"
 		status="Active"
 		scope="I"
@@ -16666,6 +16765,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Gunya"
 		name="Gunya" />
+	<iso_639_3_entry
+		id="gyz"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Geji"
+		name="Geji" />
 	<iso_639_3_entry
 		id="gza"
 		status="Active"
@@ -17019,8 +17125,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Hai//om"
-		name="Hai//om" />
+		reference_name="Haiǁom"
+		name="Haiǁom" />
 	<iso_639_3_entry
 		id="hgw"
 		status="Active"
@@ -17185,12 +17291,26 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Hunde"
 		name="Hunde" />
 	<iso_639_3_entry
+		id="hkh"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Khah"
+		name="Khah" />
+	<iso_639_3_entry
 		id="hkk"
 		status="Active"
 		scope="I"
 		type="L"
 		reference_name="Hunjara-Kaina Ke"
 		name="Hunjara-Kaina Ke" />
+	<iso_639_3_entry
+		id="hkn"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Mel-Khaonh"
+		name="Mel-Khaonh" />
 	<iso_639_3_entry
 		id="hks"
 		status="Active"
@@ -17324,7 +17444,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="hmk"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Maek"
 		name="Maek" />
 	<iso_639_3_entry
@@ -17456,12 +17576,19 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Chhattisgarhi"
 		name="Chhattisgarhi" />
 	<iso_639_3_entry
+		id="hng"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Hungu"
+		name="Hungu" />
+	<iso_639_3_entry
 		id="hnh"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="//Ani"
-		name="//Ani" />
+		reference_name="ǁAni"
+		name="ǁAni" />
 	<iso_639_3_entry
 		id="hni"
 		status="Active"
@@ -17643,7 +17770,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="hpo"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Hpon"
 		name="Hpon" />
 	<iso_639_3_entry
@@ -17787,7 +17914,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="hti"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Hoti"
 		name="Hoti" />
 	<iso_639_3_entry
@@ -17832,8 +17959,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="=/Hua"
-		name="=/Hua" />
+		reference_name="ǂHua"
+		name="ǂHua" />
 	<iso_639_3_entry
 		id="hud"
 		status="Active"
@@ -17889,7 +18016,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="huk"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Hulung"
 		name="Hulung" />
 	<iso_639_3_entry
@@ -18077,6 +18204,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Armenian"
 		name="Armenian" />
 	<iso_639_3_entry
+		id="hyw"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Armenian, Western"
+		reference_name="Western Armenian"
+		name="Armenian, Western" />
+	<iso_639_3_entry
 		id="iai"
 		status="Active"
 		scope="I"
@@ -18132,6 +18267,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Ibanag"
 		name="Ibanag" />
+	<iso_639_3_entry
+		id="ibh"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Bih"
+		name="Bih" />
 	<iso_639_3_entry
 		id="ibl"
 		status="Active"
@@ -18729,6 +18871,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Marsian"
 		name="Marsian" />
 	<iso_639_3_entry
+		id="imt"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Imotong"
+		name="Imotong" />
+	<iso_639_3_entry
 		id="imy"
 		status="Active"
 		scope="I"
@@ -18912,8 +19061,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Irigwe"
-		name="Irigwe" />
+		reference_name="Rigwe"
+		name="Rigwe" />
 	<iso_639_3_entry
 		id="irk"
 		status="Active"
@@ -19475,6 +19624,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Barikewa"
 		name="Barikewa" />
 	<iso_639_3_entry
+		id="jbm"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Bijim"
+		name="Bijim" />
+	<iso_639_3_entry
 		id="jbn"
 		status="Active"
 		scope="I"
@@ -19565,13 +19721,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Jerung"
 		name="Jerung" />
-	<iso_639_3_entry
-		id="jeg"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Jeng"
-		name="Jeng" />
 	<iso_639_3_entry
 		id="jeh"
 		status="Active"
@@ -19696,8 +19845,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Bu"
-		name="Bu" />
+		reference_name="Bu (Kaduna State)"
+		name="Bu (Kaduna State)" />
 	<iso_639_3_entry
 		id="jie"
 		status="Active"
@@ -19710,8 +19859,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Djingili"
-		name="Djingili" />
+		reference_name="Jingulu"
+		name="Jingulu" />
 	<iso_639_3_entry
 		id="jih"
 		status="Active"
@@ -19835,6 +19984,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Koro (India)"
 		name="Koro (India)" />
+	<iso_639_3_entry
+		id="jks"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Amami Koniya Sign Language"
+		name="Amami Koniya Sign Language" />
 	<iso_639_3_entry
 		id="jku"
 		status="Active"
@@ -20082,8 +20238,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Jorto"
-		name="Jorto" />
+		reference_name="Jakattoe"
+		name="Jakattoe" />
 	<iso_639_3_entry
 		id="jru"
 		status="Active"
@@ -20228,7 +20384,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="jvd"
 		status="Active"
 		scope="I"
-		type="E"
+		type="L"
 		reference_name="Javindo"
 		name="Javindo" />
 	<iso_639_3_entry
@@ -21350,13 +21506,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Kawe"
 		name="Kawe" />
 	<iso_639_3_entry
-		id="kgd"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Kataang"
-		name="Kataang" />
-	<iso_639_3_entry
 		id="kge"
 		status="Active"
 		scope="I"
@@ -21583,9 +21732,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		inverted_name="Khmer, Central"
-		reference_name="Central Khmer"
-		name="Khmer, Central" />
+		reference_name="Khmer"
+		name="Khmer" />
 	<iso_639_3_entry
 		id="khn"
 		status="Active"
@@ -21905,13 +22053,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Kisar"
 		name="Kisar" />
 	<iso_639_3_entry
-		id="kjf"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Khalaj"
-		name="Khalaj" />
-	<iso_639_3_entry
 		id="kjg"
 		status="Active"
 		scope="I"
@@ -22171,8 +22312,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kaiku"
-		name="Kaiku" />
+		reference_name="Kaeku"
+		name="Kaeku" />
 	<iso_639_3_entry
 		id="kkr"
 		status="Active"
@@ -22227,8 +22368,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Guguyimidjir"
-		name="Guguyimidjir" />
+		reference_name="Guugu Yimidhirr"
+		name="Guugu Yimidhirr" />
 	<iso_639_3_entry
 		id="kkz"
 		status="Active"
@@ -22304,9 +22445,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		inverted_name="Khalaj, Turkic"
-		reference_name="Turkic Khalaj"
-		name="Khalaj, Turkic" />
+		reference_name="Khalaj"
+		name="Khalaj" />
 	<iso_639_3_entry
 		id="klk"
 		status="Active"
@@ -22397,8 +22537,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Lindu"
-		name="Lindu" />
+		reference_name="Tado"
+		name="Tado" />
 	<iso_639_3_entry
 		id="klx"
 		status="Active"
@@ -22813,8 +22953,9 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kacipo-Balesi"
-		name="Kacipo-Balesi" />
+		inverted_name="Suri, Kacipo-Bale"
+		reference_name="Kacipo-Bale Suri"
+		name="Suri, Kacipo-Bale" />
 	<iso_639_3_entry
 		id="kof"
 		status="Active"
@@ -23392,13 +23533,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Karelian"
 		name="Karelian" />
 	<iso_639_3_entry
-		id="krm"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Krim"
-		name="Krim" />
-	<iso_639_3_entry
 		id="krn"
 		status="Active"
 		scope="I"
@@ -23417,8 +23551,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kru'ng 2"
-		name="Kru'ng 2" />
+		reference_name="Krung"
+		name="Krung" />
 	<iso_639_3_entry
 		id="krs"
 		status="Active"
@@ -23840,8 +23974,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Ju/'hoan"
-		name="Ju/'hoan" />
+		reference_name="Juǀʼhoan"
+		name="Juǀʼhoan" />
 	<iso_639_3_entry
 		id="kua"
 		part1_code="kj"
@@ -24452,14 +24586,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Zayein Karen"
 		name="Karen, Zayein" />
 	<iso_639_3_entry
-		id="kxl"
-		status="Active"
-		scope="I"
-		type="L"
-		inverted_name="Kurux, Nepali"
-		reference_name="Nepali Kurux"
-		name="Kurux, Nepali" />
-	<iso_639_3_entry
 		id="kxm"
 		status="Active"
 		scope="I"
@@ -24519,13 +24645,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Koiwat"
 		name="Koiwat" />
-	<iso_639_3_entry
-		id="kxu"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Kui (India)"
-		name="Kui (India)" />
 	<iso_639_3_entry
 		id="kxv"
 		status="Active"
@@ -24895,7 +25014,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="kzx"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Kamarian"
 		name="Kamarian" />
 	<iso_639_3_entry
@@ -24983,13 +25102,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Lango (Uganda)"
 		name="Lango (Uganda)" />
-	<iso_639_3_entry
-		id="lak"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Laka (Nigeria)"
-		name="Laka (Nigeria)" />
 	<iso_639_3_entry
 		id="lal"
 		status="Active"
@@ -25100,13 +25212,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Aribwatsa"
 		name="Aribwatsa" />
 	<iso_639_3_entry
-		id="lba"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Lui"
-		name="Lui" />
-	<iso_639_3_entry
 		id="lbb"
 		status="Active"
 		scope="I"
@@ -25183,8 +25288,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Lamet"
-		name="Lamet" />
+		reference_name="Rmeet"
+		name="Rmeet" />
 	<iso_639_3_entry
 		id="lbo"
 		status="Active"
@@ -25253,8 +25358,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Lamu-Lamu"
-		name="Lamu-Lamu" />
+		reference_name="Lamalama"
+		name="Lamalama" />
 	<iso_639_3_entry
 		id="lbz"
 		status="Active"
@@ -25682,8 +25787,15 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Opuuo"
-		name="Opuuo" />
+		reference_name="T'apo"
+		name="T'apo" />
+	<iso_639_3_entry
+		id="lgo"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Lango (South Sudan)"
+		name="Lango (South Sudan)" />
 	<iso_639_3_entry
 		id="lgq"
 		status="Active"
@@ -26237,13 +26349,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Lele (Chad)"
 		name="Lele (Chad)" />
 	<iso_639_3_entry
-		id="llo"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Khlor"
-		name="Khlor" />
-	<iso_639_3_entry
 		id="llp"
 		status="Active"
 		scope="I"
@@ -26438,13 +26543,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Lamboya"
 		name="Lamboya" />
 	<iso_639_3_entry
-		id="lmz"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Lumbee"
-		name="Lumbee" />
-	<iso_639_3_entry
 		id="lna"
 		status="Active"
 		scope="I"
@@ -26515,13 +26613,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Lorediakarkar"
 		name="Lorediakarkar" />
-	<iso_639_3_entry
-		id="lno"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Lango (Sudan)"
-		name="Lango (Sudan)" />
 	<iso_639_3_entry
 		id="lns"
 		status="Active"
@@ -26765,6 +26856,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Lopit"
 		name="Lopit" />
 	<iso_639_3_entry
+		id="lqr"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Logir"
+		name="Logir" />
+	<iso_639_3_entry
 		id="lra"
 		status="Active"
 		scope="I"
@@ -26873,6 +26971,20 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Lasgerdi"
 		name="Lasgerdi" />
 	<iso_639_3_entry
+		id="lsb"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Burundian Sign Language"
+		name="Burundian Sign Language" />
+	<iso_639_3_entry
+		id="lsc"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Albarradas Sign Language"
+		name="Albarradas Sign Language" />
+	<iso_639_3_entry
 		id="lsd"
 		status="Active"
 		scope="I"
@@ -26886,13 +26998,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Lusengo"
 		name="Lusengo" />
-	<iso_639_3_entry
-		id="lsg"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Lyons Sign Language"
-		name="Lyons Sign Language" />
 	<iso_639_3_entry
 		id="lsh"
 		status="Active"
@@ -26921,6 +27026,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Saamia"
 		name="Saamia" />
+	<iso_639_3_entry
+		id="lsn"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Tibetan Sign Language"
+		name="Tibetan Sign Language" />
 	<iso_639_3_entry
 		id="lso"
 		status="Active"
@@ -26957,6 +27069,20 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Trinidad and Tobago Sign Language"
 		name="Trinidad and Tobago Sign Language" />
 	<iso_639_3_entry
+		id="lsv"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Sivia Sign Language"
+		name="Sivia Sign Language" />
+	<iso_639_3_entry
+		id="lsw"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Seychelles Sign Language"
+		name="Seychelles Sign Language" />
+	<iso_639_3_entry
 		id="lsy"
 		status="Active"
 		scope="I"
@@ -26978,6 +27104,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Latgalian"
 		name="Latgalian" />
+	<iso_639_3_entry
+		id="lth"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Thur"
+		name="Thur" />
 	<iso_639_3_entry
 		id="lti"
 		status="Active"
@@ -27076,7 +27209,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="lui"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Luiseno"
 		name="Luiseno" />
 	<iso_639_3_entry
@@ -27200,6 +27333,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Maku'a"
 		name="Maku'a" />
 	<iso_639_3_entry
+		id="lvi"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Lavi"
+		name="Lavi" />
+	<iso_639_3_entry
 		id="lvk"
 		status="Active"
 		scope="I"
@@ -27273,6 +27413,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Luwo"
 		name="Luwo" />
 	<iso_639_3_entry
+		id="lws"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Malawian Sign Language"
+		name="Malawian Sign Language" />
+	<iso_639_3_entry
 		id="lwt"
 		status="Active"
 		scope="I"
@@ -27293,6 +27440,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Lewo"
 		name="Lewo" />
+	<iso_639_3_entry
+		id="lxm"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Lakurumau"
+		name="Lakurumau" />
 	<iso_639_3_entry
 		id="lya"
 		status="Active"
@@ -28073,8 +28227,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Mara"
-		name="Mara" />
+		reference_name="Marra"
+		name="Marra" />
 	<iso_639_3_entry
 		id="med"
 		status="Active"
@@ -28160,8 +28314,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Miriwung"
-		name="Miriwung" />
+		reference_name="Miriwoong"
+		name="Miriwoong" />
 	<iso_639_3_entry
 		id="meq"
 		status="Active"
@@ -28353,8 +28507,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Marithiel"
-		name="Marithiel" />
+		reference_name="Marrithiyel"
+		name="Marrithiyel" />
 	<iso_639_3_entry
 		id="mfs"
 		status="Active"
@@ -29848,8 +30002,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Montagnais"
-		name="Montagnais" />
+		reference_name="Innu"
+		name="Innu" />
 	<iso_639_3_entry
 		id="mog"
 		status="Active"
@@ -29996,15 +30150,15 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Mullukmulluk"
-		name="Mullukmulluk" />
+		reference_name="Malak Malak"
+		name="Malak Malak" />
 	<iso_639_3_entry
 		id="mpc"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Mangarayi"
-		name="Mangarayi" />
+		reference_name="Mangarrayi"
+		name="Mangarrayi" />
 	<iso_639_3_entry
 		id="mpd"
 		status="Active"
@@ -31128,13 +31282,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Mbara (Australia)"
 		name="Mbara (Australia)" />
 	<iso_639_3_entry
-		id="mvm"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Muya"
-		name="Muya" />
-	<iso_639_3_entry
 		id="mvn"
 		status="Active"
 		scope="I"
@@ -31378,20 +31525,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Hmong Daw"
 		name="Hmong Daw" />
 	<iso_639_3_entry
-		id="mwx"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Mediak"
-		name="Mediak" />
-	<iso_639_3_entry
-		id="mwy"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Mosiro"
-		name="Mosiro" />
-	<iso_639_3_entry
 		id="mwz"
 		status="Active"
 		scope="I"
@@ -31460,7 +31593,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="mxi"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Mozarabic"
 		name="Mozarabic" />
 	<iso_639_3_entry
@@ -31614,13 +31747,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Mayeka"
 		name="Mayeka" />
 	<iso_639_3_entry
-		id="myd"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Maramba"
-		name="Maramba" />
-	<iso_639_3_entry
 		id="mye"
 		status="Active"
 		scope="I"
@@ -31648,13 +31774,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Makah"
 		name="Makah" />
-	<iso_639_3_entry
-		id="myi"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Mina (India)"
-		name="Mina (India)" />
 	<iso_639_3_entry
 		id="myj"
 		status="Active"
@@ -31960,7 +32079,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="nae"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Naka'ela"
 		name="Naka'ela" />
 	<iso_639_3_entry
@@ -32090,8 +32209,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Narrinyeri"
-		name="Narrinyeri" />
+		reference_name="Ngarrindjeri"
+		name="Ngarrindjeri" />
 	<iso_639_3_entry
 		id="naz"
 		status="Active"
@@ -32164,8 +32283,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Ngarinman"
-		name="Ngarinman" />
+		reference_name="Ngarinyman"
+		name="Ngarinyman" />
 	<iso_639_3_entry
 		id="nbk"
 		status="Active"
@@ -32222,8 +32341,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Numana-Nunku-Gbantu-Numbu"
-		name="Numana-Nunku-Gbantu-Numbu" />
+		reference_name="Numana"
+		name="Numana" />
 	<iso_639_3_entry
 		id="nbs"
 		status="Active"
@@ -32347,8 +32466,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Nakara"
-		name="Nakara" />
+		reference_name="Na-kara"
+		name="Na-kara" />
 	<iso_639_3_entry
 		id="ncl"
 		status="Active"
@@ -32379,12 +32498,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Sibe"
 		name="Sibe" />
 	<iso_639_3_entry
-		id="ncp"
+		id="ncq"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Ndaktup"
-		name="Ndaktup" />
+		inverted_name="Katang, Northern"
+		reference_name="Northern Katang"
+		name="Katang, Northern" />
 	<iso_639_3_entry
 		id="ncr"
 		status="Active"
@@ -32470,7 +32590,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="ndf"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Nadruvian"
 		name="Nadruvian" />
 	<iso_639_3_entry
@@ -32878,8 +32998,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="N/u"
-		name="N/u" />
+		reference_name="Nǁng"
+		name="Nǁng" />
 	<iso_639_3_entry
 		id="ngi"
 		status="Active"
@@ -32923,13 +33043,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ngwo"
 		name="Ngwo" />
 	<iso_639_3_entry
-		id="ngo"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Ngoni"
-		name="Ngoni" />
-	<iso_639_3_entry
 		id="ngp"
 		status="Active"
 		scope="I"
@@ -32962,8 +33075,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Ngeq"
-		name="Ngeq" />
+		reference_name="Kriang"
+		name="Kriang" />
 	<iso_639_3_entry
 		id="ngu"
 		status="Active"
@@ -33223,8 +33336,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Ngalakan"
-		name="Ngalakan" />
+		reference_name="Ngalakgan"
+		name="Ngalakgan" />
 	<iso_639_3_entry
 		id="nih"
 		status="Active"
@@ -33719,6 +33832,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Nihali"
 		name="Nihali" />
 	<iso_639_3_entry
+		id="nlm"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Mankiyali"
+		name="Mankiyali" />
+	<iso_639_3_entry
 		id="nlo"
 		status="Active"
 		scope="I"
@@ -33877,8 +33997,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="!Xóõ"
-		name="!Xóõ" />
+		reference_name="ǃXóõ"
+		name="ǃXóõ" />
 	<iso_639_3_entry
 		id="nmo"
 		status="Active"
@@ -34097,13 +34217,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Narungga"
 		name="Narungga" />
-	<iso_639_3_entry
-		id="nns"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Ningye"
-		name="Ningye" />
 	<iso_639_3_entry
 		id="nnt"
 		status="Active"
@@ -34396,6 +34509,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Puimei Naga"
 		name="Naga, Puimei" />
 	<iso_639_3_entry
+		id="npx"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Noipx"
+		name="Noipx" />
+	<iso_639_3_entry
 		id="npy"
 		status="Active"
 		scope="I"
@@ -34418,6 +34538,13 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Ede Nago, Kura"
 		reference_name="Kura Ede Nago"
 		name="Ede Nago, Kura" />
+	<iso_639_3_entry
+		id="nql"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ngendelengo"
+		name="Ngendelengo" />
 	<iso_639_3_entry
 		id="nqm"
 		status="Active"
@@ -34447,6 +34574,13 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Naga, Kyan-Karyaw"
 		reference_name="Kyan-Karyaw Naga"
 		name="Naga, Kyan-Karyaw" />
+	<iso_639_3_entry
+		id="nqt"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Nteng"
+		name="Nteng" />
 	<iso_639_3_entry
 		id="nqy"
 		status="Active"
@@ -34586,6 +34720,13 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Naga, Sangtam"
 		reference_name="Sangtam Naga"
 		name="Naga, Sangtam" />
+	<iso_639_3_entry
+		id="nsb"
+		status="Active"
+		scope="I"
+		type="E"
+		reference_name="Lower Nossob"
+		name="Lower Nossob" />
 	<iso_639_3_entry
 		id="nsc"
 		status="Active"
@@ -34936,7 +35077,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="nul"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Nusa Laut"
 		name="Nusa Laut" />
 	<iso_639_3_entry
@@ -35126,6 +35267,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Nawaru"
 		name="Nawaru" />
 	<iso_639_3_entry
+		id="nww"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ndwewe"
+		name="Ndwewe" />
+	<iso_639_3_entry
 		id="nwx"
 		status="Active"
 		scope="I"
@@ -35227,13 +35375,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ninggerum"
 		name="Ninggerum" />
 	<iso_639_3_entry
-		id="nxu"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Narau"
-		name="Narau" />
-	<iso_639_3_entry
 		id="nxx"
 		status="Active"
 		scope="I"
@@ -35295,8 +35436,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Nyigina"
-		name="Nyigina" />
+		reference_name="Nyikina"
+		name="Nyikina" />
 	<iso_639_3_entry
 		id="nyi"
 		status="Active"
@@ -35372,8 +35513,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Nyunga"
-		name="Nyunga" />
+		reference_name="Nyungar"
+		name="Nyungar" />
 	<iso_639_3_entry
 		id="nyt"
 		status="Active"
@@ -35431,6 +35572,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Njebi"
 		name="Njebi" />
+	<iso_639_3_entry
+		id="nzd"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Nzadi"
+		name="Nzadi" />
 	<iso_639_3_entry
 		id="nzi"
 		status="Active"
@@ -35596,6 +35744,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Occitan (post 1500)"
 		name="Occitan (post 1500)" />
 	<iso_639_3_entry
+		id="ocm"
+		status="Active"
+		scope="I"
+		type="H"
+		inverted_name="Cham, Old"
+		reference_name="Old Cham"
+		name="Cham, Old" />
+	<iso_639_3_entry
 		id="oco"
 		status="Active"
 		scope="I"
@@ -35729,6 +35885,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Oirata"
 		name="Oirata" />
 	<iso_639_3_entry
+		id="oie"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Okolie"
+		name="Okolie" />
+	<iso_639_3_entry
 		id="oin"
 		status="Active"
 		scope="I"
@@ -35813,6 +35976,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Okobo"
 		name="Okobo" />
+	<iso_639_3_entry
+		id="okc"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kobo"
+		name="Kobo" />
 	<iso_639_3_entry
 		id="okd"
 		status="Active"
@@ -35929,6 +36099,14 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Okpe (Northwestern Edo)"
 		name="Okpe (Northwestern Edo)" />
+	<iso_639_3_entry
+		id="okz"
+		status="Active"
+		scope="I"
+		type="H"
+		inverted_name="Khmer, Old"
+		reference_name="Old Khmer"
+		name="Khmer, Old" />
 	<iso_639_3_entry
 		id="ola"
 		status="Active"
@@ -36103,6 +36281,14 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Mon, Old"
 		reference_name="Old Mon"
 		name="Mon, Old" />
+	<iso_639_3_entry
+		id="omy"
+		status="Active"
+		scope="I"
+		type="H"
+		inverted_name="Malay, Old"
+		reference_name="Old Malay"
+		name="Malay, Old" />
 	<iso_639_3_entry
 		id="ona"
 		status="Active"
@@ -36448,6 +36634,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Osing"
 		name="Osing" />
 	<iso_639_3_entry
+		id="osn"
+		status="Active"
+		scope="I"
+		type="H"
+		inverted_name="Sundanese, Old"
+		reference_name="Old Sundanese"
+		name="Sundanese, Old" />
+	<iso_639_3_entry
 		id="oso"
 		status="Active"
 		scope="I"
@@ -36669,6 +36863,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ouma"
 		name="Ouma" />
 	<iso_639_3_entry
+		id="ovd"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Elfdalian"
+		name="Elfdalian" />
+	<iso_639_3_entry
 		id="owi"
 		status="Active"
 		scope="I"
@@ -36840,13 +37041,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Papasena"
 		name="Papasena" />
 	<iso_639_3_entry
-		id="pat"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Papitalai"
-		name="Papitalai" />
-	<iso_639_3_entry
 		id="pau"
 		status="Active"
 		scope="I"
@@ -36946,6 +37140,14 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Mak (Nigeria)"
 		name="Mak (Nigeria)" />
+	<iso_639_3_entry
+		id="pbm"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Mazatec, Puebla"
+		reference_name="Puebla Mazatec"
+		name="Mazatec, Puebla" />
 	<iso_639_3_entry
 		id="pbn"
 		status="Active"
@@ -37338,8 +37540,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Peere"
-		name="Peere" />
+		reference_name="Pere"
+		name="Pere" />
 	<iso_639_3_entry
 		id="pfl"
 		status="Active"
@@ -37447,6 +37649,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Phukha"
 		name="Phukha" />
+	<iso_639_3_entry
+		id="phj"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Pahari"
+		name="Pahari" />
 	<iso_639_3_entry
 		id="phk"
 		status="Active"
@@ -37581,13 +37790,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Pitcairn-Norfolk"
 		name="Pitcairn-Norfolk" />
 	<iso_639_3_entry
-		id="pii"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Pini"
-		name="Pini" />
-	<iso_639_3_entry
 		id="pij"
 		status="Active"
 		scope="I"
@@ -37718,7 +37920,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="pkc"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Paekche"
 		name="Paekche" />
 	<iso_639_3_entry
@@ -37881,13 +38083,6 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Popoluca, Oluta"
 		reference_name="Oluta Popoluca"
 		name="Popoluca, Oluta" />
-	<iso_639_3_entry
-		id="plp"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Palpa"
-		name="Palpa" />
 	<iso_639_3_entry
 		id="plq"
 		status="Active"
@@ -38134,6 +38329,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Pannei"
 		name="Pannei" />
 	<iso_639_3_entry
+		id="pnd"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Mpinda"
+		name="Mpinda" />
+	<iso_639_3_entry
 		id="pne"
 		status="Active"
 		scope="I"
@@ -38146,8 +38348,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Pongu"
-		name="Pongu" />
+		reference_name="Pangu"
+		name="Pangu" />
 	<iso_639_3_entry
 		id="pnh"
 		status="Active"
@@ -38259,8 +38461,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Panytyima"
-		name="Panytyima" />
+		reference_name="Banyjima"
+		name="Banyjima" />
 	<iso_639_3_entry
 		id="pnx"
 		status="Active"
@@ -38360,7 +38562,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="poo"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		inverted_name="Pomo, Central"
 		reference_name="Central Pomo"
 		name="Pomo, Central" />
@@ -38532,13 +38734,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Malecite-Passamaquoddy"
 		name="Malecite-Passamaquoddy" />
 	<iso_639_3_entry
-		id="prb"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Lua'"
-		name="Lua'" />
-	<iso_639_3_entry
 		id="prc"
 		status="Active"
 		scope="I"
@@ -38699,8 +38894,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Persian Sign Language"
-		name="Persian Sign Language" />
+		reference_name="Iranian Sign Language"
+		name="Iranian Sign Language" />
 	<iso_639_3_entry
 		id="psd"
 		status="Active"
@@ -38844,8 +39039,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Pintiini"
-		name="Pintiini" />
+		reference_name="Pindiini"
+		name="Pindiini" />
 	<iso_639_3_entry
 		id="ptn"
 		status="Active"
@@ -38980,13 +39175,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Punan Tubu"
 		name="Punan Tubu" />
-	<iso_639_3_entry
-		id="puk"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Pu Ko"
-		name="Pu Ko" />
 	<iso_639_3_entry
 		id="pum"
 		status="Active"
@@ -39189,13 +39377,19 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Pyen"
 		name="Pyen" />
 	<iso_639_3_entry
+		id="pzh"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Pazeh"
+		name="Pazeh" />
+	<iso_639_3_entry
 		id="pzn"
 		status="Active"
 		scope="I"
 		type="L"
-		inverted_name="Naga, Para"
-		reference_name="Para Naga"
-		name="Naga, Para" />
+		reference_name="Jejara Naga"
+		name="Jejara Naga" />
 	<iso_639_3_entry
 		id="qua"
 		status="Active"
@@ -40033,12 +40227,12 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Riang (India)"
 		name="Riang (India)" />
 	<iso_639_3_entry
-		id="rie"
+		id="rib"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Rien"
-		name="Rien" />
+		reference_name="Bribri Sign Language"
+		name="Bribri Sign Language" />
 	<iso_639_3_entry
 		id="rif"
 		status="Active"
@@ -40051,8 +40245,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Riang (Myanmar)"
-		name="Riang (Myanmar)" />
+		reference_name="Riang Lang"
+		name="Riang Lang" />
 	<iso_639_3_entry
 		id="rim"
 		status="Active"
@@ -40079,8 +40273,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Ritarungo"
-		name="Ritarungo" />
+		reference_name="Ritharrngu"
+		name="Ritharrngu" />
 	<iso_639_3_entry
 		id="riu"
 		status="Active"
@@ -40170,8 +40364,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Rembarunga"
-		name="Rembarunga" />
+		reference_name="Rembarrnga"
+		name="Rembarrnga" />
 	<iso_639_3_entry
 		id="rmc"
 		status="Active"
@@ -40336,6 +40530,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Marma"
 		name="Marma" />
+	<iso_639_3_entry
+		id="rnb"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Brunca Sign Language"
+		name="Brunca Sign Language" />
 	<iso_639_3_entry
 		id="rnd"
 		status="Active"
@@ -40538,12 +40739,12 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Romano-Serbian"
 		name="Romano-Serbian" />
 	<iso_639_3_entry
-		id="rsi"
+		id="rsk"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Rennellese Sign Language"
-		name="Rennellese Sign Language" />
+		reference_name="Ruthenian"
+		name="Ruthenian" />
 	<iso_639_3_entry
 		id="rsl"
 		status="Active"
@@ -40558,6 +40759,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Miriwoong Sign Language"
 		name="Miriwoong Sign Language" />
+	<iso_639_3_entry
+		id="rsn"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Rwandan Sign Language"
+		name="Rwandan Sign Language" />
 	<iso_639_3_entry
 		id="rtc"
 		status="Active"
@@ -40733,6 +40941,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Rwa"
 		name="Rwa" />
+	<iso_639_3_entry
+		id="rwl"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ruwila"
+		name="Ruwila" />
 	<iso_639_3_entry
 		id="rwm"
 		status="Active"
@@ -41225,8 +41440,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Helambu Sherpa"
-		name="Helambu Sherpa" />
+		reference_name="Hyolmo"
+		name="Hyolmo" />
 	<iso_639_3_entry
 		id="scq"
 		status="Active"
@@ -41242,6 +41457,14 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Slavey, North"
 		reference_name="North Slavey"
 		name="Slavey, North" />
+	<iso_639_3_entry
+		id="sct"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Katang, Southern"
+		reference_name="Southern Katang"
+		name="Katang, Southern" />
 	<iso_639_3_entry
 		id="scu"
 		status="Active"
@@ -41343,13 +41566,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Saudi Arabian Sign Language"
 		name="Saudi Arabian Sign Language" />
 	<iso_639_3_entry
-		id="sdm"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Semandang"
-		name="Semandang" />
-	<iso_639_3_entry
 		id="sdn"
 		status="Active"
 		scope="I"
@@ -41372,6 +41588,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Sherdukpen"
 		name="Sherdukpen" />
+	<iso_639_3_entry
+		id="sdq"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Semandang"
+		name="Semandang" />
 	<iso_639_3_entry
 		id="sdr"
 		status="Active"
@@ -42302,13 +42525,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Seke (Nepal)"
 		name="Seke (Nepal)" />
 	<iso_639_3_entry
-		id="skk"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Sok"
-		name="Sok" />
-	<iso_639_3_entry
 		id="skm"
 		status="Active"
 		scope="I"
@@ -42508,7 +42724,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="slq"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Salchuq"
 		name="Salchuq" />
 	<iso_639_3_entry
@@ -42597,13 +42813,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Som"
 		name="Som" />
-	<iso_639_3_entry
-		id="smd"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Sama"
-		name="Sama" />
 	<iso_639_3_entry
 		id="sme"
 		part1_code="se"
@@ -42766,13 +42975,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Shona"
 		name="Shona" />
 	<iso_639_3_entry
-		id="snb"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Sebuyau"
-		name="Sebuyau" />
-	<iso_639_3_entry
 		id="snc"
 		status="Active"
 		scope="I"
@@ -42809,13 +43011,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Sanga (Democratic Republic of Congo)"
 		name="Sanga (Democratic Republic of Congo)" />
-	<iso_639_3_entry
-		id="snh"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Shinabo"
-		name="Shinabo" />
 	<iso_639_3_entry
 		id="sni"
 		status="Active"
@@ -42935,8 +43130,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Sinsauru"
-		name="Sinsauru" />
+		reference_name="Kou"
+		name="Kou" />
 	<iso_639_3_entry
 		id="soa"
 		status="Active"
@@ -43348,6 +43543,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Squamish"
 		name="Squamish" />
+	<iso_639_3_entry
+		id="sqx"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kufr Qassem Sign Language (KQSL)"
+		name="Kufr Qassem Sign Language (KQSL)" />
 	<iso_639_3_entry
 		id="sra"
 		status="Active"
@@ -43941,12 +44143,20 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Sundanese"
 		name="Sundanese" />
 	<iso_639_3_entry
+		id="suo"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Bouni"
+		name="Bouni" />
+	<iso_639_3_entry
 		id="suq"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Suri"
-		name="Suri" />
+		inverted_name="Suri, Tirmaga-Chai"
+		reference_name="Tirmaga-Chai Suri"
+		name="Suri, Tirmaga-Chai" />
 	<iso_639_3_entry
 		id="sur"
 		status="Active"
@@ -44057,7 +44267,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="svx"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Skalvian"
 		name="Skalvian" />
 	<iso_639_3_entry
@@ -44259,8 +44469,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Shixing"
-		name="Shixing" />
+		reference_name="Shuhi"
+		name="Shuhi" />
 	<iso_639_3_entry
 		id="sxk"
 		status="Active"
@@ -44492,6 +44702,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Suabo"
 		name="Suabo" />
 	<iso_639_3_entry
+		id="szs"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Solomon Islands Sign Language"
+		name="Solomon Islands Sign Language" />
+	<iso_639_3_entry
 		id="szv"
 		status="Active"
 		scope="I"
@@ -44505,6 +44722,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Sawai"
 		name="Sawai" />
+	<iso_639_3_entry
+		id="szy"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Sakizaya"
+		name="Sakizaya" />
 	<iso_639_3_entry
 		id="taa"
 		status="Active"
@@ -44696,13 +44920,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Aikanã"
 		name="Aikanã" />
 	<iso_639_3_entry
-		id="tbb"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Tapeba"
-		name="Tapeba" />
-	<iso_639_3_entry
 		id="tbc"
 		status="Active"
 		scope="I"
@@ -44743,8 +44960,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Thurawal"
-		name="Thurawal" />
+		reference_name="Dharawal"
+		name="Dharawal" />
 	<iso_639_3_entry
 		id="tbi"
 		status="Active"
@@ -45365,6 +45582,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Tulishi"
 		name="Tulishi" />
 	<iso_639_3_entry
+		id="tez"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Tetserret"
+		name="Tetserret" />
+	<iso_639_3_entry
 		id="tfi"
 		status="Active"
 		scope="I"
@@ -45587,8 +45811,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Thayore"
-		name="Thayore" />
+		reference_name="Kuuk Thaayorre"
+		name="Kuuk Thaayorre" />
 	<iso_639_3_entry
 		id="the"
 		status="Active"
@@ -45700,13 +45924,6 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Tamahaq, Tahaggart"
 		reference_name="Tahaggart Tamahaq"
 		name="Tamahaq, Tahaggart" />
-	<iso_639_3_entry
-		id="thw"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Thudam"
-		name="Thudam" />
 	<iso_639_3_entry
 		id="thy"
 		status="Active"
@@ -45911,6 +46128,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Northern Tujia"
 		name="Tujia, Northern" />
 	<iso_639_3_entry
+		id="tjj"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Tjungundji"
+		name="Tjungundji" />
+	<iso_639_3_entry
 		id="tjl"
 		status="Active"
 		scope="I"
@@ -45939,6 +46163,13 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Tamazight, Temacine"
 		reference_name="Temacine Tamazight"
 		name="Tamazight, Temacine" />
+	<iso_639_3_entry
+		id="tjp"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Tjupany"
+		name="Tjupany" />
 	<iso_639_3_entry
 		id="tjs"
 		status="Active"
@@ -46463,14 +46694,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Angosturas Tunebo"
 		name="Tunebo, Angosturas" />
 	<iso_639_3_entry
-		id="tne"
-		status="Active"
-		scope="I"
-		type="L"
-		inverted_name="Kallahan, Tinoc"
-		reference_name="Tinoc Kallahan"
-		name="Kallahan, Tinoc" />
-	<iso_639_3_entry
 		id="tng"
 		status="Active"
 		scope="I"
@@ -46662,10 +46885,17 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Tojolabal"
 		name="Tojolabal" />
 	<iso_639_3_entry
+		id="tok"
+		status="Active"
+		scope="I"
+		type="C"
+		reference_name="Toki Pona"
+		name="Toki Pona" />
+	<iso_639_3_entry
 		id="tol"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Tolowa"
 		name="Tolowa" />
 	<iso_639_3_entry
@@ -47154,8 +47384,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Taroko"
-		name="Taroko" />
+		reference_name="Sediq"
+		name="Sediq" />
 	<iso_639_3_entry
 		id="trw"
 		status="Active"
@@ -47556,7 +47786,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="tub"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Tübatulabal"
 		name="Tübatulabal" />
 	<iso_639_3_entry
@@ -47642,7 +47872,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="tun"
 		status="Active"
 		scope="I"
-		type="E"
+		type="L"
 		reference_name="Tunica"
 		name="Tunica" />
 	<iso_639_3_entry
@@ -47795,6 +48025,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Sedoa"
 		name="Sedoa" />
+	<iso_639_3_entry
+		id="tvx"
+		status="Active"
+		scope="I"
+		type="E"
+		reference_name="Taivoan"
+		name="Taivoan" />
 	<iso_639_3_entry
 		id="tvy"
 		status="Active"
@@ -48182,6 +48419,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Teke-Tyee"
 		name="Teke-Tyee" />
 	<iso_639_3_entry
+		id="tyy"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Tiyaa"
+		name="Tiyaa" />
+	<iso_639_3_entry
 		id="tyz"
 		status="Active"
 		scope="I"
@@ -48401,6 +48645,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ughele"
 		name="Ughele" />
 	<iso_639_3_entry
+		id="ugh"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kubachi"
+		name="Kubachi" />
+	<iso_639_3_entry
 		id="ugn"
 		status="Active"
 		scope="I"
@@ -48486,6 +48737,20 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ukhwejo"
 		name="Ukhwejo" />
 	<iso_639_3_entry
+		id="uki"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kui (India)"
+		name="Kui (India)" />
+	<iso_639_3_entry
+		id="ukk"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Muak Sa-aak"
+		name="Muak Sa-aak" />
+	<iso_639_3_entry
 		id="ukl"
 		status="Active"
 		scope="I"
@@ -48528,6 +48793,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Ukue"
 		name="Ukue" />
+	<iso_639_3_entry
+		id="ukv"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kuku"
+		name="Kuku" />
 	<iso_639_3_entry
 		id="ukw"
 		status="Active"
@@ -48589,8 +48861,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Meriam"
-		name="Meriam" />
+		reference_name="Meriam Mir"
+		name="Meriam Mir" />
 	<iso_639_3_entry
 		id="ull"
 		status="Active"
@@ -48659,8 +48931,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Umbuygamu"
-		name="Umbuygamu" />
+		reference_name="Morrobalama"
+		name="Morrobalama" />
 	<iso_639_3_entry
 		id="umi"
 		status="Active"
@@ -48748,6 +49020,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ngarinyin"
 		name="Ngarinyin" />
 	<iso_639_3_entry
+		id="uni"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Uni"
+		name="Uni" />
+	<iso_639_3_entry
 		id="unk"
 		status="Active"
 		scope="I"
@@ -48797,6 +49076,13 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Kaili, Unde"
 		reference_name="Unde Kaili"
 		name="Kaili, Unde" />
+	<iso_639_3_entry
+		id="uon"
+		status="Active"
+		scope="I"
+		type="E"
+		reference_name="Kulon"
+		name="Kulon" />
 	<iso_639_3_entry
 		id="upi"
 		status="Active"
@@ -49009,6 +49295,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Uspanteco"
 		name="Uspanteco" />
 	<iso_639_3_entry
+		id="uss"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="us-Saare"
+		name="us-Saare" />
+	<iso_639_3_entry
 		id="usu"
 		status="Active"
 		scope="I"
@@ -49029,6 +49322,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Ute-Southern Paiute"
 		name="Ute-Southern Paiute" />
+	<iso_639_3_entry
+		id="uth"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="ut-Hun"
+		name="ut-Hun" />
 	<iso_639_3_entry
 		id="utp"
 		status="Active"
@@ -49057,13 +49357,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Urum"
 		name="Urum" />
-	<iso_639_3_entry
-		id="uun"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Kulon-Pazeh"
-		name="Kulon-Pazeh" />
 	<iso_639_3_entry
 		id="uur"
 		status="Active"
@@ -49424,13 +49717,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Kariyarra"
 		name="Kariyarra" />
 	<iso_639_3_entry
-		id="vki"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Ija-Zuba"
-		name="Ija-Zuba" />
-	<iso_639_3_entry
 		id="vkj"
 		status="Active"
 		scope="I"
@@ -49458,6 +49744,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Kamakan"
 		name="Kamakan" />
+	<iso_639_3_entry
+		id="vkn"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Koro Nulu"
+		name="Koro Nulu" />
 	<iso_639_3_entry
 		id="vko"
 		status="Active"
@@ -49488,6 +49781,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Kurrama"
 		name="Kurrama" />
+	<iso_639_3_entry
+		id="vkz"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Koro Zuba"
+		name="Koro Zuba" />
 	<iso_639_3_entry
 		id="vlp"
 		status="Active"
@@ -49819,7 +50119,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="wac"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Wasco-Wishram"
 		name="Wasco-Wishram" />
 	<iso_639_3_entry
@@ -49827,8 +50127,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Wandamen"
-		name="Wandamen" />
+		reference_name="Wamesa"
+		name="Wamesa" />
 	<iso_639_3_entry
 		id="wae"
 		status="Active"
@@ -49911,8 +50211,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Wageman"
-		name="Wageman" />
+		reference_name="Wagiman"
+		name="Wagiman" />
 	<iso_639_3_entry
 		id="war"
 		status="Active"
@@ -50068,12 +50368,19 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Wagdi"
 		name="Wagdi" />
 	<iso_639_3_entry
+		id="wbs"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="West Bengal Sign Language"
+		name="West Bengal Sign Language" />
+	<iso_639_3_entry
 		id="wbt"
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Wanman"
-		name="Wanman" />
+		reference_name="Warnman"
+		name="Warnman" />
 	<iso_639_3_entry
 		id="wbv"
 		status="Active"
@@ -50131,6 +50438,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Wadikali"
 		name="Wadikali" />
+	<iso_639_3_entry
+		id="wdt"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Wendat"
+		name="Wendat" />
 	<iso_639_3_entry
 		id="wdu"
 		status="Active"
@@ -50272,8 +50586,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Wangganguru"
-		name="Wangganguru" />
+		reference_name="Wangkangurru"
+		name="Wangkangurru" />
 	<iso_639_3_entry
 		id="wgi"
 		status="Active"
@@ -50345,7 +50659,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="wic"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Wichita"
 		name="Wichita" />
 	<iso_639_3_entry
@@ -50367,8 +50681,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Wik-Ngathana"
-		name="Wik-Ngathana" />
+		reference_name="Wik Ngathan"
+		name="Wik Ngathan" />
 	<iso_639_3_entry
 		id="wih"
 		status="Active"
@@ -50489,6 +50803,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Kalanadi"
 		name="Kalanadi" />
 	<iso_639_3_entry
+		id="wkr"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Keerray-Woorroong"
+		name="Keerray-Woorroong" />
+	<iso_639_3_entry
 		id="wku"
 		status="Active"
 		scope="I"
@@ -50538,6 +50859,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Kunbarlang"
 		name="Kunbarlang" />
+	<iso_639_3_entry
+		id="wlh"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Welaun"
+		name="Welaun" />
 	<iso_639_3_entry
 		id="wli"
 		status="Active"
@@ -50666,6 +50994,14 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Wambule"
 		name="Wambule" />
+	<iso_639_3_entry
+		id="wmg"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Minyag, Western"
+		reference_name="Western Minyag"
+		name="Minyag, Western" />
 	<iso_639_3_entry
 		id="wmh"
 		status="Active"
@@ -50833,8 +51169,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Tyaraity"
-		name="Tyaraity" />
+		reference_name="Kuwema"
+		name="Kuwema" />
 	<iso_639_3_entry
 		id="wob"
 		status="Active"
@@ -50957,26 +51293,12 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Maco"
 		name="Maco" />
 	<iso_639_3_entry
-		id="wra"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Warapu"
-		name="Warapu" />
-	<iso_639_3_entry
 		id="wrb"
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Warluwara"
-		name="Warluwara" />
-	<iso_639_3_entry
-		id="wrd"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Warduji"
-		name="Warduji" />
+		reference_name="Waluwarra"
+		name="Waluwarra" />
 	<iso_639_3_entry
 		id="wrg"
 		status="Active"
@@ -50989,8 +51311,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="Wiradhuri"
-		name="Wiradhuri" />
+		reference_name="Wiradjuri"
+		name="Wiradjuri" />
 	<iso_639_3_entry
 		id="wri"
 		status="Active"
@@ -51337,13 +51659,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Wardandi"
 		name="Wardandi" />
 	<iso_639_3_entry
-		id="wya"
-		status="Active"
-		scope="I"
-		type="L"
-		reference_name="Wyandot"
-		name="Wyandot" />
-	<iso_639_3_entry
 		id="wyb"
 		status="Active"
 		scope="I"
@@ -51364,6 +51679,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Wymysorys"
 		name="Wymysorys" />
+	<iso_639_3_entry
+		id="wyn"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Wyandot"
+		name="Wyandot" />
 	<iso_639_3_entry
 		id="wyr"
 		status="Active"
@@ -51419,7 +51741,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xag"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Aghwan"
 		name="Aghwan" />
 	<iso_639_3_entry
@@ -51455,8 +51777,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="/Xam"
-		name="/Xam" />
+		reference_name="ǀXam"
+		name="ǀXam" />
 	<iso_639_3_entry
 		id="xan"
 		status="Active"
@@ -51603,7 +51925,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xbo"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Bolgarian"
 		name="Bolgarian" />
 	<iso_639_3_entry
@@ -51632,13 +51954,13 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Batyala"
-		name="Batyala" />
+		reference_name="Batjala"
+		name="Batjala" />
 	<iso_639_3_entry
 		id="xcb"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Cumbric"
 		name="Cumbric" />
 	<iso_639_3_entry
@@ -51718,7 +52040,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xcu"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Curonian"
 		name="Curonian" />
 	<iso_639_3_entry
@@ -51771,6 +52093,20 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Edomite"
 		name="Edomite" />
 	<iso_639_3_entry
+		id="xdo"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kwandu"
+		name="Kwandu" />
+	<iso_639_3_entry
+		id="xdq"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Kaitag"
+		name="Kaitag" />
+	<iso_639_3_entry
 		id="xdy"
 		status="Active"
 		scope="I"
@@ -51797,8 +52133,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="E"
-		reference_name="//Xegwi"
-		name="//Xegwi" />
+		reference_name="ǁXegwi"
+		name="ǁXegwi" />
 	<iso_639_3_entry
 		id="xel"
 		status="Active"
@@ -51901,7 +52237,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xgl"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Galindan"
 		name="Galindan" />
 	<iso_639_3_entry
@@ -51943,7 +52279,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xhc"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Hunnic"
 		name="Hunnic" />
 	<iso_639_3_entry
@@ -51960,6 +52296,14 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Khetrani"
 		name="Khetrani" />
+	<iso_639_3_entry
+		id="xhm"
+		status="Active"
+		scope="I"
+		type="H"
+		inverted_name="Khmer, Middle (1400 to 1850 CE)"
+		reference_name="Middle Khmer (1400 to 1850 CE)"
+		name="Khmer, Middle (1400 to 1850 CE)" />
 	<iso_639_3_entry
 		id="xho"
 		part1_code="xh"
@@ -52136,8 +52480,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kaco'"
-		name="Kaco'" />
+		reference_name="Kachok"
+		name="Kachok" />
 	<iso_639_3_entry
 		id="xkl"
 		status="Active"
@@ -52383,8 +52727,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Kuku-Muminh"
-		name="Kuku-Muminh" />
+		reference_name="Kugu-Muminh"
+		name="Kugu-Muminh" />
 	<iso_639_3_entry
 		id="xmj"
 		status="Active"
@@ -52493,8 +52837,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Maden"
-		name="Maden" />
+		reference_name="Salawati"
+		name="Salawati" />
 	<iso_639_3_entry
 		id="xmy"
 		status="Active"
@@ -52547,12 +52891,26 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Ngarigu"
 		name="Ngarigu" />
 	<iso_639_3_entry
+		id="xnj"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ngoni (Tanzania)"
+		name="Ngoni (Tanzania)" />
+	<iso_639_3_entry
 		id="xnk"
 		status="Active"
 		scope="I"
 		type="E"
 		reference_name="Nganakarti"
 		name="Nganakarti" />
+	<iso_639_3_entry
+		id="xnm"
+		status="Active"
+		scope="I"
+		type="E"
+		reference_name="Ngumbarl"
+		name="Ngumbarl" />
 	<iso_639_3_entry
 		id="xnn"
 		status="Active"
@@ -52568,6 +52926,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="H"
 		reference_name="Anglo-Norman"
 		name="Anglo-Norman" />
+	<iso_639_3_entry
+		id="xnq"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Ngoni (Mozambique)"
+		name="Ngoni (Mozambique)" />
 	<iso_639_3_entry
 		id="xnr"
 		status="Active"
@@ -52695,12 +53060,28 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Pirriya"
 		name="Pirriya" />
 	<iso_639_3_entry
-		id="xpc"
+		id="xpb"
 		status="Active"
 		scope="I"
 		type="E"
+		inverted_name="Tasmanian, Northeastern"
+		reference_name="Northeastern Tasmanian"
+		name="Tasmanian, Northeastern" />
+	<iso_639_3_entry
+		id="xpc"
+		status="Active"
+		scope="I"
+		type="H"
 		reference_name="Pecheneg"
 		name="Pecheneg" />
+	<iso_639_3_entry
+		id="xpd"
+		status="Active"
+		scope="I"
+		type="E"
+		inverted_name="Tasmanian, Oyster Bay"
+		reference_name="Oyster Bay Tasmanian"
+		name="Tasmanian, Oyster Bay" />
 	<iso_639_3_entry
 		id="xpe"
 		status="Active"
@@ -52710,6 +53091,14 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Liberia Kpelle"
 		name="Kpelle, Liberia" />
 	<iso_639_3_entry
+		id="xpf"
+		status="Active"
+		scope="I"
+		type="E"
+		inverted_name="Tasmanian, Southeast"
+		reference_name="Southeast Tasmanian"
+		name="Tasmanian, Southeast" />
+	<iso_639_3_entry
 		id="xpg"
 		status="Active"
 		scope="I"
@@ -52717,10 +53106,18 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Phrygian"
 		name="Phrygian" />
 	<iso_639_3_entry
-		id="xpi"
+		id="xph"
 		status="Active"
 		scope="I"
 		type="E"
+		inverted_name="Tasmanian, North Midlands"
+		reference_name="North Midlands Tasmanian"
+		name="Tasmanian, North Midlands" />
+	<iso_639_3_entry
+		id="xpi"
+		status="Active"
+		scope="I"
+		type="H"
 		reference_name="Pictish"
 		name="Pictish" />
 	<iso_639_3_entry
@@ -52738,6 +53135,14 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Pano, Kulina"
 		reference_name="Kulina Pano"
 		name="Pano, Kulina" />
+	<iso_639_3_entry
+		id="xpl"
+		status="Active"
+		scope="I"
+		type="E"
+		inverted_name="Tasmanian, Port Sorell"
+		reference_name="Port Sorell Tasmanian"
+		name="Tasmanian, Port Sorell" />
 	<iso_639_3_entry
 		id="xpm"
 		status="Active"
@@ -52763,7 +53168,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xpp"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Puyo-Paekche"
 		name="Puyo-Paekche" />
 	<iso_639_3_entry
@@ -52784,7 +53189,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xps"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Pisidian"
 		name="Pisidian" />
 	<iso_639_3_entry
@@ -52802,12 +53207,44 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Punic"
 		name="Punic" />
 	<iso_639_3_entry
-		id="xpy"
+		id="xpv"
 		status="Active"
 		scope="I"
 		type="E"
+		inverted_name="Tasmanian, Northern"
+		reference_name="Northern Tasmanian"
+		name="Tasmanian, Northern" />
+	<iso_639_3_entry
+		id="xpw"
+		status="Active"
+		scope="I"
+		type="E"
+		inverted_name="Tasmanian, Northwestern"
+		reference_name="Northwestern Tasmanian"
+		name="Tasmanian, Northwestern" />
+	<iso_639_3_entry
+		id="xpx"
+		status="Active"
+		scope="I"
+		type="E"
+		inverted_name="Tasmanian, Southwestern"
+		reference_name="Southwestern Tasmanian"
+		name="Tasmanian, Southwestern" />
+	<iso_639_3_entry
+		id="xpy"
+		status="Active"
+		scope="I"
+		type="A"
 		reference_name="Puyo"
 		name="Puyo" />
+	<iso_639_3_entry
+		id="xpz"
+		status="Active"
+		scope="I"
+		type="E"
+		inverted_name="Tasmanian, Bruny Island"
+		reference_name="Bruny Island Tasmanian"
+		name="Tasmanian, Bruny Island" />
 	<iso_639_3_entry
 		id="xqa"
 		status="Active"
@@ -52869,7 +53306,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="xrm"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Armazic"
 		name="Armazic" />
 	<iso_639_3_entry
@@ -52879,13 +53316,6 @@ Source: <http://www.sil.org/iso639-3/>
 		type="E"
 		reference_name="Arin"
 		name="Arin" />
-	<iso_639_3_entry
-		id="xrq"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Karranga"
-		name="Karranga" />
 	<iso_639_3_entry
 		id="xrr"
 		status="Active"
@@ -52963,6 +53393,13 @@ Source: <http://www.sil.org/iso639-3/>
 		type="L"
 		reference_name="Sio"
 		name="Sio" />
+	<iso_639_3_entry
+		id="xsj"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Subi"
+		name="Subi" />
 	<iso_639_3_entry
 		id="xsl"
 		status="Active"
@@ -53210,13 +53647,6 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Mixtec, Yoloxochitl"
 		reference_name="Yoloxochitl Mixtec"
 		name="Mixtec, Yoloxochitl" />
-	<iso_639_3_entry
-		id="xtz"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Tasmanian"
-		name="Tasmanian" />
 	<iso_639_3_entry
 		id="xua"
 		status="Active"
@@ -54091,7 +54521,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="yih"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		inverted_name="Yiddish, Western"
 		reference_name="Western Yiddish"
 		name="Yiddish, Western" />
@@ -54137,8 +54567,8 @@ Source: <http://www.sil.org/iso639-3/>
 		status="Active"
 		scope="I"
 		type="L"
-		reference_name="Yinchia"
-		name="Yinchia" />
+		reference_name="Riang Lai"
+		name="Riang Lai" />
 	<iso_639_3_entry
 		id="yip"
 		status="Active"
@@ -54835,6 +55265,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Yugoslavian Sign Language"
 		name="Yugoslavian Sign Language" />
 	<iso_639_3_entry
+		id="ysm"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Myanmar Sign Language"
+		name="Myanmar Sign Language" />
+	<iso_639_3_entry
 		id="ysn"
 		status="Active"
 		scope="I"
@@ -55024,7 +55461,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="yur"
 		status="Active"
 		scope="I"
-		type="L"
+		type="E"
 		reference_name="Yurok"
 		name="Yurok" />
 	<iso_639_3_entry
@@ -55415,6 +55852,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Zari"
 		name="Zari" />
 	<iso_639_3_entry
+		id="zba"
+		status="Active"
+		scope="I"
+		type="C"
+		reference_name="Balaibalan"
+		name="Balaibalan" />
+	<iso_639_3_entry
 		id="zbc"
 		status="Active"
 		scope="I"
@@ -55445,6 +55889,13 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Batui"
 		name="Batui" />
 	<iso_639_3_entry
+		id="zbu"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Bu (Bauchi State)"
+		name="Bu (Bauchi State)" />
+	<iso_639_3_entry
 		id="zbw"
 		status="Active"
 		scope="I"
@@ -55460,6 +55911,14 @@ Source: <http://www.sil.org/iso639-3/>
 		inverted_name="Zapotec, Coatecas Altas"
 		reference_name="Coatecas Altas Zapotec"
 		name="Zapotec, Coatecas Altas" />
+	<iso_639_3_entry
+		id="zcd"
+		status="Active"
+		scope="I"
+		type="L"
+		inverted_name="Zapotec, Las Delicias"
+		reference_name="Las Delicias Zapotec"
+		name="Zapotec, Las Delicias" />
 	<iso_639_3_entry
 		id="zch"
 		status="Active"
@@ -55648,13 +56107,6 @@ Source: <http://www.sil.org/iso639-3/>
 		reference_name="Zinza"
 		name="Zinza" />
 	<iso_639_3_entry
-		id="zir"
-		status="Active"
-		scope="I"
-		type="E"
-		reference_name="Ziriya"
-		name="Ziriya" />
-	<iso_639_3_entry
 		id="ziw"
 		status="Active"
 		scope="I"
@@ -55693,14 +56145,14 @@ Source: <http://www.sil.org/iso639-3/>
 		id="zkg"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Koguryo"
 		name="Koguryo" />
 	<iso_639_3_entry
 		id="zkh"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Khorezmian"
 		name="Khorezmian" />
 	<iso_639_3_entry
@@ -55743,14 +56195,14 @@ Source: <http://www.sil.org/iso639-3/>
 		id="zkt"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Kitan"
 		name="Kitan" />
 	<iso_639_3_entry
 		id="zku"
 		status="Active"
 		scope="I"
-		type="E"
+		type="L"
 		reference_name="Kaurna"
 		name="Kaurna" />
 	<iso_639_3_entry
@@ -55764,9 +56216,16 @@ Source: <http://www.sil.org/iso639-3/>
 		id="zkz"
 		status="Active"
 		scope="I"
-		type="E"
+		type="H"
 		reference_name="Khazar"
 		name="Khazar" />
+	<iso_639_3_entry
+		id="zla"
+		status="Active"
+		scope="I"
+		type="L"
+		reference_name="Zula"
+		name="Zula" />
 	<iso_639_3_entry
 		id="zlj"
 		status="Active"
@@ -55879,9 +56338,9 @@ Source: <http://www.sil.org/iso639-3/>
 		id="zml"
 		status="Active"
 		scope="I"
-		type="L"
-		reference_name="Madngele"
-		name="Madngele" />
+		type="E"
+		reference_name="Matngala"
+		name="Matngala" />
 	<iso_639_3_entry
 		id="zmm"
 		status="Active"
@@ -56290,7 +56749,7 @@ Source: <http://www.sil.org/iso639-3/>
 		id="zra"
 		status="Active"
 		scope="I"
-		type="E"
+		type="A"
 		reference_name="Kara (Korea)"
 		name="Kara (Korea)" />
 	<iso_639_3_entry
