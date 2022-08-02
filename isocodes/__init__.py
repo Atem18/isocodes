@@ -44,6 +44,10 @@ class Countries(ISO):
         return self._sorted_by_index(index="alpha_3")
 
     @property
+    def by_common_name(self) -> List[tuple]:
+        return self._sorted_by_index(index="common_name")
+    
+    @property
     def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
 
