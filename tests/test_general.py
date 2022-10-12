@@ -6,8 +6,8 @@ def test_countries():
 
 
 def test_languages():
-    assert len(languages) == 486
+    assert len(languages) == 487
 
 
 def test_currencies():
-    assert len(currencies) == 170
+    assert len(currencies) == 181
