@@ -1,5 +1,10 @@
 #!/bin/bash
 
+python -m piptools compile --resolver=backtracking \
+    --extra dev \
+    -o dev-requirements.txt \
+    pyproject.toml
+
 BASE_DIR="$PWD/isocodes"
 
 SHARE_DIR="$PWD"/isocodes/share
@@ -10,7 +15,9 @@ rm -rf "$SHARE_DIR"
 
 cd "$UPSTREAM_DIR" || exit
 
-git checkout v4.11.0
+git pull
+
+git checkout v4.12.0
 
 ./configure --prefix "$BASE_DIR"
 

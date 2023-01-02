@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10"]
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3.2.0
@@ -14,9 +14,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
-      - name: Install Poetry
-        run: python -m pip install poetry --user
       - name: Install dev dependencies
-        run: poetry install
+        run: pip install -r dev-requirements.txt
       - name: Run Tox
-        run: poetry run tox -e py
+        run: tox -e py
