@@ -207,7 +207,7 @@ typing-extensions==4.4.0
     #   rich
 userpath==1.8.0
     # via hatch
-virtualenv==20.16.2
+virtualenv==20.17.1
     # via
     #   hatch
     #   tox
