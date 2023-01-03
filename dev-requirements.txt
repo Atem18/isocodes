@@ -76,7 +76,7 @@ jinja2==3.0.3
     #   mkdocstrings
 keyring==23.9.3
     # via hatch
-markdown==3.3.4
+markdown==3.4.1
     # via
     #   mkdocs
     #   mkdocs-autorefs
