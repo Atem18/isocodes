@@ -168,7 +168,7 @@ rfc3986[idna2008]==1.5.0
     # via httpx
 rich==13.0.0
     # via hatch
-shellingham==1.5.0
+shellingham==1.5.0.post1
     # via hatch
 six==1.16.0
     # via
