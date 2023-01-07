@@ -40,11 +40,11 @@ h11==0.14.0
     # via httpcore
 hatch==1.6.3
     # via isocodes (pyproject.toml)
-hatchling==1.12.1
+hatchling==1.12.2
     # via hatch
 httpcore==0.16.3
     # via httpx
-httpx==0.23.2
+httpx==0.23.3
     # via hatch
 hyperlink==21.0.0
     # via hatch
@@ -65,7 +65,7 @@ importlib-metadata==4.2.0
     #   pytest
     #   tox
     #   virtualenv
-iniconfig==1.1.1
+iniconfig==2.0.0
     # via pytest
 jaraco-classes==3.2.3
     # via keyring
@@ -166,9 +166,9 @@ pyyaml-env-tag==0.1
     # via mkdocs
 rfc3986[idna2008]==1.5.0
     # via httpx
-rich==13.0.0
+rich==13.0.1
     # via hatch
-shellingham==1.5.0
+shellingham==1.5.0.post1
     # via hatch
 six==1.16.0
     # via
