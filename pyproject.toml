@@ -7,7 +7,7 @@ name = "isocodes"
 version = "2023.01.02"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 authors = [{ name = "Atem18", email = "contact@atemlire.io" }]
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 readme = "README.md"
 homepage = "https://github.com/Atem18/isocodes"
 repository = "https://github.com/Atem18/isocodes"
@@ -19,4 +19,12 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "mkdocs", "mkdocs-material", "mkdocstrings", "black", "tox", "mypy", "flake8", "hatch"]
+dev = [
+    "pytest == 7.2.0",
+    "mkdocs == 1.4.2",
+    "mkdocs-material == 9.0.2",
+    "mkdocstrings == 0.19.1",
+    "black == 22.12.0",
+    "mypy == 0.991",
+    "tox == 4.2.6"
+]
