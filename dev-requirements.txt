@@ -74,7 +74,7 @@ jinja2==3.0.3
     #   mkdocs
     #   mkdocs-material
     #   mkdocstrings
-keyring==23.9.3
+keyring==23.13.1
     # via hatch
 markdown==3.3.4
     # via
