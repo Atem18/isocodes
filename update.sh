@@ -5,6 +5,21 @@ python -m piptools compile --resolver=backtracking \
     -o dev-requirements.txt \
     pyproject.toml
 
+python -m piptools compile --resolver=backtracking \
+    --extra doc \
+    -o doc-requirements.txt \
+    pyproject.toml
+
+python -m piptools compile --resolver=backtracking \
+    --extra doc \
+    -o test-requirements.txt \
+    pyproject.toml
+
+python -m piptools compile --resolver=backtracking \
+    --extra doc \
+    -o requirements.txt \
+    pyproject.toml
+
 BASE_DIR="$PWD/isocodes"
 
 SHARE_DIR="$PWD"/isocodes/share
