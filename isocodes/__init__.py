@@ -1,19 +1,14 @@
 import json
-from pathlib import Path
 from typing import Dict, Generator, List
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-LOCALES_DIR = f"{BASE_DIR}/isocodes/share/locale"
+LOCALES_DIR = f"./share/locale"
 
 
 class ISO:
     def __init__(self, iso_key: str) -> None:
         self.iso_key: str = iso_key
-        with open(
-            f"{BASE_DIR}/isocodes/share/iso-codes/json/iso_{self.iso_key}.json"
-        ) as iso_file:
+        with open(f"./share/iso-codes/json/iso_{self.iso_key}.json") as iso_file:
             self.data: List[Dict] = json.load(iso_file)[self.iso_key]
 
     def __len__(self) -> int:
@@ -46,7 +41,7 @@ class Countries(ISO):
     @property
     def by_common_name(self) -> List[tuple]:
         return self._sorted_by_index(index="common_name")
-    
+
     @property
     def by_name(self) -> List[tuple]:
         return self._sorted_by_index(index="name")
