@@ -1,14 +1,31 @@
+import inspect
 import json
+import os
+import sys
 from typing import Dict, Generator, List
 
 
-LOCALES_DIR = f"./share/locale"
+def get_script_dir(follow_symlinks=True):
+    if getattr(sys, "frozen", False):  # py2exe, PyInstaller, cx_Freeze
+        path = os.path.abspath(sys.executable)
+    else:
+        path = inspect.getabsfile(get_script_dir)
+    if follow_symlinks:
+        path = os.path.realpath(path)
+    return os.path.dirname(path)
+
+
+BASE_DIR = get_script_dir()
+
+LOCALES_DIR = f"{BASE_DIR}/share/locale"
 
 
 class ISO:
     def __init__(self, iso_key: str) -> None:
         self.iso_key: str = iso_key
-        with open(f"./share/iso-codes/json/iso_{self.iso_key}.json") as iso_file:
+        with open(
+            f"{BASE_DIR}/share/iso-codes/json/iso_{self.iso_key}.json"
+        ) as iso_file:
             self.data: List[Dict] = json.load(iso_file)[self.iso_key]
 
     def __len__(self) -> int:
