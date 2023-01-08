@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "isocodes"
-version = "2023.01.02"
+version = "2023.01.08"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 authors = [{ name = "Atem18", email = "contact@atemlire.io" }]
 license = { file = "LICENSE" }
