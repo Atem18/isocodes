@@ -39,7 +39,11 @@ class ISO:
 
     def get(self, **kwargs) -> Dict[str, str]:
         key: str = next(iter(kwargs))
-        return [element for element in self.data if element[key] == kwargs[key]][0]
+        return [
+            element
+            for element in self.data
+            if key in element and element[key] == kwargs[key]
+        ][0]
 
     @property
     def items(self) -> List[Dict]:
