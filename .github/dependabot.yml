@@ -8,7 +8,7 @@ updates:
     commit-message:
       prefix: ⬆
   # Python
-  - package-ecosystem: "pip"
+  - package-ecosystem: "pip-compile"
     directory: "/"
     schedule:
       interval: "daily"
