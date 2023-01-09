@@ -2,22 +2,22 @@
 
 python -m piptools compile --resolver=backtracking \
     --extra dev \
-    -o dev-requirements.txt \
+    -o requirements/dev-requirements.txt \
     pyproject.toml
 
 python -m piptools compile --resolver=backtracking \
     --extra doc \
-    -o doc-requirements.txt \
+    -o requirements/doc-requirements.txt \
     pyproject.toml
 
 python -m piptools compile --resolver=backtracking \
     --extra doc \
-    -o test-requirements.txt \
+    -o requirements/test-requirements.txt \
     pyproject.toml
 
 python -m piptools compile --resolver=backtracking \
     --extra doc \
-    -o requirements.txt \
+    -o requirements/requirements.txt \
     pyproject.toml
 
 BASE_DIR="$PWD/isocodes"
