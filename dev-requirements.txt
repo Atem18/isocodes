@@ -85,7 +85,7 @@ pyperclip==1.8.2
     # via hatch
 pyyaml==6.0
     # via pre-commit
-rfc3986[idna2008]==1.5.0
+rfc3986[idna2008]==2.0.0
     # via httpx
 rich==13.0.1
     # via hatch
