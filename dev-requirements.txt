@@ -61,7 +61,7 @@ more-itertools==9.0.0
     # via jaraco-classes
 nodeenv==1.7.0
     # via pre-commit
-packaging==22.0
+packaging==23.0
     # via
     #   hatch
     #   hatchling

@@ -97,7 +97,7 @@ mkdocstrings==0.19.1
     # via isocodes (pyproject.toml)
 more-itertools==9.0.0
     # via jaraco-classes
-packaging==22.0
+packaging==23.0
     # via
     #   hatch
     #   hatchling
