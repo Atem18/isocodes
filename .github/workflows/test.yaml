@@ -15,6 +15,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install test dependencies
-        run: pip install -r test-requirements.txt
+        run: pip install -r requirements/test-requirements.txt
       - name: Run Tox
         run: tox -e py
