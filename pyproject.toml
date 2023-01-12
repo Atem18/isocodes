@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "isocodes"
-version = "2023.01.08"
+version = "2023.01.12"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 authors = [{ name = "Atem18", email = "contact@atemlire.io" }]
 license = { file = "LICENSE" }
@@ -24,4 +24,4 @@ dev = ["pre-commit >=2.17.0,<3.0.0"]
 
 doc = ["mkdocs == 1.4.2", "mkdocs-material == 9.0.2", "mkdocstrings == 0.19.1"]
 
-test = ["pytest == 7.2.0", "black == 22.12.0", "mypy == 0.991", "tox == 4.2.6"]
+test = ["pytest == 7.2.0", "black == 22.12.0", "mypy == 0.991", "tox == 4.2.8"]
