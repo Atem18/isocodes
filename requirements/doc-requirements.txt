@@ -163,7 +163,7 @@ typing-extensions==4.4.0
     #   mkdocs
     #   platformdirs
     #   rich
-urllib3==1.26.13
+urllib3==1.26.14
     # via requests
 userpath==1.8.0
     # via hatch
