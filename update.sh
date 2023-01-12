@@ -11,12 +11,11 @@ python -m piptools compile --resolver=backtracking \
     pyproject.toml
 
 python -m piptools compile --resolver=backtracking \
-    --extra doc \
+    --extra test \
     -o requirements/test-requirements.txt \
     pyproject.toml
 
 python -m piptools compile --resolver=backtracking \
-    --extra doc \
     -o requirements/requirements.txt \
     pyproject.toml
 
