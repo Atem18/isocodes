@@ -28,19 +28,19 @@ jobs:
       - name: Upgrade Python dependencies
         run: |
           pip install -U pip pip-tools
-          piptools compile --resolver=backtracking \
+          pip-compile --upgrade --resolver=backtracking \
             --extra dev \
             -o requirements/dev-requirements.txt \
             pyproject.toml
-          piptools compile --resolver=backtracking \
+          pip-compile --upgrade --resolver=backtracking \
             --extra doc \
             -o requirements/doc-requirements.txt \
             pyproject.toml
-          piptools compile --resolver=backtracking \
+          pip-compile --upgrade --resolver=backtracking \
             --extra test \
             -o requirements/test-requirements.txt \
             pyproject.toml
-          piptools compile --resolver=backtracking \
+          pip-compile --upgrade --resolver=backtracking \
             -o requirements/requirements.txt \
             pyproject.toml
 

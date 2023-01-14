@@ -36,7 +36,7 @@ httpx==0.23.3
     # via hatch
 hyperlink==21.0.0
     # via hatch
-identify==2.5.12
+identify==2.5.13
     # via pre-commit
 idna==3.4
     # via
@@ -61,7 +61,7 @@ more-itertools==9.0.0
     # via jaraco-classes
 nodeenv==1.7.0
     # via pre-commit
-packaging==22.0
+packaging==23.0
     # via
     #   hatch
     #   hatchling
@@ -87,7 +87,7 @@ pyyaml==6.0
     # via pre-commit
 rfc3986[idna2008]==1.5.0
     # via httpx
-rich==13.0.1
+rich==13.1.0
     # via hatch
 shellingham==1.5.0.post1
     # via hatch
