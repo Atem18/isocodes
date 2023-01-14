@@ -44,15 +44,6 @@ jobs:
             -o requirements/requirements.txt \
             pyproject.toml
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-          cache: yarn
-      - name: Upgrade JS dependencies
-        run: |
-          rm -f yarn.lock
-          npx --yes yarn-upgrade-all
-
       - name: Detect changes
         id: changes
         run:
