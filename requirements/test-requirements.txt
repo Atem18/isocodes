@@ -27,7 +27,7 @@ click==8.1.3
     #   userpath
 colorama==0.4.6
     # via tox
-cryptography==39.0.0
+cryptography==39.0.1
     # via secretstorage
 distlib==0.3.6
     # via virtualenv
