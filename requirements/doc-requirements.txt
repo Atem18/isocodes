@@ -145,7 +145,7 @@ rich==13.3.1
     # via hatch
 secretstorage==3.3.3
     # via keyring
-shellingham==1.5.1
+shellingham==1.5.0.post1
     # via hatch
 six==1.16.0
     # via python-dateutil
@@ -168,5 +168,5 @@ virtualenv==20.19.0
     # via hatch
 watchdog==2.2.1
     # via mkdocs
-zipp==3.13.0
+zipp==3.14.0
     # via importlib-metadata
