@@ -664,6 +664,7 @@ Source: <http://www.iso.org/iso/country_codes>
 		alpha_2_code="IR"
 		alpha_3_code="IRN"
 		numeric_code="364"
+		common_name="Iran"
 		name="Iran, Islamic Republic of"
 		official_name="Islamic Republic of Iran" />
 	<iso_3166_entry
@@ -762,6 +763,7 @@ Source: <http://www.iso.org/iso/country_codes>
 		alpha_2_code="LA"
 		alpha_3_code="LAO"
 		numeric_code="418"
+		common_name="Laos"
 		name="Lao People's Democratic Republic" />
 	<iso_3166_entry
 		alpha_2_code="LB"
@@ -1282,6 +1284,7 @@ Source: <http://www.iso.org/iso/country_codes>
 		alpha_2_code="SY"
 		alpha_3_code="SYR"
 		numeric_code="760"
+		common_name="Syria"
 		name="Syrian Arab Republic" />
 	<iso_3166_entry
 		alpha_2_code="TC"
@@ -1492,8 +1495,9 @@ Source: <http://www.iso.org/iso/country_codes>
 		alpha_4_code="ANHH"
 		alpha_3_code="ANT"
 		numeric_code="530"
-		date_withdrawn="1993-07-12"
-		names="Netherlands Antilles" />
+		date_withdrawn="2010-12-15"
+		names="Netherlands Antilles"
+		comment="had numeric code 532 until Aruba split away in 1986" />
 	<iso_3166_3_entry
 		alpha_4_code="BQAQ"
 		alpha_3_code="ATB"
@@ -1521,7 +1525,7 @@ Source: <http://www.iso.org/iso/country_codes>
 		alpha_4_code="CSXX"
 		alpha_3_code="SCG"
 		numeric_code="891"
-		date_withdrawn="2006-06-05"
+		date_withdrawn="2006-09-26"
 		names="Serbia and Montenegro" />
 	<iso_3166_3_entry
 		alpha_4_code="CTKI"
@@ -1660,8 +1664,9 @@ Source: <http://www.iso.org/iso/country_codes>
 		alpha_4_code="YUCS"
 		alpha_3_code="YUG"
 		numeric_code="891"
-		date_withdrawn="1993-07-28"
-		names="Yugoslavia, Socialist Federal Republic of" />
+		date_withdrawn="2003-07-23"
+		names="Yugoslavia, (Socialist) Federal Republic of"
+		comment="had numeric code 890 until the 'Socialist Federal Republic of Yugoslavia' formerly broke apart on 27 April 1992 and the 'Federal Republic of Yugoslavia' was founded" />
 	<iso_3166_3_entry
 		alpha_4_code="ZRCD"
 		alpha_3_code="ZAR"
