@@ -41,6 +41,10 @@ jobs:
             -o requirements/test-requirements.txt \
             pyproject.toml
           pip-compile --upgrade --resolver=backtracking \
+            --extra build \
+            -o requirements/build-requirements.txt \
+            pyproject.toml
+          pip-compile --upgrade --resolver=backtracking \
             -o requirements/requirements.txt \
             pyproject.toml
 

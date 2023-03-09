@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: 3.7
       - name: Install dependencies
-        run: pip install -r requirements/requirements.txt
+        run: pip install -r requirements/build-requirements.txt
       - name: Build package
         run: hatch build
       - name: Publish distribution 📦 to PyPI
