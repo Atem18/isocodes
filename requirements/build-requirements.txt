@@ -22,7 +22,7 @@ distlib==0.3.6
     # via virtualenv
 editables==0.3
     # via hatchling
-filelock==3.9.0
+filelock==3.10.0
     # via virtualenv
 h11==0.14.0
     # via httpcore
@@ -41,7 +41,7 @@ idna==3.4
     #   anyio
     #   hyperlink
     #   rfc3986
-importlib-metadata==6.0.0
+importlib-metadata==6.1.0
     # via keyring
 jaraco-classes==3.2.3
     # via keyring
@@ -61,7 +61,7 @@ packaging==23.0
     # via
     #   hatch
     #   hatchling
-pathspec==0.11.0
+pathspec==0.11.1
     # via hatchling
 pexpect==4.8.0
     # via hatch
