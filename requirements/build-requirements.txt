@@ -22,13 +22,13 @@ distlib==0.3.6
     # via virtualenv
 editables==0.3
     # via hatchling
-filelock==3.10.6
+filelock==3.10.7
     # via virtualenv
 h11==0.14.0
     # via httpcore
 hatch==1.6.3
     # via isocodes (pyproject.toml)
-hatchling==1.13.0
+hatchling==1.14.0
     # via hatch
 httpcore==0.16.3
     # via httpx
@@ -81,7 +81,7 @@ pyperclip==1.8.2
     # via hatch
 rfc3986[idna2008]==1.5.0
     # via httpx
-rich==13.3.2
+rich==13.3.3
     # via hatch
 secretstorage==3.3.3
     # via keyring
@@ -98,6 +98,8 @@ tomli-w==1.0.0
     # via hatch
 tomlkit==0.11.7
     # via hatch
+trove-classifiers==2023.3.9
+    # via hatchling
 userpath==1.8.0
     # via hatch
 virtualenv==20.21.0
