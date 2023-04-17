@@ -16,7 +16,7 @@ click==8.1.3
     # via
     #   hatch
     #   userpath
-cryptography==40.0.1
+cryptography==40.0.2
     # via secretstorage
 distlib==0.3.6
     # via virtualenv
@@ -30,18 +30,18 @@ hatch==1.6.3
     # via isocodes (pyproject.toml)
 hatchling==1.14.0
     # via hatch
-httpcore==0.16.3
+httpcore==0.17.0
     # via httpx
-httpx==0.23.3
+httpx==0.24.0
     # via hatch
 hyperlink==21.0.0
     # via hatch
 idna==3.4
     # via
     #   anyio
+    #   httpx
     #   hyperlink
-    #   rfc3986
-importlib-metadata==6.3.0
+importlib-metadata==6.4.1
     # via keyring
 jaraco-classes==3.2.3
     # via keyring
@@ -57,7 +57,7 @@ mdurl==0.1.2
     # via markdown-it-py
 more-itertools==9.1.0
     # via jaraco-classes
-packaging==23.0
+packaging==23.1
     # via
     #   hatch
     #   hatchling
@@ -75,13 +75,11 @@ ptyprocess==0.7.0
     # via pexpect
 pycparser==2.21
     # via cffi
-pygments==2.14.0
+pygments==2.15.0
     # via rich
 pyperclip==1.8.2
     # via hatch
-rfc3986[idna2008]==1.5.0
-    # via httpx
-rich==13.3.3
+rich==13.3.4
     # via hatch
 secretstorage==3.3.3
     # via keyring
