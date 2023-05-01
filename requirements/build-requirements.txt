@@ -22,13 +22,13 @@ distlib==0.3.6
     # via virtualenv
 editables==0.3
     # via hatchling
-filelock==3.11.0
+filelock==3.12.0
     # via virtualenv
 h11==0.14.0
     # via httpcore
 hatch==1.6.3
     # via isocodes (pyproject.toml)
-hatchling==1.14.0
+hatchling==1.14.1
     # via hatch
 httpcore==0.17.0
     # via httpx
@@ -41,7 +41,7 @@ idna==3.4
     #   anyio
     #   httpx
     #   hyperlink
-importlib-metadata==6.4.1
+importlib-metadata==6.6.0
     # via keyring
 jaraco-classes==3.2.3
     # via keyring
@@ -65,7 +65,7 @@ pathspec==0.11.1
     # via hatchling
 pexpect==4.8.0
     # via hatch
-platformdirs==3.2.0
+platformdirs==3.5.0
     # via
     #   hatch
     #   virtualenv
@@ -75,11 +75,11 @@ ptyprocess==0.7.0
     # via pexpect
 pycparser==2.21
     # via cffi
-pygments==2.15.0
+pygments==2.15.1
     # via rich
 pyperclip==1.8.2
     # via hatch
-rich==13.3.4
+rich==13.3.5
     # via hatch
 secretstorage==3.3.3
     # via keyring
@@ -94,13 +94,13 @@ tomli==2.0.1
     # via hatchling
 tomli-w==1.0.0
     # via hatch
-tomlkit==0.11.7
+tomlkit==0.11.8
     # via hatch
-trove-classifiers==2023.3.9
+trove-classifiers==2023.4.29
     # via hatchling
 userpath==1.8.0
     # via hatch
-virtualenv==20.21.0
+virtualenv==20.23.0
     # via hatch
 zipp==3.15.0
     # via importlib-metadata
