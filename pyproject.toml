@@ -26,4 +26,4 @@ doc = ["mkdocs == 1.4.2", "mkdocs-material == 9.0.2", "mkdocstrings == 0.19.1"]
 
 test = ["pytest == 7.2.0", "tox == 4.5.1"]
 
-build = ["hatch == 1.6.3"]
+build = ["hatch == 1.7.0"]
