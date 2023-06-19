@@ -79,7 +79,7 @@ pygments==2.15.1
     # via rich
 pyperclip==1.8.2
     # via hatch
-rich==13.3.4
+rich==13.4.2
     # via hatch
 secretstorage==3.3.3
     # via keyring
