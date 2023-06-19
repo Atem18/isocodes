@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra=doc --output-file=requirements/doc-requirements.txt --resolver=backtracking pyproject.toml
 #
-certifi==2022.12.7
+certifi==2023.5.7
     # via requests
 charset-normalizer==3.1.0
     # via requests
