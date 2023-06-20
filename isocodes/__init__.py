@@ -24,7 +24,7 @@ class ISO:
     def __init__(self, iso_key: str) -> None:
         self.iso_key: str = iso_key
         with open(
-            f"{BASE_DIR}/share/iso-codes/json/iso_{self.iso_key}.json"
+            f"{BASE_DIR}/share/iso-codes/json/iso_{self.iso_key}.json", encoding="utf-8"
         ) as iso_file:
             self.data: List[Dict] = json.load(iso_file)[self.iso_key]
 
