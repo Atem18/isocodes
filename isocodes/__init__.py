@@ -35,7 +35,7 @@ class ISO:
         return ((element[index], element["name"]) for element in self.data)
 
     def _sorted_by_index(self, index: str) -> List[tuple]:
-        return sorted(((element[index], element) for element in self.data))
+        return sorted((element[index], element) for element in self.data)
 
     def get(self, **kwargs) -> Dict[str, str]:
         key: str = next(iter(kwargs))
