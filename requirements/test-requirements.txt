@@ -31,7 +31,7 @@ platformdirs==3.8.0
     # via
     #   tox
     #   virtualenv
-pluggy==1.0.0
+pluggy==1.2.0
     # via
     #   pytest
     #   tox
