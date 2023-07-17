@@ -69,7 +69,7 @@ platformdirs==3.8.0
     # via
     #   hatch
     #   virtualenv
-pluggy==1.0.0
+pluggy==1.2.0
     # via hatchling
 ptyprocess==0.7.0
     # via pexpect
