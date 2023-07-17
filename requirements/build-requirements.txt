@@ -49,7 +49,7 @@ jeepney==0.8.0
     # via
     #   keyring
     #   secretstorage
-keyring==23.13.1
+keyring==24.2.0
     # via hatch
 markdown-it-py==2.2.0
     # via rich
