@@ -41,7 +41,7 @@ idna==3.4
     #   anyio
     #   httpx
     #   hyperlink
-importlib-metadata==6.6.0
+importlib-metadata==6.8.0
     # via keyring
 jaraco-classes==3.3.0
     # via keyring
