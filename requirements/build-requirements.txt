@@ -98,7 +98,7 @@ tomlkit==0.11.8
     # via hatch
 trove-classifiers==2023.7.6
     # via hatchling
-userpath==1.8.0
+userpath==1.9.0
     # via hatch
 virtualenv==20.24.0
     # via hatch
