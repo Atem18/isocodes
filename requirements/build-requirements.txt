@@ -51,7 +51,7 @@ jeepney==0.8.0
     #   secretstorage
 keyring==24.2.0
     # via hatch
-markdown-it-py==2.2.0
+markdown-it-py==3.0.0
     # via rich
 mdurl==0.1.2
     # via markdown-it-py
