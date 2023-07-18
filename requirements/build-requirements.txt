@@ -18,7 +18,7 @@ click==8.1.3
     #   userpath
 cryptography==41.0.2
     # via secretstorage
-distlib==0.3.6
+distlib==0.3.7
     # via virtualenv
 editables==0.3
     # via hatchling
