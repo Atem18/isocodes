@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra=build --output-file=requirements/build-requirements.txt --resolver=backtracking pyproject.toml
 #
-anyio==3.6.2
+anyio==3.7.1
     # via httpcore
 certifi==2023.5.7
     # via
