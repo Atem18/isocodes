@@ -16,7 +16,7 @@ click==8.1.6
     # via
     #   hatch
     #   userpath
-cryptography==41.0.2
+cryptography==41.0.3
     # via secretstorage
 distlib==0.3.7
     # via virtualenv
