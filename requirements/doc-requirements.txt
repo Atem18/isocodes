@@ -40,7 +40,7 @@ mkdocs==1.5.1
     #   mkdocs-autorefs
     #   mkdocs-material
     #   mkdocstrings
-mkdocs-autorefs==0.4.1
+mkdocs-autorefs==0.5.0
     # via mkdocstrings
 mkdocs-material==9.1.21
     # via isocodes (pyproject.toml)
