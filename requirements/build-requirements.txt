@@ -96,7 +96,7 @@ tomli-w==1.0.0
     # via hatch
 tomlkit==0.12.1
     # via hatch
-trove-classifiers==2023.7.6
+trove-classifiers==2023.8.7
     # via hatchling
 userpath==1.9.0
     # via hatch
