@@ -44,7 +44,7 @@ tomli==2.0.1
     #   pyproject-api
     #   pytest
     #   tox
-tox==4.9.0
+tox==4.10.0
     # via isocodes (pyproject.toml)
 virtualenv==20.24.3
     # via tox
