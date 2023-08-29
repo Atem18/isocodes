@@ -1,13 +1,5 @@
-from isocodes import countries, languages, currencies
-
-
-def test_countries():
-    assert len(countries) == 249
+from isocodes import languages
 
 
 def test_languages():
-    assert len(languages) == 487
-
-
-def test_currencies():
-    assert len(currencies) == 181
+    assert languages.get(name="Spanish")

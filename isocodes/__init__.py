@@ -2,10 +2,10 @@ import inspect
 import json
 import os
 import sys
-from typing import Dict, Generator, List
+from typing import Dict, Generator, List, Optional
 
 
-def get_script_dir(follow_symlinks=True):
+def get_script_dir(follow_symlinks=True) -> str:
     if getattr(sys, "frozen", False):  # py2exe, PyInstaller, cx_Freeze
         path = os.path.abspath(sys.executable)
     else:
@@ -37,13 +37,13 @@ class ISO:
     def _sorted_by_index(self, index: str) -> List[tuple]:
         return sorted((element[index], element) for element in self.data)
 
-    def get(self, **kwargs) -> Dict[str, str]:
-        key: str = next(iter(kwargs))
+    def get(self, **kwargs) -> Optional[Dict[str, str]]:
         try:
+            key: str = next(iter(kwargs))
             return [
                 element
                 for element in self.data
-                if key in element and element[key] == kwargs[key]
+                if key in element and kwargs[key] in element[key]
             ][0]
         except IndexError:
             return {}
