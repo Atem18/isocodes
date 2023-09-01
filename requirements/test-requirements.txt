@@ -35,7 +35,7 @@ pluggy==1.2.0
     # via
     #   pytest
     #   tox
-pyproject-api==1.5.4
+pyproject-api==1.6.1
     # via tox
 pytest==7.4.0
     # via isocodes (pyproject.toml)
