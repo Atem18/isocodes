@@ -46,5 +46,5 @@ tomli==2.0.1
     #   tox
 tox==4.10.0
     # via isocodes (pyproject.toml)
-virtualenv==20.24.3
+virtualenv==20.24.4
     # via tox
