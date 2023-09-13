@@ -1,10 +1,23 @@
-name: Publish Python 🐍 distributions 📦 to TestPyPI
-on:
-  push:
-    branches:        
-      - main
-  workflow_call:  # allow this workflow to be called from other workflows
+name: Test iso-codes, build and publish to TestPypi
+on: [pull_request]
 jobs:
+  pytest:
+    name: Run tests
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python: ["3.8", "3.9", "3.10", "3.11"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install test dependencies
+        run: pip install -r requirements/test-requirements.txt
+      - name: Run Tox
+        run: tox -e py
   build-n-publish:
     name: Build and publish Python 🐍 distributions 📦 to TestPyPI
     runs-on: ubuntu-20.04
@@ -23,5 +36,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@v1.8.10
         with:
           password: ${{ secrets.test_pypi_password }}
-          repository_url: https://test.pypi.org/legacy/
-          skip_existing: true
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
