@@ -1,8 +1,11 @@
 name: Test iso-codes
 on: [pull_request]
 jobs:
+  publish_test:
+    uses: ./.github/workflows/publish-test.yaml
   pytest:
     name: Run tests
+    needs: [publish_test]
     runs-on: ubuntu-20.04
     strategy:
       matrix:
