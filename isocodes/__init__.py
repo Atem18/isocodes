@@ -2,10 +2,14 @@ import inspect
 import json
 import os
 import sys
-from typing import Dict, Generator, List, Optional
+from typing import Dict, Generator, List, Optional, Tuple
+
+Record = Dict[str, str]
+RecordRow = Tuple[str, Record]
+NameRow = Tuple[str, str]
 
 
-def get_script_dir(follow_symlinks=True) -> str:
+def get_script_dir(follow_symlinks: bool = True) -> str:
     if getattr(sys, "frozen", False):  # py2exe, PyInstaller, cx_Freeze
         path = os.path.abspath(sys.executable)
     else:
@@ -21,23 +25,26 @@ LOCALES_DIR = f"{BASE_DIR}/share/locale"
 
 
 class ISO:
+    iso_key: str
+    data: List[Record]
+
     def __init__(self, iso_key: str) -> None:
-        self.iso_key: str = iso_key
+        self.iso_key = iso_key
         with open(
             f"{BASE_DIR}/share/iso-codes/json/iso_{self.iso_key}.json", encoding="utf-8"
         ) as iso_file:
-            self.data: List[Dict] = json.load(iso_file)[self.iso_key]
+            self.data = json.load(iso_file)[self.iso_key]
 
     def __len__(self) -> int:
         return len(self.data)
 
-    def _name_from_index(self, index: str) -> Generator[tuple, None, None]:
+    def _name_from_index(self, index: str) -> Generator[NameRow, None, None]:
         return ((element[index], element["name"]) for element in self.data)
 
-    def _sorted_by_index(self, index: str) -> List[tuple]:
+    def _sorted_by_index(self, index: str) -> List[RecordRow]:
         return sorted((element[index], element) for element in self.data)
 
-    def get(self, **kwargs) -> Optional[Dict[str, str]]:
+    def get(self, **kwargs: str) -> Optional[Record]:
         try:
             key: str = next(iter(kwargs))
             return [
@@ -49,167 +56,167 @@ class ISO:
             return {}
 
     @property
-    def items(self) -> List[Dict]:
+    def items(self) -> List[Record]:
         return self.data
 
 
 class Countries(ISO):
     @property
-    def by_alpha_2(self) -> List[tuple]:
+    def by_alpha_2(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_2")
 
     @property
-    def by_alpha_3(self) -> List[tuple]:
+    def by_alpha_3(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_common_name(self) -> List[tuple]:
+    def by_common_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="common_name")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[tuple]:
+    def by_numeric(self) -> List[RecordRow]:
         return self._sorted_by_index(index="numeric")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_2")
 
 
 class Languages(ISO):
     @property
-    def by_alpha_3(self) -> List[tuple]:
+    def by_alpha_3(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_3")
 
 
 class Currencies(ISO):
     @property
-    def by_alpha_3(self) -> List[tuple]:
+    def by_alpha_3(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[tuple]:
+    def by_numeric(self) -> List[RecordRow]:
         return self._sorted_by_index(index="numeric")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_3")
 
 
 class SubdivisionsCountries(ISO):
     @property
-    def by_code(self) -> List[tuple]:
+    def by_code(self) -> List[RecordRow]:
         return self._sorted_by_index(index="code")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_type(self) -> List[tuple]:
+    def by_type(self) -> List[RecordRow]:
         return self._sorted_by_index(index="type")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="code")
 
 
 class FormerCountries(ISO):
     @property
-    def by_alpha_2(self) -> List[tuple]:
+    def by_alpha_2(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_2")
 
     @property
-    def by_alpha_3(self) -> List[tuple]:
+    def by_alpha_3(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_alpha_4(self) -> List[tuple]:
+    def by_alpha_4(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_4")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[tuple]:
+    def by_numeric(self) -> List[RecordRow]:
         return self._sorted_by_index(index="numeric")
 
     @property
-    def by_withdrawal_date(self) -> List[tuple]:
+    def by_withdrawal_date(self) -> List[RecordRow]:
         return self._sorted_by_index(index="withdrawal_date")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_2")
 
 
 class ExtendedLanguages(ISO):
     @property
-    def by_alpha_3(self) -> List[tuple]:
+    def by_alpha_3(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_scope(self) -> List[tuple]:
+    def by_scope(self) -> List[RecordRow]:
         return self._sorted_by_index(index="scope")
 
     @property
-    def by_type(self) -> List[tuple]:
+    def by_type(self) -> List[RecordRow]:
         return self._sorted_by_index(index="type")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_3")
 
 
 class LanguageFamilies(ISO):
     @property
-    def by_alpha_3(self) -> List[tuple]:
+    def by_alpha_3(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_3")
 
 
 class ScriptNames(ISO):
     @property
-    def by_alpha_4(self) -> List[tuple]:
+    def by_alpha_4(self) -> List[RecordRow]:
         return self._sorted_by_index(index="alpha_4")
 
     @property
-    def by_name(self) -> List[tuple]:
+    def by_name(self) -> List[RecordRow]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[tuple]:
+    def by_numeric(self) -> List[RecordRow]:
         return self._sorted_by_index(index="numeric")
 
     @property
-    def name(self) -> Generator[tuple, None, None]:
+    def name(self) -> Generator[NameRow, None, None]:
         return self._name_from_index(index="alpha_4")
 
 
