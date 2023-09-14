@@ -18,7 +18,7 @@ jobs:
         run: pip install -r requirements/test-requirements.txt
       - name: Run Tox
         run: tox -e py
-  build-n-publish:
+  build-n-publish-testpypi:
     name: Build and publish Python 🐍 distributions 📦 to TestPyPI
     runs-on: ubuntu-20.04
     permissions:
