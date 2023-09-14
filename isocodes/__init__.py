@@ -101,7 +101,10 @@ class ISO:
         return ((element[index], element["name"]) for element in self.data)
 
     def _sorted_by_index(self, index: str) -> List[Tuple[str, Any]]:
-        return sorted((element[index], element) for element in self.data)
+        return sorted(
+            [(element[index], element) for element in self.data if index in element],
+            key=lambda x: x[0],
+        )
 
     def get(self, **kwargs: str) -> Optional[Dict[str, str]]:
         try:
