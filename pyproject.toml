@@ -26,7 +26,7 @@ dependencies = []
 
 dev = ["pre-commit == 3.5.0", "ruff == 0.1.2", "mypy == 1.6.1"]
 
-doc = ["mkdocs == 1.5.3", "mkdocs-material == 9.4.6", "mkdocstrings == 0.23.0"]
+doc = ["mkdocs == 1.5.3", "mkdocs-material == 9.4.8", "mkdocstrings == 0.23.0"]
 
 test = ["pytest == 7.4.3", "tox == 4.11.3"]
 
