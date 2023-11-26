@@ -1,8 +1,11 @@
-import inspect
 import json
+import pathlib
 import os
 import sys
-from typing import Any, Dict, Generator, List, Optional, Tuple, TypedDict
+from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Tuple, TypedDict
+
+if TYPE_CHECKING:
+    import importlib.resources.abc
 
 
 class Country(TypedDict, total=False):
@@ -68,19 +71,38 @@ class ScriptName(TypedDict, total=False):
     numeric: str
 
 
-def get_script_dir(follow_symlinks: bool = True) -> str:
-    if getattr(sys, "frozen", False):  # py2exe, PyInstaller, cx_Freeze
-        path = os.path.abspath(sys.executable)
-    else:
-        path = inspect.getabsfile(get_script_dir)
-    if follow_symlinks:
-        path = os.path.realpath(path)
-    return os.path.dirname(path)
+def get_resource(resource: str) -> "importlib.resources.abc.Traversable":
+    """Return a file handle on a named resource in a Package."""
 
+    # Attempt importlib.resources
+    if sys.version_info >= (3, 9):
+        import importlib.resources
 
-BASE_DIR = get_script_dir()
+        return importlib.resources.files("isocodes").joinpath(resource)
 
-LOCALES_DIR = f"{BASE_DIR}/share/locale"
+    # Attempt importlib_resources backport
+    try:
+        if sys.version_info < (3, 9):
+            import importlib_resources
+
+            return importlib_resources.files("isocodes").joinpath(resource)
+    except ImportError:
+        ...
+
+    # Fall back to __file__.
+    # Undefined __file__ will raise NameError on variable access.
+    try:
+        package_path = os.path.abspath(os.path.dirname(__file__))
+    except NameError:
+        package_path = None
+
+    if package_path is not None:
+        resource_path = os.path.join(package_path, resource)
+
+        return pathlib.Path(resource_path)
+
+    # Could not resolve package path from __file__.
+    raise Exception(f"do not know how to load resource: {resource}")
 
 
 class ISO:
@@ -89,9 +111,8 @@ class ISO:
 
     def __init__(self, iso_key: str) -> None:
         self.iso_key = iso_key
-        with open(
-            f"{BASE_DIR}/share/iso-codes/json/iso_{self.iso_key}.json", encoding="utf-8"
-        ) as iso_file:
+        resource_file = get_resource(f"share/iso-codes/json/iso_{self.iso_key}.json")
+        with resource_file.open(encoding="utf-8") as iso_file:
             self.data = json.load(iso_file)[self.iso_key]
 
     def __len__(self) -> int:
