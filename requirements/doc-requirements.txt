@@ -52,7 +52,7 @@ packaging==23.2
     # via mkdocs
 pygments==2.16.1
     # via mkdocs-material
-pymdown-extensions==10.3.1
+pymdown-extensions==10.5
     # via
     #   mkdocs-material
     #   mkdocstrings
