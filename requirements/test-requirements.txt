@@ -8,7 +8,7 @@ altgraph==0.17.4
     # via
     #   macholib
     #   pyinstaller
-cachetools==5.3.1
+cachetools==5.3.2
     # via tox
 chardet==5.2.0
     # via tox
