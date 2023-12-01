@@ -18,7 +18,7 @@ distlib==0.3.7
     # via virtualenv
 exceptiongroup==1.2.0
     # via pytest
-filelock==3.12.4
+filelock==3.13.1
     # via
     #   tox
     #   virtualenv
