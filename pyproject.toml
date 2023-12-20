@@ -36,7 +36,7 @@ test = [
     "psutil == 5.9.7",
 ]
 
-build = ["hatch == 1.8.1"]
+build = ["hatch == 1.9.0"]
 
 [project.entry-points.pyinstaller40]
 hook-dirs = "isocodes.__pyinstaller:get_hook_dirs"
