@@ -10,7 +10,7 @@ distlib==0.3.8
     # via virtualenv
 filelock==3.13.1
     # via virtualenv
-identify==2.5.33
+identify==2.5.34
     # via pre-commit
 mypy==1.8.0
     # via isocodes (pyproject.toml)
