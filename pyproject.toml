@@ -30,7 +30,7 @@ dev = ["pre-commit == 3.6.2", "ruff == 0.3.0", "mypy == 1.8.0"]
 doc = ["mkdocs == 1.5.3", "mkdocs-material == 9.5.10", "mkdocstrings == 0.24.0"]
 
 test = [
-    "pytest == 8.0.0",
+    "pytest == 8.1.0",
     "tox == 4.13.0",
     "pyinstaller[hook_testing] == 6.4.0",
     "psutil == 5.9.8",
