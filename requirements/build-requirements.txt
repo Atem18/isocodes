@@ -94,7 +94,7 @@ tomli==2.0.1
     # via hatchling
 tomli-w==1.0.0
     # via hatch
-tomlkit==0.12.3
+tomlkit==0.12.4
     # via hatch
 trove-classifiers==2024.3.3
     # via hatchling
