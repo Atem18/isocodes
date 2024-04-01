@@ -30,7 +30,7 @@ hatch==1.9.3
     # via isocodes (pyproject.toml)
 hatchling==1.22.4
     # via hatch
-httpcore==1.0.4
+httpcore==1.0.5
     # via httpx
 httpx==0.27.0
     # via hatch
