@@ -28,7 +28,7 @@ h11==0.14.0
     # via httpcore
 hatch==1.9.3
     # via isocodes (pyproject.toml)
-hatchling==1.24.0
+hatchling==1.24.1
     # via hatch
 httpcore==1.0.5
     # via httpx
