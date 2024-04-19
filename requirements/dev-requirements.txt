@@ -24,7 +24,7 @@ pre-commit==3.7.0
     # via isocodes (pyproject.toml)
 pyyaml==6.0.1
     # via pre-commit
-ruff==0.3.7
+ruff==0.4.0
     # via isocodes (pyproject.toml)
 tomli==2.0.1
     # via mypy
