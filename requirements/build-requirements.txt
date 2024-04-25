@@ -26,7 +26,7 @@ filelock==3.13.4
     # via virtualenv
 h11==0.14.0
     # via httpcore
-hatch==1.9.5
+hatch==1.9.7
     # via isocodes (pyproject.toml)
 hatchling==1.24.2
     # via hatch
