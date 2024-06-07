@@ -4,13 +4,13 @@ BASE_DIR="$PWD/isocodes"
 
 SHARE_DIR="$PWD"/isocodes/share
 
-UPSTREAM_DIR=$PWD/vendor/iso-codes
+UPSTREAM_DIR=$PWD/iso-codes
 
 rm -rf "$SHARE_DIR"
 
 rm -rf "$UPSTREAM_DIR"
 
-git submodule update --init --recursive
+git clone https://salsa.debian.org/iso-codes-team/iso-codes.git
 
 cd "$UPSTREAM_DIR" || exit
 
@@ -25,3 +25,5 @@ make uninstall
 make
 
 make install
+
+rm -rf $UPSTREAM_DIR

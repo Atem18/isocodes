@@ -90,4 +90,6 @@ Translations are included in this project with gettext support. The domain names
 
 # Develop
 
-Don't forget to clone the submodules as well and execute update.sh to update the debian's iso-codes repo.
+## Update iso-codes version
+
+    bash update.sh
