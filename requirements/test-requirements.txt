@@ -42,7 +42,7 @@ pluggy==1.5.0
     #   tox
 psutil==6.0.0
     # via isocodes (pyproject.toml)
-pyinstaller[hook-testing]==6.6.0
+pyinstaller[hook-testing]==6.8.0
     # via
     #   isocodes (pyproject.toml)
     #   pyinstaller
