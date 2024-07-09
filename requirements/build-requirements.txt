@@ -102,5 +102,5 @@ userpath==1.9.2
     # via hatch
 virtualenv==20.26.3
     # via hatch
-zipp==3.18.1
+zipp==3.19.1
     # via importlib-metadata
