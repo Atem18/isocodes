@@ -48,7 +48,7 @@ pyinstaller[hook-testing]==6.8.0
     #   pyinstaller
 pyinstaller-hooks-contrib==2024.7
     # via pyinstaller
-pyproject-api==1.6.1
+pyproject-api==1.7.1
     # via tox
 pytest==8.2.2
     # via isocodes (pyproject.toml)
