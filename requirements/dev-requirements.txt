@@ -12,7 +12,7 @@ filelock==3.13.4
     # via virtualenv
 identify==2.5.36
     # via pre-commit
-mypy==1.10.0
+mypy==1.10.1
     # via isocodes (pyproject.toml)
 mypy-extensions==1.0.0
     # via mypy
