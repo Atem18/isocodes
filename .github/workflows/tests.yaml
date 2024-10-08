@@ -3,10 +3,10 @@ on: [pull_request]
 jobs:
   pytest:
     name: Run tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,17 +20,17 @@ jobs:
         run: tox -e py
   build-n-publish-testpypi:
     name: Build and publish Python 🐍 distributions 📦 to TestPyPI
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Python 3.9
+      - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: 3.10
       - name: Install build dependencies
         run: pip install -r requirements/build-requirements.txt
       - name: Build package
