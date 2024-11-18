@@ -52,7 +52,7 @@ pyproject-api==1.7.1
     # via tox
 pytest==8.2.2
     # via isocodes (pyproject.toml)
-tomli==2.0.1
+tomli==2.1.0
     # via
     #   pyproject-api
     #   pytest

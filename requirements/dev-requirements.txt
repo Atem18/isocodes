@@ -26,7 +26,7 @@ pyyaml==6.0.1
     # via pre-commit
 ruff==0.6.3
     # via isocodes (pyproject.toml)
-tomli==2.0.1
+tomli==2.1.0
     # via mypy
 typing-extensions==4.12.2
     # via mypy
