@@ -1,42 +1,79 @@
 name: Test iso-codes, build and publish to TestPypi
 on: [pull_request]
 jobs:
-  pytest:
+  test:
     name: Run tests
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        env:
+          - "3.13"
+          - "3.12"
+          - "3.11"
+          - "3.10"
+          - "3.9"
+          - type
+          - dev
+          - pkg_meta
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: ${{ matrix.python }}
-      - name: Install test dependencies
-        run: pip install -r requirements/test-requirements.txt
-      - name: Run Tox
-        run: tox -e py
-  build-n-publish-testpypi:
-    name: Build and publish Python 🐍 distributions 📦 to TestPyPI
-    runs-on: ubuntu-20.04
+          fetch-depth: 0
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+      - name: Install tox
+        run: uv tool install --python-preference only-managed --python 3.13 tox --with tox-uv
+      - name: Install Python
+        if: startsWith(matrix.env, '3.') && matrix.env != '3.13'
+        run: uv python install --python-preference only-managed ${{ matrix.env }}
+      - name: Setup test suite
+        run: tox run -vv --notest --skip-missing-interpreters false -e ${{ matrix.env }}
+      - name: Run test suite
+        run: tox run --skip-pkg-install -e ${{ matrix.env }}
+        env:
+          PYTEST_ADDOPTS: "-vv --durations=20"
+          DIFF_AGAINST: HEAD
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build package
+        run: uv build --python 3.13 --python-preference only-managed --sdist --wheel . --out-dir dist
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.dists-artifact-name }}
+          path: dist/*
+
+  release:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://pypi.org/project/tox-uv/${{ github.ref_name }}
     permissions:
-      contents: read
       id-token: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v5
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
         with:
-          python-version: 3.9
-      - name: Install build dependencies
-        run: pip install -r requirements/build-requirements.txt
-      - name: Build package
-        run: hatch build
-      - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@v1.10.1
+          name: ${{ env.dists-artifact-name }}
+          path: dist/
+      - name: Publish to Test PyPI
+        uses: pypa/gh-action-pypi-publish@v1.12.2
         with:
           password: ${{ secrets.test_pypi_password }}
           repository-url: https://test.pypi.org/legacy/
