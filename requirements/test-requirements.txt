@@ -8,7 +8,7 @@ altgraph==0.17.4
     # via
     #   macholib
     #   pyinstaller
-cachetools==5.3.3
+cachetools==5.4.0
     # via tox
 chardet==5.2.0
     # via tox
@@ -18,7 +18,7 @@ distlib==0.3.8
     # via virtualenv
 exceptiongroup==1.2.2
     # via pytest
-filelock==3.13.4
+filelock==3.15.4
     # via
     #   tox
     #   virtualenv
@@ -46,7 +46,7 @@ pyinstaller[hook-testing]==6.10.0
     # via
     #   isocodes (pyproject.toml)
     #   pyinstaller
-pyinstaller-hooks-contrib==2024.7
+pyinstaller-hooks-contrib==2024.8
     # via pyinstaller
 pyproject-api==1.7.1
     # via tox
