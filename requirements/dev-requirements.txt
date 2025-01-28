@@ -30,7 +30,7 @@ tomli==2.2.1
     # via mypy
 typing-extensions==4.12.2
     # via mypy
-virtualenv==20.26.3
+virtualenv==20.26.6
     # via pre-commit
 
 # The following packages are considered to be unsafe in a requirements file:

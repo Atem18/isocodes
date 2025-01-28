@@ -100,7 +100,7 @@ trove-classifiers==2024.7.2
     # via hatchling
 userpath==1.9.2
     # via hatch
-virtualenv==20.26.3
+virtualenv==20.26.6
     # via hatch
 zipp==3.19.2
     # via importlib-metadata
