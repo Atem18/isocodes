@@ -30,6 +30,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
       - name: Install the project
         run: uv sync --all-groups
       - name: Build wheel
