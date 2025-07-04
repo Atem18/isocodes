@@ -5,32 +5,32 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.29.4
+    rev: 0.33.2
     hooks:
       - id: check-github-workflows
         args: ["--verbose"]
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         additional_dependencies: ["tomli>=2.0.2"]
   - repo: https://github.com/tox-dev/tox-ini-fmt
-    rev: "1.4.1"
+    rev: "1.5.0"
     hooks:
       - id: tox-ini-fmt
         args: ["-p", "fix"]
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "v2.5.0"
+    rev: "v2.6.0"
     hooks:
       - id: pyproject-fmt
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.7.4"
+    rev: "v0.12.2"
     hooks:
       - id: ruff-format
       - id: ruff
         args: ["--fix", "--unsafe-fixes", "--exit-non-zero-on-fix"]
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: "v3.3.3"
+    rev: "v3.6.2"
     hooks:
       - id: prettier
         args: ["--print-width=120", "--prose-wrap=always"]
@@ -38,3 +38,15 @@ repos:
     hooks:
       - id: check-hooks-apply
       - id: check-useless-excludes
+  - repo: local
+    hooks:
+      - id: uv-build
+        name: Run uv build
+        entry: uv build
+        language: system
+        pass_filenames: false
+      - id: run-tests
+        name: Run tests
+        entry: pytest
+        language: system
+        pass_filenames: false
