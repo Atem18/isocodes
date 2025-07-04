@@ -6,75 +6,37 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        env:
-          - "3.13"
-          - "3.12"
-          - "3.11"
-          - "3.10"
+        python-version:
           - "3.9"
-          - type
-          - dev
-          - pkg_meta
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v3
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v5
         with:
-          enable-cache: true
-          cache-dependency-glob: "pyproject.toml"
+          python-version: ${{ matrix.python-version }}
       - name: Install tox
-        run: uv tool install --python-preference only-managed --python 3.13 tox --with tox-uv
-      - name: Install Python
-        if: startsWith(matrix.env, '3.') && matrix.env != '3.13'
-        run: uv python install --python-preference only-managed ${{ matrix.env }}
-      - name: Setup test suite
-        run: tox run -vv --notest --skip-missing-interpreters false -e ${{ matrix.env }}
-      - name: Run test suite
-        run: tox run --skip-pkg-install -e ${{ matrix.env }}
-        env:
-          PYTEST_ADDOPTS: "-vv --durations=20"
-          DIFF_AGAINST: HEAD
-
-  build:
+        run: uv tool install tox --with tox-uv
+      - name: Run Tox
+        run: tox r -e ${{ matrix.python-version }}
+  build-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v3
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v5
         with:
-          enable-cache: true
-          cache-dependency-glob: "pyproject.toml"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build package
-        run: uv build --python 3.13 --python-preference only-managed --sdist --wheel . --out-dir dist
-      - name: Store the distribution packages
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.dists-artifact-name }}
-          path: dist/*
-
-  release:
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    environment:
-      name: release
-      url: https://pypi.org/project/tox-uv/${{ github.ref_name }}
-    permissions:
-      id-token: write
-    steps:
-      - name: Download all the dists
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ env.dists-artifact-name }}
-          path: dist/
-      - name: Publish to Test PyPI
-        uses: pypa/gh-action-pypi-publish@v1.12.2
-        with:
-          password: ${{ secrets.test_pypi_password }}
-          repository-url: https://test.pypi.org/legacy/
-          skip-existing: true
+          python-version: ${{ matrix.python-version }}
+      - name: Install the project
+        run: uv sync --all-groups
+      - name: Build wheel
+        run: uv build
+      - name: Publish package
+        run: uv publish --index testpypi
