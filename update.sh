@@ -14,7 +14,7 @@ git clone https://salsa.debian.org/iso-codes-team/iso-codes.git
 
 cd "$UPSTREAM_DIR" || exit
 
-git checkout v4.17.0
+git checkout v4.18.0
 
 ./configure --prefix "$BASE_DIR"
 

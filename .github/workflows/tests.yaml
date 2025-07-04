@@ -26,6 +26,9 @@ jobs:
         run: tox r -e ${{ matrix.python-version }}
   build-publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      pages: write
     steps:
       - uses: actions/checkout@v4
         with:
