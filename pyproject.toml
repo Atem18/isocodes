@@ -32,4 +32,6 @@ explicit = true
 [dependency-groups]
 test = [
     "pytest>=8.4.1",
+    "tox>=4.27.0",
+    "tox-uv>=1.26.1",
 ]
