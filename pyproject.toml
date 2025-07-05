@@ -1,6 +1,6 @@
 [project]
 name = "isocodes"
-version = "2025.07.05.1"
+version = "2025.07.05.2"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 readme = "README.md"
 keywords = [ "iso" ]
@@ -22,6 +22,9 @@ urls.homepage = "https://github.com/Atem18/isocodes"
 urls.repository = "https://github.com/Atem18/isocodes"
 entry-points.pyinstaller40.hook-dirs = "isocodes.__pyinstaller:get_hook_dirs"
 entry-points.pyinstaller40.tests = "isocodes.__pyinstaller:get_hook_dirs"
+
+[tool.setuptools.package-data]
+isocodes = ["share/**/*"]
 
 [[tool.uv.index]]
 name = "testpypi"
