@@ -1,43 +1,41 @@
 name: Test iso-codes, build and publish to TestPypi
 on: [pull_request]
 jobs:
-  pytest:
+  test:
     name: Run tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: ${{ matrix.python }}
-      - name: Install test dependencies
-        run: pip install -r requirements/test-requirements.txt
+          fetch-depth: 0
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install the test group dependencies
+        run: uv sync --group test
       - name: Run Tox
-        run: tox -e py
-  build-n-publish-testpypi:
-    name: Build and publish Python 🐍 distributions 📦 to TestPyPI
-    runs-on: ubuntu-20.04
+        run: tox r -e ${{ matrix.python-version }}
+  build-publish:
+    runs-on: ubuntu-latest
     permissions:
-      contents: read
       id-token: write
+      pages: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: 3.9
-      - name: Install build dependencies
-        run: pip install -r requirements/build-requirements.txt
-      - name: Build package
-        run: hatch build
-      - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@v1.12.3
-        with:
-          password: ${{ secrets.test_pypi_password }}
-          repository-url: https://test.pypi.org/legacy/
-          skip-existing: true
+          fetch-depth: 0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Build wheel
+        run: uv build
+      - name: Publish package
+        run: uv publish --index testpypi
