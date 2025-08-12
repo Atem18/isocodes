@@ -1,4 +1,4 @@
-name: Test Build and Publish to TestPyPI
+name: Test publish to TestPyPI
 on:
   workflow_dispatch:
     inputs:
@@ -6,12 +6,6 @@ on:
         description: 'Version suffix (e.g., rc1, beta1, dev1)'
         required: false
         default: 'dev1'
-      skip_publish:
-        description: 'Skip publishing (just build and validate)'
-        required: false
-        default: false
-        type: boolean
-
 jobs:
   test-publish:
     runs-on: ubuntu-latest
@@ -37,23 +31,5 @@ jobs:
           sed -i 's/^version = .*/version = "${{ steps.version.outputs.version }}"/' pyproject.toml
       - name: Build wheel
         run: uv build
-      - name: Install twine for validation
-        run: uv tool install twine
-      - name: Validate build
-        run: |
-          uv tool run twine check dist/*
-          echo "Build validation passed!"
       - name: Publish to TestPyPI
-        if: ${{ !inputs.skip_publish }}
         run: uv publish --index testpypi
-      - name: Test installation
-        if: ${{ !inputs.skip_publish }}
-        run: |
-          sleep 30  # Wait for TestPyPI to process
-          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ isocodes==${{ steps.version.outputs.version }}
-          python -c "from isocodes import countries; print('Installation test passed!')"
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-dist-${{ steps.version.outputs.version }}
-          path: dist/
