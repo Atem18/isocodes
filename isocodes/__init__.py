@@ -2,6 +2,7 @@ import json
 import pathlib
 import os
 import sys
+from types import SimpleNamespace
 from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Tuple, TypedDict
 
 if TYPE_CHECKING:
@@ -79,6 +80,94 @@ class FormerNameMapping(TypedDict, total=False):
     comment: Optional[str]
 
 
+class ISONamespaceRecord(dict):
+    """
+    A dict-based record that provides dot notation access via SimpleNamespace
+    while maintaining complete dictionary compatibility.
+
+    This class ensures that existing code using dictionary access
+    continues to work unchanged while enabling modern dot notation.
+
+    Example:
+        record = ISONamespaceRecord({"alpha_2": "US", "name": "United States"})
+
+        # Dictionary access (backward compatible)
+        print(record["name"])  # United States
+        print(record.get("alpha_2"))  # US
+        print(isinstance(record, dict))  # True
+
+        # Dot notation access (new feature)
+        print(record.name)  # United States
+        print(record.alpha_2)  # US
+    """
+
+    def __init__(self, data: Dict[str, Any]):
+        """Initialize with dictionary data."""
+        # Initialize as a dictionary
+        super().__init__(data)
+
+        # Create a SimpleNamespace for dot notation access
+        self._namespace = SimpleNamespace(**data)
+
+    def __getattr__(self, name: str) -> Any:
+        """Support dot notation access."""
+        if name.startswith("_"):
+            # Handle private attributes normally
+            return object.__getattribute__(self, name)
+        try:
+            return getattr(self._namespace, name)
+        except AttributeError:
+            raise AttributeError(
+                f"'{self.__class__.__name__}' object has no attribute '{name}'"
+            )
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        """Support attribute assignment while keeping dict in sync."""
+        if name.startswith("_"):
+            # Private attributes go directly to the object
+            super().__setattr__(name, value)
+        else:
+            # Public attributes should update both the dict and the namespace
+            self[name] = value
+            if hasattr(self, "_namespace"):
+                setattr(self._namespace, name, value)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Override dict setitem to keep namespace in sync."""
+        super().__setitem__(key, value)
+        if hasattr(self, "_namespace"):
+            setattr(self._namespace, key, value)
+
+    def __delitem__(self, key: str) -> None:
+        """Override dict delitem to keep namespace in sync."""
+        super().__delitem__(key)
+        if hasattr(self, "_namespace") and hasattr(self._namespace, key):
+            delattr(self._namespace, key)
+
+    def update(self, *args, **kwargs) -> None:
+        """Override dict update to keep namespace in sync."""
+        super().update(*args, **kwargs)
+        if hasattr(self, "_namespace"):
+            # Update namespace with current dict contents
+            for key, value in self.items():
+                setattr(self._namespace, key, value)
+
+    def clear(self) -> None:
+        """Override dict clear to keep namespace in sync."""
+        super().clear()
+        if hasattr(self, "_namespace"):
+            # Clear namespace attributes
+            for attr in list(vars(self._namespace).keys()):
+                delattr(self._namespace, attr)
+
+    def __repr__(self) -> str:
+        """Detailed representation."""
+        return f"{self.__class__.__name__}({dict(self)})"
+
+
+# Remove the MutableMapping registration since we now inherit from dict
+
+
 def get_resource(resource: str) -> "importlib.resources.abc.Traversable":
     """Return a file handle on a named resource in a Package."""
 
@@ -123,46 +212,173 @@ class ISO:
         with resource_file.open(encoding="utf-8") as iso_file:
             self.data = json.load(iso_file)[self.iso_key]
 
+        # Create enhanced records with dot notation support
+        self._namespace_records = [ISONamespaceRecord(item) for item in self.data]
+
+        # Create efficient indexes for fast lookups
+        self._create_indexes()
+
+    def _create_indexes(self):
+        """Create indexed access for common fields."""
+        self._index_alpha_2 = {}
+        self._index_alpha_3 = {}
+        self._index_name = {}
+        self._index_numeric = {}
+
+        for record in self._namespace_records:
+            if hasattr(record, "alpha_2"):
+                self._index_alpha_2[record.alpha_2] = record
+            if hasattr(record, "alpha_3"):
+                self._index_alpha_3[record.alpha_3] = record
+            if hasattr(record, "name"):
+                self._index_name[record.name] = record
+            if hasattr(record, "numeric"):
+                self._index_numeric[record.numeric] = record
+
     def __len__(self) -> int:
         return len(self.data)
 
     def _name_from_index(self, index: str) -> Generator[Any, None, None]:
         return ((element[index], element["name"]) for element in self.data)
 
-    def _sorted_by_index(self, index: str) -> List[Tuple[str, Any]]:
+    def _sorted_by_index(self, index: str) -> List[Tuple[str, ISONamespaceRecord]]:
+        """Return sorted list of (index_value, record) tuples using enhanced records."""
         return sorted(
-            [(element[index], element) for element in self.data if index in element],
+            [
+                (getattr(record, index), record)
+                for record in self._namespace_records
+                if hasattr(record, index)
+            ],
             key=lambda x: x[0],
         )
 
-    def get(self, **kwargs: str) -> Optional[Dict[str, str]]:
+    def get(self, **kwargs: str) -> ISONamespaceRecord:
+        """
+        Enhanced get method that returns ISONamespaceRecord objects.
+        Maintains backward compatibility with the original API.
+
+        Returns empty ISONamespaceRecord for non-matching cases to maintain consistency,
+        but ISONamespaceRecord objects are dict-compatible for existing code.
+        """
         try:
-            # Handle empty kwargs
+            # Handle empty kwargs - return empty ISONamespaceRecord for backward compatibility
             if not kwargs:
-                return {}
+                return ISONamespaceRecord({})
 
             key: str = next(iter(kwargs))
             value = kwargs[key]
 
-            # Handle None or empty values
+            # Handle None or empty values - return empty ISONamespaceRecord for backward compatibility
             if value is None or value == "":
-                return {}
+                return ISONamespaceRecord({})
 
-            # Ensure value is a string
+            # Ensure value is a string - return empty ISONamespaceRecord for backward compatibility
             if not isinstance(value, str):
-                return {}
+                return ISONamespaceRecord({})
 
-            return [
+            # Find the matching record in original data
+            base_result = [
                 element
                 for element in self.data
                 if key in element and value in element[key]
             ][0]
+
+            # Find the corresponding namespace record
+            for record in self._namespace_records:
+                if dict(record) == base_result:
+                    return record
+
+            # Fallback: create a new one (shouldn't happen normally)
+            return ISONamespaceRecord(base_result)
+
         except (IndexError, StopIteration, TypeError):
-            return {}
+            return ISONamespaceRecord({})
+
+    def find(self, **kwargs: str) -> Optional[ISONamespaceRecord]:
+        """
+        New method for exact match lookups using indexes for better performance.
+
+        Example:
+            country = countries.find(alpha_2="US")
+            print(country.name)  # United States
+        """
+        if not kwargs:
+            return None
+
+        # Try indexed lookups first for common fields
+        for key, value in kwargs.items():
+            if key == "alpha_2" and value in self._index_alpha_2:
+                return self._index_alpha_2[value]
+            elif key == "alpha_3" and value in self._index_alpha_3:
+                return self._index_alpha_3[value]
+            elif key == "name" and value in self._index_name:
+                return self._index_name[value]
+            elif key == "numeric" and value in self._index_numeric:
+                return self._index_numeric[value]
+
+        # Fallback to linear search for exact matches
+        for record in self._namespace_records:
+            if all(
+                hasattr(record, k) and getattr(record, k) == v
+                for k, v in kwargs.items()
+            ):
+                return record
+
+        return None
+
+    def search(self, **kwargs: str) -> List[ISONamespaceRecord]:
+        """
+        Search for records that match criteria (supports partial matches).
+
+        Example:
+            island_countries = countries.search(name="Island")
+            for country in island_countries:
+                print(f"{country.name} - {country.flag}")
+        """
+        if not kwargs:
+            return []
+
+        results = []
+        for record in self._namespace_records:
+            match = True
+            for key, value in kwargs.items():
+                if not hasattr(record, key):
+                    match = False
+                    break
+                record_value = str(getattr(record, key))
+                if value.lower() not in record_value.lower():
+                    match = False
+                    break
+            if match:
+                results.append(record)
+
+        return results
 
     @property
-    def items(self) -> List[Any]:
-        return self.data
+    def items(self) -> List[ISONamespaceRecord]:
+        """Return all records as ISONamespaceRecord objects with dot notation support."""
+        return self._namespace_records
+
+    # Enhanced index access properties
+    @property
+    def by_alpha_2_dict(self) -> Dict[str, ISONamespaceRecord]:
+        """Dictionary for O(1) lookup by alpha_2 code."""
+        return self._index_alpha_2.copy()
+
+    @property
+    def by_alpha_3_dict(self) -> Dict[str, ISONamespaceRecord]:
+        """Dictionary for O(1) lookup by alpha_3 code."""
+        return self._index_alpha_3.copy()
+
+    @property
+    def by_name_dict(self) -> Dict[str, ISONamespaceRecord]:
+        """Dictionary for O(1) lookup by name."""
+        return self._index_name.copy()
+
+    @property
+    def by_numeric_dict(self) -> Dict[str, ISONamespaceRecord]:
+        """Dictionary for O(1) lookup by numeric code."""
+        return self._index_numeric.copy()
 
 
 class Countries(ISO):
@@ -179,23 +395,23 @@ class Countries(ISO):
             self._former_names_data = {}
 
     @property
-    def by_alpha_2(self) -> List[Tuple[str, Country]]:
+    def by_alpha_2(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_2")
 
     @property
-    def by_alpha_3(self) -> List[Tuple[str, Country]]:
+    def by_alpha_3(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_common_name(self) -> List[Tuple[str, Country]]:
+    def by_common_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="common_name")
 
     @property
-    def by_name(self) -> List[Tuple[str, Country]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[Tuple[str, Country]]:
+    def by_numeric(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="numeric")
 
     @property
@@ -203,10 +419,10 @@ class Countries(ISO):
         return self._name_from_index(index="alpha_2")
 
     @property
-    def items(self) -> List[Country]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
-    def get_by_former_name(self, former_name: str) -> Optional[Dict[str, str]]:
+    def get_by_former_name(self, former_name: str) -> Optional[ISONamespaceRecord]:
         """
         Look up a country by its former name.
 
@@ -214,7 +430,7 @@ class Countries(ISO):
             former_name: The former name of the country (e.g., "Swaziland")
 
         Returns:
-            Country dict if found, None if not found or if the former country
+            ISONamespaceRecord if found, None if not found or if the former country
             no longer exists as a single entity
         """
         if not isinstance(former_name, str) or not former_name:
@@ -228,8 +444,8 @@ class Countries(ISO):
         if not former_mapping.get("alpha_2") or not former_mapping.get("alpha_3"):
             return None
 
-        # Look up the current country by alpha_2 code
-        return self.get(alpha_2=former_mapping["alpha_2"])
+        # Look up the current country by alpha_2 code using our enhanced method
+        return self.find(alpha_2=former_mapping["alpha_2"])
 
     def get_former_names_info(self, former_name: str) -> Optional[Dict[str, Any]]:
         """
@@ -260,11 +476,11 @@ class Countries(ISO):
 
 class Languages(ISO):
     @property
-    def by_alpha_3(self) -> List[Tuple[str, Language]]:
+    def by_alpha_3(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[Tuple[str, Language]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
@@ -272,21 +488,21 @@ class Languages(ISO):
         return self._name_from_index(index="alpha_3")
 
     @property
-    def items(self) -> List[Language]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
 class Currencies(ISO):
     @property
-    def by_alpha_3(self) -> List[Tuple[str, Currency]]:
+    def by_alpha_3(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[Tuple[str, Currency]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[Tuple[str, Currency]]:
+    def by_numeric(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="numeric")
 
     @property
@@ -294,21 +510,21 @@ class Currencies(ISO):
         return self._name_from_index(index="alpha_3")
 
     @property
-    def items(self) -> List[Currency]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
 class SubdivisionsCountries(ISO):
     @property
-    def by_code(self) -> List[Tuple[str, CountrySubdivision]]:
+    def by_code(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="code")
 
     @property
-    def by_name(self) -> List[Tuple[str, CountrySubdivision]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_type(self) -> List[Tuple[str, CountrySubdivision]]:
+    def by_type(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="type")
 
     @property
@@ -316,33 +532,33 @@ class SubdivisionsCountries(ISO):
         return self._name_from_index(index="code")
 
     @property
-    def items(self) -> List[CountrySubdivision]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
 class FormerCountries(ISO):
     @property
-    def by_alpha_2(self) -> List[Tuple[str, FormerCountry]]:
+    def by_alpha_2(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_2")
 
     @property
-    def by_alpha_3(self) -> List[Tuple[str, FormerCountry]]:
+    def by_alpha_3(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_alpha_4(self) -> List[Tuple[str, FormerCountry]]:
+    def by_alpha_4(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_4")
 
     @property
-    def by_name(self) -> List[Tuple[str, FormerCountry]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[Tuple[str, FormerCountry]]:
+    def by_numeric(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="numeric")
 
     @property
-    def by_withdrawal_date(self) -> List[Tuple[str, FormerCountry]]:
+    def by_withdrawal_date(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="withdrawal_date")
 
     @property
@@ -350,25 +566,25 @@ class FormerCountries(ISO):
         return self._name_from_index(index="alpha_2")
 
     @property
-    def items(self) -> List[FormerCountry]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
 class ExtendedLanguages(ISO):
     @property
-    def by_alpha_3(self) -> List[Tuple[str, ExtendedLanguage]]:
+    def by_alpha_3(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[Tuple[str, ExtendedLanguage]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_scope(self) -> List[Tuple[str, ExtendedLanguage]]:
+    def by_scope(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="scope")
 
     @property
-    def by_type(self) -> List[Tuple[str, ExtendedLanguage]]:
+    def by_type(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="type")
 
     @property
@@ -376,17 +592,17 @@ class ExtendedLanguages(ISO):
         return self._name_from_index(index="alpha_3")
 
     @property
-    def items(self) -> List[ExtendedLanguage]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
 class LanguageFamilies(ISO):
     @property
-    def by_alpha_3(self) -> List[Tuple[str, LanguageFamily]]:
+    def by_alpha_3(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_3")
 
     @property
-    def by_name(self) -> List[Tuple[str, LanguageFamily]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
@@ -394,21 +610,21 @@ class LanguageFamilies(ISO):
         return self._name_from_index(index="alpha_3")
 
     @property
-    def items(self) -> List[LanguageFamily]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
 class ScriptNames(ISO):
     @property
-    def by_alpha_4(self) -> List[Tuple[str, ScriptName]]:
+    def by_alpha_4(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="alpha_4")
 
     @property
-    def by_name(self) -> List[Tuple[str, ScriptName]]:
+    def by_name(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="name")
 
     @property
-    def by_numeric(self) -> List[Tuple[str, ScriptName]]:
+    def by_numeric(self) -> List[Tuple[str, ISONamespaceRecord]]:
         return self._sorted_by_index(index="numeric")
 
     @property
@@ -416,7 +632,7 @@ class ScriptNames(ISO):
         return self._name_from_index(index="alpha_4")
 
     @property
-    def items(self) -> List[ScriptName]:
+    def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
 
