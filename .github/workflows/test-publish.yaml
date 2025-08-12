@@ -43,8 +43,6 @@ jobs:
         run: |
           uv tool run twine check dist/*
           echo "Build validation passed!"
-      - name: Test publish (dry run)
-        run: uv publish --index testpypi --dry-run
       - name: Publish to TestPyPI
         if: ${{ !inputs.skip_publish }}
         run: uv publish --index testpypi
