@@ -274,6 +274,178 @@ print(country.name)              # New! Dot notation
 print(country.flag)              # New! Direct attribute access
 ```
 
+# Command Line Interface
+
+isocodes now includes a powerful command-line interface for quick ISO data lookups and searches.
+
+## Installation
+
+After installing isocodes, the CLI is available as the `isocodes` command:
+
+```bash
+pip install isocodes
+isocodes --help
+```
+
+## Basic Usage
+
+### Countries
+
+```bash
+# Find country by code
+isocodes countries --code US
+isocodes countries --code DEU
+
+# Search by name
+isocodes countries --name Germany --exact
+isocodes countries --name Island
+
+# Find by former name
+isocodes countries --former-name Burma
+
+# List all countries
+isocodes countries --list-all
+```
+
+### Languages
+
+```bash
+# Find language by code
+isocodes languages --code en
+isocodes languages --code deu
+
+# Search by name
+isocodes languages --name French
+```
+
+### Currencies
+
+```bash
+# Find currency by code
+isocodes currencies --code USD
+
+# Search by name
+isocodes currencies --name Euro
+
+# Find by numeric code
+isocodes currencies --numeric 840
+```
+
+### Country Subdivisions
+
+```bash
+# Find subdivision by code
+isocodes subdivisions --code US-CA
+
+# List subdivisions for a country
+isocodes subdivisions --country US
+```
+
+### Former Countries
+
+```bash
+# Find former country
+isocodes former-countries --code YUG
+isocodes former-countries --name Yugoslavia
+```
+
+### Script Names
+
+```bash
+# Find script by code
+isocodes scripts --code Latn
+
+# Find by numeric code
+isocodes scripts --numeric 215
+```
+
+## Output Formats
+
+### Table Format (Default)
+
+```bash
+isocodes countries --code US
+# Output:
+# alpha_2 | alpha_3 | flag | name          | numeric | official_name           
+# -----------------------------------------------------------------------------
+# US      | USA     | 🇺🇸   | United States | 840     | United States of America
+```
+
+### JSON Format
+
+```bash
+isocodes --format json countries --code US
+# Output:
+# [
+#   {
+#     "alpha_2": "US",
+#     "alpha_3": "USA",
+#     "flag": "🇺🇸",
+#     "name": "United States",
+#     "numeric": "840",
+#     "official_name": "United States of America"
+#   }
+# ]
+```
+
+### CSV Format
+
+```bash
+isocodes --format csv countries --code US
+# Output:
+# alpha_2,alpha_3,flag,name,numeric,official_name
+# US,USA,🇺🇸,United States,840,United States of America
+```
+
+## Advanced Options
+
+### Limit Results
+
+```bash
+# Show only first 5 results
+isocodes --limit 5 countries --name Island
+```
+
+### Select Specific Fields
+
+```bash
+# Show only name and flag
+isocodes --fields name,flag countries --code US
+# Output:
+# name          | flag
+# --------------------
+# United States | 🇺🇸
+```
+
+### Combining Options
+
+```bash
+# JSON output with specific fields and limit
+isocodes --format json --fields name,flag --limit 3 countries --name Island
+```
+
+## CLI Examples
+
+```bash
+# Quick country lookup
+isocodes countries --code FR
+
+# Find countries with "United" in name
+isocodes countries --name United
+
+# Get all US states in CSV format
+isocodes --format csv subdivisions --country US > us_states.csv
+
+# Find all currencies in JSON
+isocodes --format json currencies --list-all > currencies.json
+
+# Search for Romance languages
+isocodes languages --name French
+
+# Look up former country by modern name reference
+isocodes countries --former-name "Soviet Union"
+```
+
 ## Translations
 
 Translations are included in this project with gettext support. The domain names are to be found on https://salsa.debian.org/iso-codes-team/iso-codes
