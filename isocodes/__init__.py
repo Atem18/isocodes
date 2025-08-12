@@ -129,13 +129,27 @@ class ISO:
 
     def get(self, **kwargs: str) -> Optional[Dict[str, str]]:
         try:
+            # Handle empty kwargs
+            if not kwargs:
+                return {}
+
             key: str = next(iter(kwargs))
+            value = kwargs[key]
+
+            # Handle None or empty values
+            if value is None or value == "":
+                return {}
+
+            # Ensure value is a string
+            if not isinstance(value, str):
+                return {}
+
             return [
                 element
                 for element in self.data
-                if key in element and kwargs[key] in element[key]
+                if key in element and value in element[key]
             ][0]
-        except IndexError:
+        except (IndexError, StopIteration, TypeError):
             return {}
 
     @property
