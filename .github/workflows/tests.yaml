@@ -23,7 +23,7 @@ jobs:
       - name: Install the test group dependencies
         run: uv sync --group test
       - name: Run Tox
-        run: tox r -e ${{ matrix.python-version }}
+        run: uv run tox r -e ${{ matrix.python-version }}
   build-publish:
     runs-on: ubuntu-latest
     permissions:
