@@ -1,5 +1,17 @@
 name: Test iso-codes and build
-on: [pull_request]
+on: 
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_to_testpypi:
+        description: 'Publish to TestPyPI with dev version'
+        required: false
+        default: false
+        type: boolean
+      version_suffix:
+        description: 'Version suffix for TestPyPI (e.g., dev1, rc1)'
+        required: false
+        default: 'dev1'
 jobs:
   test:
     name: Run tests
@@ -45,3 +57,38 @@ jobs:
         with:
           name: dist
           path: dist/
+
+  test-publish:
+    name: Test publish to TestPyPI
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_to_testpypi
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Generate test version
+        id: version
+        run: |
+          BASE_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
+          SUFFIX="${{ inputs.version_suffix }}"
+          TEST_VERSION="${BASE_VERSION}.${SUFFIX}"
+          echo "version=${TEST_VERSION}" >> $GITHUB_OUTPUT
+          echo "Generated test version: ${TEST_VERSION}"
+      - name: Update version for testing
+        run: |
+          sed -i 's/^version = .*/version = "${{ steps.version.outputs.version }}"/' pyproject.toml
+      - name: Build wheel
+        run: uv build
+      - name: Publish to TestPyPI
+        run: uv publish --index testpypi
+      - name: Test installation
+        run: |
+          sleep 30  # Wait for TestPyPI to process
+          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ isocodes==${{ steps.version.outputs.version }}
+          python -c "from isocodes import countries; print('Installation test passed!')"
