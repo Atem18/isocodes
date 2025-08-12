@@ -24,8 +24,9 @@ urls.repository = "https://github.com/Atem18/isocodes"
 [project.scripts]
 isocodes = "isocodes.cli:main"
 
-entry-points.pyinstaller40.hook-dirs = "isocodes.__pyinstaller:get_hook_dirs"
-entry-points.pyinstaller40.tests = "isocodes.__pyinstaller:get_hook_dirs"
+[project.entry-points.pyinstaller40]
+hook-dirs = "isocodes.__pyinstaller:get_hook_dirs"
+tests = "isocodes.__pyinstaller:get_hook_dirs"
 
 [tool.setuptools.package-data]
 isocodes = ["share/**/*"]
