@@ -145,14 +145,14 @@ You can get a list with sorted data by one of the property with the by_xxx prope
 
 ### Former country names lookup (Enhanced!)
 
-You can look up countries by their former names using the `get_by_former_name` method. Now with full dot notation support!
+You can look up countries by their former names using the `get_by_former_name` method. This feature uses **only official ISO data sources** and hardcoded mappings in the Python code (no custom files that get overwritten during updates).
 
 ##### Example
 
 ```python
 >>> from isocodes import countries
 
-# Look up Eswatini by its former name (now with dot notation):
+# Look up Eswatini by its former name (name change, same codes):
 >>> eswatini = countries.get_by_former_name("Swaziland")
 >>> eswatini.name
 'Eswatini'
@@ -161,18 +161,18 @@ You can look up countries by their former names using the `get_by_former_name` m
 >>> f"{eswatini.name} ({eswatini.alpha_2})"
 'Eswatini (SZ)'
 
-# Look up Myanmar by its former name:
+# Look up Myanmar by its former name (from ISO 3166-3 data):
 >>> myanmar = countries.get_by_former_name("Burma")
 >>> f"{myanmar.name} - {myanmar.flag}"
 'Myanmar - 🇲🇲'
 
-# Get information about former names (including dissolved countries):
->>> countries.get_former_names_info("Czechoslovakia")
-{'alpha_2': None, 'alpha_3': None, 'current_name': None, 'change_date': '1993-01-01', 'comment': 'Split into Czech Republic (CZ/CZE) and Slovakia (SK/SVK)'}
+# Get information about the name change:
+>>> countries.get_former_names_info("Swaziland")
+{'alpha_2': 'SZ', 'alpha_3': 'SWZ', 'current_name': 'Eswatini', 'change_date': '2018-04-19', 'comment': 'Name change, codes remained the same'}
 
-# Get list of all available former names:
+# Get list of available former names (includes both hardcoded and ISO 3166-3 data):
 >>> countries.former_names[:5]
-['Swaziland', 'Burma', 'Zaire', 'Czechoslovakia', 'Yugoslavia']
+['Burma', 'Swaziland', 'Zaire', ...]
 ```
 
 

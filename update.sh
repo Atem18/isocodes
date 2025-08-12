@@ -27,3 +27,9 @@ make
 make install
 
 rm -rf $UPSTREAM_DIR
+
+rm -rf "$SHARE_DIR/json/schema-*"
+
+rm -rf "$SHARE_DIR/pkgconfig"
+
+rm -rf "$SHARE_DIR/xml"
