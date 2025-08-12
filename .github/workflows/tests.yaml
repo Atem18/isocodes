@@ -1,4 +1,4 @@
-name: Test iso-codes, build and publish to TestPypi
+name: Test iso-codes and build
 on: [pull_request]
 jobs:
   test:
@@ -24,11 +24,9 @@ jobs:
         run: uv sync --group test
       - name: Run Tox
         run: uv run tox r -e ${{ matrix.python-version }}
-  build-publish:
+  build:
+    name: Build package
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      pages: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,5 +35,13 @@ jobs:
         uses: astral-sh/setup-uv@v6
       - name: Build wheel
         run: uv build
-      - name: Publish package
-        run: uv publish --index testpypi
+      - name: Install twine for validation
+        run: uv tool install twine
+      - name: Test build integrity
+        run: |
+          uv tool run twine check dist/*
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
