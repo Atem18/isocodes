@@ -49,6 +49,29 @@ You can get a list with sorted data by one of the property with the by_xxx prope
     >>> countries.by_numeric[0]
     ('004', {'alpha_2': 'AF', 'alpha_3': 'AFG', 'flag': '🇦🇫', 'name': 'Afghanistan', 'numeric': '004', 'official_name': 'Islamic Republic of Afghanistan'})
 
+### Former country names lookup
+
+You can look up countries by their former names using the `get_by_former_name` method. This is useful for countries that have changed names over time but kept their country codes.
+
+#### Example
+
+    >>> from isocodes import countries
+    >>> # Look up Eswatini by its former name
+    >>> countries.get_by_former_name("Swaziland")
+    {'alpha_2': 'SZ', 'alpha_3': 'SWZ', 'flag': '🇸🇿', 'name': 'Eswatini', 'numeric': '748', 'official_name': 'Kingdom of Eswatini'}
+    
+    >>> # Look up Myanmar by its former name
+    >>> countries.get_by_former_name("Burma")
+    {'alpha_2': 'MM', 'alpha_3': 'MMR', 'flag': '🇲🇲', 'name': 'Myanmar', 'numeric': '104', 'official_name': 'Republic of the Union of Myanmar'}
+    
+    >>> # Get information about former names (including dissolved countries)
+    >>> countries.get_former_names_info("Czechoslovakia")
+    {'alpha_2': None, 'alpha_3': None, 'current_name': None, 'change_date': '1993-01-01', 'comment': 'Split into Czech Republic (CZ/CZE) and Slovakia (SK/SVK)'}
+    
+    >>> # Get list of all available former names
+    >>> countries.former_names
+    ['Swaziland', 'Burma', 'Zaire', 'Czechoslovakia', 'Yugoslavia', 'Soviet Union', 'USSR']
+
 
 ## Languages (ISO 639-2)
 

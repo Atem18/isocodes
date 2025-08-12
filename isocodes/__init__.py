@@ -71,6 +71,14 @@ class ScriptName(TypedDict, total=False):
     numeric: str
 
 
+class FormerNameMapping(TypedDict, total=False):
+    alpha_2: Optional[str]
+    alpha_3: Optional[str]
+    current_name: Optional[str]
+    change_date: str
+    comment: Optional[str]
+
+
 def get_resource(resource: str) -> "importlib.resources.abc.Traversable":
     """Return a file handle on a named resource in a Package."""
 
@@ -158,6 +166,18 @@ class ISO:
 
 
 class Countries(ISO):
+    def __init__(self, iso_key: str) -> None:
+        super().__init__(iso_key)
+        # Load former names mapping
+        try:
+            former_names_resource = get_resource(
+                "share/iso-codes/json/former_names.json"
+            )
+            with former_names_resource.open(encoding="utf-8") as former_names_file:
+                self._former_names_data = json.load(former_names_file)["former_names"]
+        except (FileNotFoundError, KeyError):
+            self._former_names_data = {}
+
     @property
     def by_alpha_2(self) -> List[Tuple[str, Country]]:
         return self._sorted_by_index(index="alpha_2")
@@ -185,6 +205,57 @@ class Countries(ISO):
     @property
     def items(self) -> List[Country]:
         return super().items
+
+    def get_by_former_name(self, former_name: str) -> Optional[Dict[str, str]]:
+        """
+        Look up a country by its former name.
+
+        Args:
+            former_name: The former name of the country (e.g., "Swaziland")
+
+        Returns:
+            Country dict if found, None if not found or if the former country
+            no longer exists as a single entity
+        """
+        if not isinstance(former_name, str) or not former_name:
+            return None
+
+        former_mapping = self._former_names_data.get(former_name)
+        if not former_mapping:
+            return None
+
+        # If the country was split or dissolved, return None
+        if not former_mapping.get("alpha_2") or not former_mapping.get("alpha_3"):
+            return None
+
+        # Look up the current country by alpha_2 code
+        return self.get(alpha_2=former_mapping["alpha_2"])
+
+    def get_former_names_info(self, former_name: str) -> Optional[Dict[str, Any]]:
+        """
+        Get information about a former country name, including cases where
+        the country was split or dissolved.
+
+        Args:
+            former_name: The former name of the country
+
+        Returns:
+            Dict with former name mapping info, or None if not found
+        """
+        if not isinstance(former_name, str) or not former_name:
+            return None
+
+        return self._former_names_data.get(former_name)
+
+    @property
+    def former_names(self) -> List[str]:
+        """
+        Get a list of all available former country names.
+
+        Returns:
+            List of former country names that can be looked up
+        """
+        return list(self._former_names_data.keys())
 
 
 class Languages(ISO):
