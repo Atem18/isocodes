@@ -1,4 +1,4 @@
-name: Test Publish to TestPyPI
+name: Test Build and Publish to TestPyPI
 on:
   workflow_dispatch:
     inputs:
@@ -6,13 +6,16 @@ on:
         description: 'Version suffix (e.g., rc1, beta1, dev1)'
         required: false
         default: 'dev1'
-  pull_request:
-    types: [labeled]
+      skip_publish:
+        description: 'Skip publishing (just build and validate)'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   test-publish:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.label.name, 'test-publish')
     runs-on: ubuntu-latest
+    environment: testpypi
     permissions:
       id-token: write
     steps:
@@ -25,11 +28,7 @@ jobs:
         id: version
         run: |
           BASE_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            SUFFIX="${{ github.event.inputs.version_suffix }}"
-          else
-            SUFFIX="dev${{ github.run_number }}"
-          fi
+          SUFFIX="${{ github.event.inputs.version_suffix }}"
           TEST_VERSION="${BASE_VERSION}.${SUFFIX}"
           echo "version=${TEST_VERSION}" >> $GITHUB_OUTPUT
           echo "Generated test version: ${TEST_VERSION}"
@@ -38,10 +37,25 @@ jobs:
           sed -i 's/^version = .*/version = "${{ steps.version.outputs.version }}"/' pyproject.toml
       - name: Build wheel
         run: uv build
+      - name: Install twine for validation
+        run: uv tool install twine
+      - name: Validate build
+        run: |
+          uv tool run twine check dist/*
+          echo "Build validation passed!"
+      - name: Test publish (dry run)
+        run: uv publish --index testpypi --dry-run
       - name: Publish to TestPyPI
+        if: ${{ !inputs.skip_publish }}
         run: uv publish --index testpypi
       - name: Test installation
+        if: ${{ !inputs.skip_publish }}
         run: |
           sleep 30  # Wait for TestPyPI to process
           pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ isocodes==${{ steps.version.outputs.version }}
           python -c "from isocodes import countries; print('Installation test passed!')"
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-dist-${{ steps.version.outputs.version }}
+          path: dist/
