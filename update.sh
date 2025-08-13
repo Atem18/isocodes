@@ -28,7 +28,7 @@ make install
 
 rm -rf $UPSTREAM_DIR
 
-rm -rf "$SHARE_DIR/json/schema-*"
+rm -f "$SHARE_DIR"/iso-codes/json/schema-*.json
 
 rm -rf "$SHARE_DIR/pkgconfig"
 
