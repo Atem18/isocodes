@@ -384,15 +384,23 @@ class ISO:
 class Countries(ISO):
     def __init__(self, iso_key: str) -> None:
         super().__init__(iso_key)
-        # Load former names mapping
-        try:
-            former_names_resource = get_resource(
-                "share/iso-codes/json/former_names.json"
-            )
-            with former_names_resource.open(encoding="utf-8") as former_names_file:
-                self._former_names_data = json.load(former_names_file)["former_names"]
-        except (FileNotFoundError, KeyError):
-            self._former_names_data = {}
+        # Former names mapping for countries that changed names but kept codes
+        # This is hardcoded to avoid dependency on external files that get overwritten
+        self._former_names_data = {
+            "Swaziland": {
+                "alpha_2": "SZ",
+                "alpha_3": "SWZ",
+                "current_name": "Eswatini",
+                "change_date": "2018-04-19",
+                "comment": "Name change, codes remained the same",
+            }
+        }
+
+        # Mapping from former codes to current codes for countries that changed both
+        self._code_mappings = {
+            ("BU", "BUR"): ("MM", "MMR"),  # Burma -> Myanmar
+            ("ZR", "ZAR"): ("CD", "COD"),  # Zaire -> Congo (DRC)
+        }
 
     @property
     def by_alpha_2(self) -> List[Tuple[str, ISONamespaceRecord]]:
@@ -422,12 +430,27 @@ class Countries(ISO):
     def items(self) -> List[ISONamespaceRecord]:
         return super().items
 
+    def _get_current_country_from_former_codes(
+        self, alpha_2: str, alpha_3: str
+    ) -> Optional[ISONamespaceRecord]:
+        """
+        Look up current country by former ISO codes using the mapping table.
+        """
+        current_codes = self._code_mappings.get((alpha_2, alpha_3))
+        if current_codes:
+            return self.find(alpha_2=current_codes[0])
+        return None
+
     def get_by_former_name(self, former_name: str) -> Optional[ISONamespaceRecord]:
         """
         Look up a country by its former name.
 
+        This method searches in two places:
+        1. Hardcoded former names (for name changes that kept the same codes)
+        2. ISO 3166-3 former countries (for countries that changed codes)
+
         Args:
-            former_name: The former name of the country (e.g., "Swaziland")
+            former_name: The former name of the country (e.g., "Swaziland", "Burma")
 
         Returns:
             ISONamespaceRecord if found, None if not found or if the former country
@@ -436,21 +459,35 @@ class Countries(ISO):
         if not isinstance(former_name, str) or not former_name:
             return None
 
+        # First, check hardcoded former names (name changes with same codes)
         former_mapping = self._former_names_data.get(former_name)
-        if not former_mapping:
-            return None
+        if former_mapping:
+            # Look up the current country by alpha_2 code
+            return self.find(alpha_2=former_mapping["alpha_2"])
 
-        # If the country was split or dissolved, return None
-        if not former_mapping.get("alpha_2") or not former_mapping.get("alpha_3"):
-            return None
+        # Second, check ISO 3166-3 former countries data
+        # Look for the former name in the former_countries data
+        former_countries_instance = FormerCountries("3166-3")
 
-        # Look up the current country by alpha_2 code using our enhanced method
-        return self.find(alpha_2=former_mapping["alpha_2"])
+        for former_country in former_countries_instance.items:
+            country_name = former_country.get("name", "")
+            # Check if former_name matches the country name (with some flexibility)
+            if (
+                former_name.lower() in country_name.lower()
+                or country_name.lower().startswith(former_name.lower())
+            ):
+                # Try to find current country with updated codes
+                result = self._get_current_country_from_former_codes(
+                    former_country.get("alpha_2", ""), former_country.get("alpha_3", "")
+                )
+                if result:
+                    return result
+
+        return None
 
     def get_former_names_info(self, former_name: str) -> Optional[Dict[str, Any]]:
         """
-        Get information about a former country name, including cases where
-        the country was split or dissolved.
+        Get information about a former country name.
 
         Args:
             former_name: The former name of the country
@@ -461,7 +498,41 @@ class Countries(ISO):
         if not isinstance(former_name, str) or not former_name:
             return None
 
-        return self._former_names_data.get(former_name)
+        # Check hardcoded former names first
+        custom_info = self._former_names_data.get(former_name)
+        if custom_info:
+            return custom_info
+
+        # Check ISO 3166-3 former countries
+        former_countries_instance = FormerCountries("3166-3")
+
+        for former_country in former_countries_instance.items:
+            country_name = former_country.get("name", "")
+            if (
+                former_name.lower() in country_name.lower()
+                or country_name.lower().startswith(former_name.lower())
+            ):
+                # Convert ISO 3166-3 format to our format
+                current_codes = self._code_mappings.get(
+                    (
+                        former_country.get("alpha_2", ""),
+                        former_country.get("alpha_3", ""),
+                    )
+                )
+                current_country = None
+                if current_codes:
+                    current_country = self.find(alpha_2=current_codes[0])
+
+                return {
+                    "alpha_2": former_country.get("alpha_2"),
+                    "alpha_3": former_country.get("alpha_3"),
+                    "alpha_4": former_country.get("alpha_4"),
+                    "current_name": current_country.name if current_country else None,
+                    "change_date": former_country.get("withdrawal_date"),
+                    "comment": f"Former country from ISO 3166-3: {country_name}",
+                }
+
+        return None
 
     @property
     def former_names(self) -> List[str]:
@@ -471,7 +542,25 @@ class Countries(ISO):
         Returns:
             List of former country names that can be looked up
         """
-        return list(self._former_names_data.keys())
+        names = list(self._former_names_data.keys())
+
+        # Add simplified names from ISO 3166-3
+        former_countries_instance = FormerCountries("3166-3")
+
+        for former_country in former_countries_instance.items:
+            country_name = former_country.get("name", "")
+            # Extract main country name (before comma or other punctuation)
+            main_name = country_name.split(",")[0].strip()
+            # Clean up common patterns
+            main_name = main_name.replace(
+                "Socialist Republic of the Union of", ""
+            ).strip()
+            main_name = main_name.replace("Republic of", "").strip()
+
+            if main_name and main_name not in names and len(main_name) > 3:
+                names.append(main_name)
+
+        return sorted(names)
 
 
 class Languages(ISO):

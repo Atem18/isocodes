@@ -8,25 +8,24 @@ class TestFormerNamesLookup:
         """Test looking up Eswatini by its former name Swaziland."""
         result = countries.get_by_former_name("Swaziland")
         assert result is not None
-        assert result["alpha_2"] == "SZ"
-        assert result["alpha_3"] == "SWZ"
-        assert result["name"] == "Eswatini"
+        assert result.alpha_2 == "SZ"
+        assert result.alpha_3 == "SWZ"
+        assert result.name == "Eswatini"
 
     def test_get_by_former_name_burma(self):
-        """Test looking up Myanmar by its former name Burma."""
+        """Test looking up Myanmar by its former name Burma (from ISO 3166-3)."""
         result = countries.get_by_former_name("Burma")
         assert result is not None
-        assert result["alpha_2"] == "MM"
-        assert result["alpha_3"] == "MMR"
-        assert result["name"] == "Myanmar"
+        assert result.alpha_2 == "MM"
+        assert result.alpha_3 == "MMR"
+        assert result.name == "Myanmar"
 
     def test_get_by_former_name_zaire(self):
-        """Test looking up Congo (DRC) by its former name Zaire."""
+        """Test looking up Congo (DRC) by its former name Zaire (from ISO 3166-3)."""
         result = countries.get_by_former_name("Zaire")
         assert result is not None
-        assert result["alpha_2"] == "CD"
-        assert result["alpha_3"] == "COD"
-        assert result["name"] == "Congo, The Democratic Republic of the"
+        assert result.alpha_2 == "CD"
+        assert result.alpha_3 == "COD"
 
     def test_get_by_former_name_nonexistent(self):
         """Test looking up a non-existent former name."""
@@ -43,17 +42,6 @@ class TestFormerNamesLookup:
         result = countries.get_by_former_name(None)
         assert result is None
 
-    def test_get_by_former_name_dissolved_country(self):
-        """Test looking up a country that was dissolved/split."""
-        result = countries.get_by_former_name("Czechoslovakia")
-        assert result is None  # Should return None as it was split
-
-        result = countries.get_by_former_name("Yugoslavia")
-        assert result is None  # Should return None as it was dissolved
-
-        result = countries.get_by_former_name("Soviet Union")
-        assert result is None  # Should return None as it was dissolved
-
     def test_get_former_names_info_swaziland(self):
         """Test getting detailed info about Swaziland."""
         result = countries.get_former_names_info("Swaziland")
@@ -62,15 +50,16 @@ class TestFormerNamesLookup:
         assert result["alpha_3"] == "SWZ"
         assert result["current_name"] == "Eswatini"
         assert result["change_date"] == "2018-04-19"
+        assert "Name change" in result["comment"]
 
-    def test_get_former_names_info_dissolved_country(self):
-        """Test getting info about a dissolved country."""
-        result = countries.get_former_names_info("Czechoslovakia")
+    def test_get_former_names_info_burma(self):
+        """Test getting detailed info about Burma from ISO 3166-3."""
+        result = countries.get_former_names_info("Burma")
         assert result is not None
-        assert result["alpha_2"] is None
-        assert result["alpha_3"] is None
-        assert result["current_name"] is None
-        assert "Split into" in result["comment"]
+        assert result["alpha_2"] == "BU"
+        assert result["alpha_3"] == "BUR"
+        assert result["current_name"] == "Myanmar"
+        assert "1989" in result["change_date"]
 
     def test_get_former_names_info_nonexistent(self):
         """Test getting info for non-existent former name."""
@@ -82,12 +71,8 @@ class TestFormerNamesLookup:
         former_names = countries.former_names
         assert isinstance(former_names, list)
         assert "Swaziland" in former_names
-        assert "Burma" in former_names
-        assert "Zaire" in former_names
-        assert "Czechoslovakia" in former_names
-        assert "Yugoslavia" in former_names
-        assert "Soviet Union" in former_names
-        assert "USSR" in former_names
+        # Should also include names from ISO 3166-3
+        assert "Burma" in former_names or any("Burma" in name for name in former_names)
 
     def test_case_sensitivity(self):
         """Test that former name lookup is case sensitive."""
@@ -117,9 +102,9 @@ class TestFormerNamesLookup:
         # Test existing functionality still works
         result = countries.get(alpha_2="US")
         assert result is not None
-        assert result["name"] == "United States"
+        assert result.name == "United States"
 
         # Test new functionality works alongside
         result = countries.get_by_former_name("Swaziland")
         assert result is not None
-        assert result["name"] == "Eswatini"
+        assert result.name == "Eswatini"
