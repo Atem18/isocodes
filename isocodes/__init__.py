@@ -8,6 +8,9 @@ from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Tuple, T
 if TYPE_CHECKING:
     import importlib.resources.abc
 
+# Define LOCALE_PATH for gettext translation support
+LOCALE_PATH = pathlib.Path(__file__).parent / "share" / "locale"
+
 
 class Country(TypedDict, total=False):
     alpha_2: str
