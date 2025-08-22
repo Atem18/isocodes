@@ -14,7 +14,7 @@ from isocodes import (
     currencies,
     subdivisions_countries,
     former_countries,
-    extendend_languages,
+    extended_languages,
     language_families,
     script_names,
 )
@@ -435,10 +435,10 @@ class TestModuleLevelInstances:
         assert len(former_countries) > 0
 
     def test_extended_languages_instance(self):
-        """Test the module-level extendend_languages instance"""
-        assert isinstance(extendend_languages, ExtendedLanguages)
-        assert extendend_languages.iso_key == "639-3"
-        assert len(extendend_languages) > 0
+        """Test the module-level extended_languages instance"""
+        assert isinstance(extended_languages, ExtendedLanguages)
+        assert extended_languages.iso_key == "639-3"
+        assert len(extended_languages) > 0
 
     def test_language_families_instance(self):
         """Test the module-level language_families instance"""
@@ -487,7 +487,7 @@ class TestIntegration:
         assert len(currencies) > 0
         assert len(subdivisions_countries) > 0
         assert len(former_countries) > 0
-        assert len(extendend_languages) > 0
+        assert len(extended_languages) > 0
         assert len(language_families) > 0
         assert len(script_names) > 0
 
