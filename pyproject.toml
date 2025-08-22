@@ -1,6 +1,6 @@
 [project]
 name = "isocodes"
-version = "2025.8.13.2"
+version = "2025.8.22"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 readme = "README.md"
 keywords = [ "iso" ]
@@ -31,6 +31,11 @@ tests = "isocodes.__pyinstaller:get_hook_dirs"
 [tool.setuptools.package-data]
 isocodes = ["share/**/*"]
 
+[tool.ty.src]
+exclude = [
+    "tests/**",
+]
+
 [[tool.uv.index]]
 name = "testpypi"
 url = "https://test.pypi.org/simple/"
@@ -41,6 +46,8 @@ explicit = true
 test = [
     "pyinstaller>=6.14.2",
     "pytest>=8.4.1",
+    "ruff>=0.12.10",
     "tox>=4.27.0",
     "tox-uv>=1.26.1",
+    "ty>=0.0.1a19",
 ]

@@ -1,12 +1,10 @@
+from importlib.abc import Traversable
+import importlib.resources
 import json
 import pathlib
-import os
-import sys
 from types import SimpleNamespace
-from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Tuple, TypedDict
+from typing import Any, Dict, Generator, List, Optional, Tuple, TypedDict
 
-if TYPE_CHECKING:
-    import importlib.resources.abc
 
 # Define LOCALE_PATH for gettext translation support
 LOCALE_PATH = pathlib.Path(__file__).parent / "share" / "locale"
@@ -171,38 +169,9 @@ class ISONamespaceRecord(dict):
 # Remove the MutableMapping registration since we now inherit from dict
 
 
-def get_resource(resource: str) -> "importlib.resources.abc.Traversable":
+def get_resource(resource: str) -> Traversable:
     """Return a file handle on a named resource in a Package."""
-
-    # Attempt importlib.resources
-    if sys.version_info >= (3, 9):
-        import importlib.resources
-
-        return importlib.resources.files("isocodes").joinpath(resource)
-
-    # Attempt importlib_resources backport
-    try:
-        if sys.version_info < (3, 9):
-            import importlib_resources
-
-            return importlib_resources.files("isocodes").joinpath(resource)
-    except ImportError:
-        ...
-
-    # Fall back to __file__.
-    # Undefined __file__ will raise NameError on variable access.
-    try:
-        package_path = os.path.abspath(os.path.dirname(__file__))
-    except NameError:
-        package_path = None
-
-    if package_path is not None:
-        resource_path = os.path.join(package_path, resource)
-
-        return pathlib.Path(resource_path)
-
-    # Could not resolve package path from __file__.
-    raise Exception(f"do not know how to load resource: {resource}")
+    return importlib.resources.files("isocodes").joinpath(resource)
 
 
 class ISO:
@@ -241,7 +210,7 @@ class ISO:
     def __len__(self) -> int:
         return len(self.data)
 
-    def _name_from_index(self, index: str) -> Generator[Any, None, None]:
+    def _name_from_index(self, index: str) -> Generator[Tuple[str, str], None, None]:
         return ((element[index], element["name"]) for element in self.data)
 
     def _sorted_by_index(self, index: str) -> List[Tuple[str, ISONamespaceRecord]]:
@@ -733,6 +702,6 @@ languages = Languages("639-2")
 currencies = Currencies("4217")
 subdivisions_countries = SubdivisionsCountries("3166-2")
 former_countries = FormerCountries("3166-3")
-extendend_languages = ExtendedLanguages("639-3")
+extended_languages = ExtendedLanguages("639-3")
 language_families = LanguageFamilies("639-5")
 script_names = ScriptNames("15924")
