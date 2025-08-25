@@ -1,10 +1,14 @@
-from importlib.abc import Traversable
 import importlib.resources
 import json
 import pathlib
+import sys
 from types import SimpleNamespace
 from typing import Any, Dict, Generator, List, Optional, Tuple, TypedDict
 
+if sys.version_info >= (3, 11):
+    from importlib.resources.abc import Traversable
+else:
+    from importlib.abc import Traversable
 
 # Define LOCALE_PATH for gettext translation support
 LOCALE_PATH = pathlib.Path(__file__).parent / "share" / "locale"
