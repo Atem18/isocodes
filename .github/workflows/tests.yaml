@@ -14,7 +14,7 @@ on:
         default: 'dev1'
 jobs:
   test:
-    name: Run tests
+    name: Run tests on Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,6 +24,9 @@ jobs:
           - "3.11"
           - "3.12"
           - "3.13"
+          - "3.13t"
+          - "3.14"
+          - "3.14t"
     steps:
       - uses: actions/checkout@v5
         with:
@@ -35,7 +38,7 @@ jobs:
       - name: Install the test group dependencies
         run: uv sync --group test
       - name: Run Tox
-        run: uv run tox r -e ${{ matrix.python-version }}
+        run: uv run tox -e ${{ matrix.python-version }}
   build:
     name: Build package
     runs-on: ubuntu-latest
