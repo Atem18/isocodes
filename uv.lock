@@ -91,7 +91,7 @@ wheels = [
 
 [[package]]
 name = "isocodes"
-version = "2025.8.22"
+version = "2025.8.25"
 source = { virtual = "." }
 
 [package.dev-dependencies]
