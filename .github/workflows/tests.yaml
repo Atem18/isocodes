@@ -1,6 +1,10 @@
 name: Test iso-codes and build
-on: 
+on:
   pull_request:
+  # Also on push to main, so a direct push cannot land untested. Matches the
+  # coverage workflow, which already ran on both.
+  push:
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       publish_to_testpypi:
@@ -19,8 +23,6 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - "3.9"
-          - "3.10"
           - "3.11"
           - "3.12"
           - "3.13"
@@ -38,7 +40,12 @@ jobs:
       - name: Install the test group dependencies
         run: uv sync --group test
       - name: Run Tox
-        run: uv run tox -e ${{ matrix.python-version }}
+        env:
+          # Passed through the environment rather than interpolated into the
+          # shell. "3.13t" becomes "py313t", matching the names in tox.ini, so
+          # local runs and CI use the same environments.
+          PYTHON_VERSION: ${{ matrix.python-version }}
+        run: uv run tox -e "py${PYTHON_VERSION//./}"
   build:
     name: Build package
     runs-on: ubuntu-latest

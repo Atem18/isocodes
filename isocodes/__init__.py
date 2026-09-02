@@ -1,17 +1,105 @@
+import difflib
+import functools
+import gettext
 import importlib.resources
 import json
 import pathlib
-import sys
-from types import SimpleNamespace
-from typing import Any, Dict, Generator, List, Optional, Tuple, TypedDict
+import re
+import threading
+import warnings
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Generator,
+    List,
+    Optional,
+    Tuple,
+    TypedDict,
+)
 
-if sys.version_info >= (3, 11):
-    from importlib.resources.abc import Traversable
-else:
-    from importlib.abc import Traversable
+from importlib.resources.abc import Traversable
 
-# Define LOCALE_PATH for gettext translation support
-LOCALE_PATH = pathlib.Path(__file__).parent / "share" / "locale"
+# Where the bundled gettext catalogues live.
+_BUNDLED_LOCALE_PATH = pathlib.Path(__file__).parent / "share" / "locale"
+
+_warned_no_catalogues = False
+
+
+@functools.lru_cache(maxsize=None)
+def _locale_dirs() -> Tuple[pathlib.Path, ...]:
+    """Return the directories holding gettext catalogues.
+
+    Catalogues ship with the package, but `isocodes locales` can remove them, so
+    this may legitimately come back empty.
+    """
+    if _BUNDLED_LOCALE_PATH.is_dir():
+        return (_BUNDLED_LOCALE_PATH,)
+    return ()
+
+
+def _warn_if_no_catalogues() -> None:
+    """Warn once when a translation is asked for but nothing is installed.
+
+    Without this the fallback is silent, and an upgrade from a version that
+    bundled every language would quietly start returning English.
+    """
+    global _warned_no_catalogues
+    if _locale_dirs() or _warned_no_catalogues:
+        return
+    _warned_no_catalogues = True
+    warnings.warn(
+        "No isocodes translation catalogues were found, so names are returned "
+        "untranslated. They ship with the package, so this usually means they "
+        "were removed; run 'pip install --force-reinstall isocodes' to restore "
+        "them.",
+        RuntimeWarning,
+        stacklevel=3,
+    )
+
+
+# Upstream ships each catalogue under a current and an obsolete name. Only the
+# current files are packaged, so the old names are mapped onto them here for
+# anyone who still asks for one.
+_DOMAIN_ALIASES = {
+    "iso_3166": "iso_3166-1",
+    "iso_3166_2": "iso_3166-2",
+    "iso_639": "iso_639-2",
+    "iso_639_3": "iso_639-3",
+    "iso_639_5": "iso_639-5",
+}
+
+
+@functools.lru_cache(maxsize=None)
+def _translator(domain: str, language: str) -> Callable[[str], str]:
+    """Return a gettext callable for one standard and language.
+
+    Falls back to returning text unchanged when no catalogue is installed for
+    that language, so callers never have to special-case missing translations.
+    """
+    domain = _DOMAIN_ALIASES.get(domain, domain)
+    for directory in _locale_dirs():
+        try:
+            translation = gettext.translation(
+                domain, localedir=str(directory), languages=[language]
+            )
+        except OSError:
+            continue
+        return translation.gettext
+    _warn_if_no_catalogues()
+    return lambda text: text
+
+
+def available_languages() -> List[str]:
+    """List the language codes for which catalogues are installed."""
+    languages = {
+        path.name
+        for directory in _locale_dirs()
+        for path in directory.iterdir()
+        if (path / "LC_MESSAGES").is_dir()
+    }
+    return sorted(languages)
 
 
 class Country(TypedDict, total=False):
@@ -87,11 +175,10 @@ class FormerNameMapping(TypedDict, total=False):
 
 class ISONamespaceRecord(dict):
     """
-    A dict-based record that provides dot notation access via SimpleNamespace
-    while maintaining complete dictionary compatibility.
+    A dict-based record that also supports attribute access.
 
-    This class ensures that existing code using dictionary access
-    continues to work unchanged while enabling modern dot notation.
+    Fields are stored once, in the dict itself; attribute access reads straight
+    through, so there is no second copy that can drift out of sync.
 
     Example:
         record = ISONamespaceRecord({"alpha_2": "US", "name": "United States"})
@@ -101,69 +188,34 @@ class ISONamespaceRecord(dict):
         print(record.get("alpha_2"))  # US
         print(isinstance(record, dict))  # True
 
-        # Dot notation access (new feature)
+        # Dot notation access
         print(record.name)  # United States
         print(record.alpha_2)  # US
     """
 
-    def __init__(self, data: Dict[str, Any]):
-        """Initialize with dictionary data."""
-        # Initialize as a dictionary
-        super().__init__(data)
-
-        # Create a SimpleNamespace for dot notation access
-        self._namespace = SimpleNamespace(**data)
+    __slots__ = ()
 
     def __getattr__(self, name: str) -> Any:
         """Support dot notation access."""
-        if name.startswith("_"):
-            # Handle private attributes normally
-            return object.__getattribute__(self, name)
         try:
-            return getattr(self._namespace, name)
-        except AttributeError:
+            return self[name]
+        except KeyError:
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{name}'"
-            )
+            ) from None
 
     def __setattr__(self, name: str, value: Any) -> None:
-        """Support attribute assignment while keeping dict in sync."""
-        if name.startswith("_"):
-            # Private attributes go directly to the object
-            super().__setattr__(name, value)
-        else:
-            # Public attributes should update both the dict and the namespace
-            self[name] = value
-            if hasattr(self, "_namespace"):
-                setattr(self._namespace, name, value)
+        """Attribute assignment writes through to the dict."""
+        self[name] = value
 
-    def __setitem__(self, key: str, value: Any) -> None:
-        """Override dict setitem to keep namespace in sync."""
-        super().__setitem__(key, value)
-        if hasattr(self, "_namespace"):
-            setattr(self._namespace, key, value)
-
-    def __delitem__(self, key: str) -> None:
-        """Override dict delitem to keep namespace in sync."""
-        super().__delitem__(key)
-        if hasattr(self, "_namespace") and hasattr(self._namespace, key):
-            delattr(self._namespace, key)
-
-    def update(self, *args, **kwargs) -> None:
-        """Override dict update to keep namespace in sync."""
-        super().update(*args, **kwargs)
-        if hasattr(self, "_namespace"):
-            # Update namespace with current dict contents
-            for key, value in self.items():
-                setattr(self._namespace, key, value)
-
-    def clear(self) -> None:
-        """Override dict clear to keep namespace in sync."""
-        super().clear()
-        if hasattr(self, "_namespace"):
-            # Clear namespace attributes
-            for attr in list(vars(self._namespace).keys()):
-                delattr(self._namespace, attr)
+    def __delattr__(self, name: str) -> None:
+        """Attribute deletion removes the dict entry."""
+        try:
+            del self[name]
+        except KeyError:
+            raise AttributeError(
+                f"'{self.__class__.__name__}' object has no attribute '{name}'"
+            ) from None
 
     def __repr__(self) -> str:
         """Detailed representation."""
@@ -182,6 +234,11 @@ class ISO:
     iso_key: str
     data: List[Dict[str, str]]
 
+    # Fields whose values all share a fixed width, so a substring match can
+    # only ever be an exact match. Only these are safe to serve from an index
+    # in get(), which is otherwise a substring scan.
+    _FIXED_WIDTH_FIELDS = frozenset({"alpha_2", "alpha_3", "alpha_4", "numeric"})
+
     def __init__(self, iso_key: str) -> None:
         self.iso_key = iso_key
         resource_file = get_resource(f"share/iso-codes/json/iso_{self.iso_key}.json")
@@ -194,22 +251,24 @@ class ISO:
         # Create efficient indexes for fast lookups
         self._create_indexes()
 
-    def _create_indexes(self):
+    def _create_indexes(self) -> None:
         """Create indexed access for common fields."""
-        self._index_alpha_2 = {}
-        self._index_alpha_3 = {}
-        self._index_name = {}
-        self._index_numeric = {}
+        self._index_alpha_2: Dict[str, "ISONamespaceRecord"] = {}
+        self._index_alpha_3: Dict[str, "ISONamespaceRecord"] = {}
+        self._index_name: Dict[str, "ISONamespaceRecord"] = {}
+        self._index_numeric: Dict[str, "ISONamespaceRecord"] = {}
+        self._indexes: Dict[str, Dict[str, "ISONamespaceRecord"]] = {
+            "alpha_2": self._index_alpha_2,
+            "alpha_3": self._index_alpha_3,
+            "name": self._index_name,
+            "numeric": self._index_numeric,
+        }
 
         for record in self._namespace_records:
-            if hasattr(record, "alpha_2"):
-                self._index_alpha_2[record.alpha_2] = record
-            if hasattr(record, "alpha_3"):
-                self._index_alpha_3[record.alpha_3] = record
-            if hasattr(record, "name"):
-                self._index_name[record.name] = record
-            if hasattr(record, "numeric"):
-                self._index_numeric[record.numeric] = record
+            for field, index in self._indexes.items():
+                value = record.get(field)
+                if value is not None:
+                    index[value] = record
 
     def __len__(self) -> int:
         return len(self.data)
@@ -230,49 +289,42 @@ class ISO:
 
     def get(self, **kwargs: str) -> ISONamespaceRecord:
         """
-        Enhanced get method that returns ISONamespaceRecord objects.
-        Maintains backward compatibility with the original API.
+        Return the first record whose field *contains* the given value.
 
-        Returns empty ISONamespaceRecord for non-matching cases to maintain consistency,
-        but ISONamespaceRecord objects are dict-compatible for existing code.
+        Matching is a substring test, kept for backward compatibility.
+        Use find() for exact lookups.
+
+        Returns an empty ISONamespaceRecord when nothing matches, so callers
+        that treat the result as a dict keep working.
         """
-        try:
-            # Handle empty kwargs - return empty ISONamespaceRecord for backward compatibility
-            if not kwargs:
-                return ISONamespaceRecord({})
+        if not kwargs:
+            return ISONamespaceRecord({})
 
-            key: str = next(iter(kwargs))
-            value = kwargs[key]
+        key: str = next(iter(kwargs))
+        value = kwargs[key]
 
-            # Handle None or empty values - return empty ISONamespaceRecord for backward compatibility
-            if value is None or value == "":
-                return ISONamespaceRecord({})
+        if not isinstance(value, str) or not value:
+            return ISONamespaceRecord({})
 
-            # Ensure value is a string - return empty ISONamespaceRecord for backward compatibility
-            if not isinstance(value, str):
-                return ISONamespaceRecord({})
-
-            # Find the matching record in original data
-            base_result = [
-                element
-                for element in self.data
-                if key in element and value in element[key]
-            ][0]
-
-            # Find the corresponding namespace record
-            for record in self._namespace_records:
-                if dict(record) == base_result:
+        # On fixed-width fields a substring match is necessarily an exact match,
+        # so the index returns the same record the scan below would find.
+        if key in self._FIXED_WIDTH_FIELDS:
+            index = self._indexes.get(key)
+            if index is not None:
+                record = index.get(value)
+                if record is not None:
                     return record
 
-            # Fallback: create a new one (shouldn't happen normally)
-            return ISONamespaceRecord(base_result)
+        for record in self._namespace_records:
+            field = record.get(key)
+            if field is not None and value in field:
+                return record
 
-        except (IndexError, StopIteration, TypeError):
-            return ISONamespaceRecord({})
+        return ISONamespaceRecord({})
 
     def find(self, **kwargs: str) -> Optional[ISONamespaceRecord]:
         """
-        New method for exact match lookups using indexes for better performance.
+        Exact-match lookup. Every keyword must match for a record to be returned.
 
         Example:
             country = countries.find(alpha_2="US")
@@ -281,54 +333,166 @@ class ISO:
         if not kwargs:
             return None
 
-        # Try indexed lookups first for common fields
-        for key, value in kwargs.items():
-            if key == "alpha_2" and value in self._index_alpha_2:
-                return self._index_alpha_2[value]
-            elif key == "alpha_3" and value in self._index_alpha_3:
-                return self._index_alpha_3[value]
-            elif key == "name" and value in self._index_name:
-                return self._index_name[value]
-            elif key == "numeric" and value in self._index_numeric:
-                return self._index_numeric[value]
+        # Single indexed field: O(1).
+        if len(kwargs) == 1:
+            key, value = next(iter(kwargs.items()))
+            index = self._indexes.get(key)
+            if index is not None:
+                return index.get(value)
 
-        # Fallback to linear search for exact matches
         for record in self._namespace_records:
-            if all(
-                hasattr(record, k) and getattr(record, k) == v
-                for k, v in kwargs.items()
-            ):
+            if all(record.get(key) == value for key, value in kwargs.items()):
                 return record
 
         return None
 
+    @staticmethod
+    def _match_rank(query: str, value: str) -> Optional[int]:
+        """Score how well `value` matches `query`; None when it does not.
+
+        Lower is better. Word order is ignored, because ISO stores many names
+        in inverted form ("Korea, Republic of"), which a plain substring test
+        can never match against how people actually type them.
+        """
+        query, value = query.lower().strip(), value.lower()
+        if not query:
+            return None
+        if value == query:
+            return 0
+        if value.startswith(query):
+            return 1
+        if query in value:
+            return 2
+        words = [word for word in re.split(r"\W+", query) if word]
+        if words and all(word in value for word in words):
+            return 3
+        return None
+
     def search(self, **kwargs: str) -> List[ISONamespaceRecord]:
         """
-        Search for records that match criteria (supports partial matches).
+        Search for records matching every criterion, ignoring word order.
+
+        Results are ranked: exact matches first, then prefixes, then substrings,
+        then records containing all the words in any order. Ties are broken by
+        the shorter, and so more specific, value.
 
         Example:
             island_countries = countries.search(name="Island")
             for country in island_countries:
                 print(f"{country.name} - {country.flag}")
+
+            # Word order does not matter
+            countries.search(name="Republic of Korea")
+            # [ISONamespaceRecord({... 'name': 'Korea, Republic of' ...})]
         """
         if not kwargs:
             return []
 
-        results = []
+        scored = []
         for record in self._namespace_records:
-            match = True
-            for key, value in kwargs.items():
-                if not hasattr(record, key):
-                    match = False
+            ranks = []
+            for key, query in kwargs.items():
+                value = record.get(key)
+                if value is None:
                     break
-                record_value = str(getattr(record, key))
-                if value.lower() not in record_value.lower():
-                    match = False
+                rank = self._match_rank(query, str(value))
+                if rank is None:
                     break
-            if match:
-                results.append(record)
+                ranks.append((rank, len(str(value))))
+            else:
+                scored.append((max(ranks), record))
 
-        return results
+        scored.sort(key=lambda item: (item[0], str(item[1].get("name", ""))))
+        return [record for _, record in scored]
+
+    def search_fuzzy(
+        self, query: str, cutoff: float = 0.7, limit: int = 10
+    ) -> List[ISONamespaceRecord]:
+        """
+        Search names while tolerating misspellings.
+
+        A correctly spelled query never gets an approximate answer: whatever
+        search() finds is returned unchanged, and the similarity pass only runs
+        when that comes back empty. Results are ordered by closeness.
+
+        Example:
+            countries.search_fuzzy("Repblic")   # finds the Republics
+            countries.search_fuzzy("Germny")    # [Germany]
+        """
+        matches = self.search(name=query)
+        if matches:
+            return matches[:limit]
+
+        normalised = query.lower().strip()
+        words = [word for word in re.split(r"\W+", normalised) if word]
+        if not words:
+            return []
+
+        scored: List[Tuple[float, ISONamespaceRecord]] = []
+        for record in self._namespace_records:
+            name = str(record.get("name", "")).lower()
+            if not name:
+                continue
+            candidates = [word for word in re.split(r"\W+", name) if word]
+            if not candidates:
+                continue
+            # Compare the query as a whole, and word by word, so a typo in one
+            # word of a long inverted name still scores well.
+            per_word = [
+                max(
+                    difflib.SequenceMatcher(None, word, candidate).ratio()
+                    for candidate in candidates
+                )
+                for word in words
+            ]
+            score = max(
+                difflib.SequenceMatcher(None, normalised, name).ratio(),
+                sum(per_word) / len(per_word),
+            )
+            if score >= cutoff:
+                scored.append((score, record))
+
+        # Ties go to the shorter, and so more specific, name: "Latin" should
+        # beat a long name that merely contains the word.
+        scored.sort(
+            key=lambda item: (
+                -item[0],
+                len(str(item[1].get("name", ""))),
+                str(item[1].get("name", "")),
+            )
+        )
+        return [record for _, record in scored[:limit]]
+
+    @property
+    def domain(self) -> str:
+        """The gettext domain holding this standard's translations."""
+        return f"iso_{self.iso_key}"
+
+    def translator(self, language: str) -> Callable[[str], str]:
+        """
+        Return a callable that translates this standard's names into `language`.
+
+        Example:
+            to_french = countries.translator("fr")
+            to_french("Germany")  # 'Allemagne'
+        """
+        return _translator(self.domain, language)
+
+    def translate(self, value: Any, language: str) -> str:
+        """
+        Translate a record or a name into `language`.
+
+        Accepts either a record or a plain name, and returns the name unchanged
+        when no translation exists.
+
+        Example:
+            countries.translate(countries.find(alpha_2="DE"), "fr")  # 'Allemagne'
+            countries.translate("Germany", "fr")                     # 'Allemagne'
+        """
+        text = value.get("name", "") if isinstance(value, dict) else value
+        if not isinstance(text, str) or not text:
+            return ""
+        return self.translator(language)(text)
 
     @property
     def items(self) -> List[ISONamespaceRecord]:
@@ -443,7 +607,7 @@ class Countries(ISO):
 
         # Second, check ISO 3166-3 former countries data
         # Look for the former name in the former_countries data
-        former_countries_instance = FormerCountries("3166-3")
+        former_countries_instance = _dataset("former_countries")
 
         for former_country in former_countries_instance.items:
             country_name = former_country.get("name", "")
@@ -480,7 +644,7 @@ class Countries(ISO):
             return custom_info
 
         # Check ISO 3166-3 former countries
-        former_countries_instance = FormerCountries("3166-3")
+        former_countries_instance = _dataset("former_countries")
 
         for former_country in former_countries_instance.items:
             country_name = former_country.get("name", "")
@@ -521,7 +685,7 @@ class Countries(ISO):
         names = list(self._former_names_data.keys())
 
         # Add simplified names from ISO 3166-3
-        former_countries_instance = FormerCountries("3166-3")
+        former_countries_instance = _dataset("former_countries")
 
         for former_country in former_countries_instance.items:
             country_name = former_country.get("name", "")
@@ -701,11 +865,61 @@ class ScriptNames(ISO):
         return super().items
 
 
-countries = Countries("3166-1")
-languages = Languages("639-2")
-currencies = Currencies("4217")
-subdivisions_countries = SubdivisionsCountries("3166-2")
-former_countries = FormerCountries("3166-3")
-extended_languages = ExtendedLanguages("639-3")
-language_families = LanguageFamilies("639-5")
-script_names = ScriptNames("15924")
+_DATASETS: Dict[str, Tuple[str, str]] = {
+    "countries": ("Countries", "3166-1"),
+    "languages": ("Languages", "639-2"),
+    "currencies": ("Currencies", "4217"),
+    "subdivisions_countries": ("SubdivisionsCountries", "3166-2"),
+    "former_countries": ("FormerCountries", "3166-3"),
+    "extended_languages": ("ExtendedLanguages", "639-3"),
+    "language_families": ("LanguageFamilies", "639-5"),
+    "script_names": ("ScriptNames", "15924"),
+}
+
+_instances: Dict[str, ISO] = {}
+_instances_lock = threading.Lock()
+
+
+def _dataset(name: str) -> ISO:
+    """Build a dataset on first use and cache it for subsequent lookups."""
+    try:
+        return _instances[name]
+    except KeyError:
+        pass
+    with _instances_lock:
+        if name not in _instances:
+            class_name, iso_key = _DATASETS[name]
+            _instances[name] = globals()[class_name](iso_key)
+        return _instances[name]
+
+
+def __getattr__(name: str) -> Any:
+    """Resolve datasets and LOCALE_PATH on first access (PEP 562).
+
+    Datasets are parsed lazily, and LOCALE_PATH points at wherever the
+    catalogues actually are, which depends on which locale packages are
+    installed.
+    """
+    if name in _DATASETS:
+        return _dataset(name)
+    if name == "LOCALE_PATH":
+        directories = _locale_dirs()
+        return directories[0] if directories else _BUNDLED_LOCALE_PATH
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
+def __dir__() -> List[str]:
+    return sorted(set(globals()) | set(_DATASETS) | {"LOCALE_PATH"})
+
+
+if TYPE_CHECKING:
+    # Declared for type checkers, which cannot see through module __getattr__.
+    LOCALE_PATH: pathlib.Path
+    countries: Countries
+    languages: Languages
+    currencies: Currencies
+    subdivisions_countries: SubdivisionsCountries
+    former_countries: FormerCountries
+    extended_languages: ExtendedLanguages
+    language_families: LanguageFamilies
+    script_names: ScriptNames
