@@ -3,11 +3,22 @@ on:
   push:
     tags: ["*"]
 jobs:
+  # A tag can be cut from any commit, including one that never landed on main,
+  # so the suite runs again here rather than trusting that it already has.
+  test:
+    uses: ./.github/workflows/tests.yaml
+    # A called workflow cannot hold more than its caller grants. The TestPyPI
+    # job is skipped on a tag, but it asks for id-token, and unlisted scopes
+    # drop to none once this block exists, so contents has to be named too.
+    permissions:
+      contents: read
+      id-token: write
   build-publish:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       id-token: write
-      pages: write
     steps:
       - uses: actions/checkout@v6
         with:
