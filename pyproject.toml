@@ -1,20 +1,23 @@
+[build-system]
+requires = [ "setuptools>=77" ]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "isocodes"
-version = "2025.8.25"
+version = "2026.9.2"
 description = "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place"
 readme = "README.md"
 keywords = [ "iso" ]
-license = { file = "LICENSE" }
+license = "LGPL-2.1-or-later"
+license-files = [ "LICENSE" ]
 authors = [ { name = "Atem18", email = "contact@atemlire.com" } ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 classifiers = [
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = [  ]
 
@@ -28,8 +31,34 @@ isocodes = "isocodes.cli:main"
 hook-dirs = "isocodes.__pyinstaller:get_hook_dirs"
 tests = "isocodes.__pyinstaller:get_hook_dirs"
 
+[tool.setuptools]
+# Only the globs below are packaged; without this setuptools sweeps in every
+# file under the package directory, including the catalogues.
+include-package-data = false
+
 [tool.setuptools.package-data]
-isocodes = ["share/**/*"]
+isocodes = [ "share/**/*", "py.typed" ]
+
+[tool.codespell]
+# The ISO data is full of language and place names that read as typos. It comes
+# from upstream, so it is not ours to correct.
+skip = "./isocodes/share,./uv.lock,./.tox,./.venv,./htmlcov,./isocodes.egg-info,./build,./dist"
+# BU, ZAR and INE are ISO codes (Burma, Zaire, Indo-European); "datas" is the
+# variable name PyInstaller requires in a hook; "repblic" is a deliberate typo
+# in the search_fuzzy() examples and tests.
+ignore-words-list = "bu,zar,ine,datas,repblic"
+
+[tool.coverage.run]
+source = [ "isocodes" ]
+# The CLI tests also shell out; parallel data files let those subprocesses be
+# combined in, along with runs from different Python versions.
+parallel = true
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+# COVERAGE_PROCESS_START=pyproject.toml is needed when running the suite, so the
+# CLI tests that shell out are measured too.
 
 [tool.ty.src]
 exclude = [
@@ -44,7 +73,7 @@ explicit = true
 
 [dependency-groups]
 test = [
-    "pyinstaller>=6.14.2",
+    "pyinstaller>=6.22.2",
     "pytest>=8.4.1",
     "ruff>=0.12.10",
     "tox>=4.27.0",

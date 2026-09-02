@@ -1,12 +1,47 @@
 # isocodes
 
-isocodes provides you access to lists of various ISO standards (e.g. country, language, language scripts, and currency names) with **modern Python dot notation support** and **enhanced performance**.
+isocodes gives you the ISO standards — countries, subdivisions, languages,
+currencies and scripts — as plain Python data, with no runtime dependencies.
 
-The data is coming from https://salsa.debian.org/iso-codes-team/iso-codes, many thanks to them.
+- **Loads on demand.** Importing the package is cheap; each standard is parsed
+  the first time you actually touch it.
+- **Dict *and* attribute access.** Every record is a real `dict` and also
+  supports `record.name`.
+- **Translated names in 163 languages**, all included, with a command to
+  drop the ones you do not need.
+- **A command line interface**, with table, JSON and CSV output, and optional
+  tolerance for misspellings.
+- **Works inside frozen applications** — a PyInstaller hook is included.
+- **Covers ISO 639-2**, alongside 639-3 and 639-5.
+
+The data comes from https://salsa.debian.org/iso-codes-team/iso-codes, many
+thanks to them.
 
 # Installation
 
     pip install isocodes
+
+Everything is included: all eight standards and translations in 163 languages.
+
+If package size matters — a container image, a Lambda bundle — you can drop the
+languages you do not use:
+
+    isocodes locales                    # list what is installed
+    isocodes locales --keep fr,en       # preview the removal
+    isocodes locales --keep fr,en --yes # apply it
+
+| | Size on disk |
+| --- | --- |
+| as installed | ~19 MB |
+| after `--keep fr,en` | ~750 KB |
+
+In a Dockerfile, prune in the same layer as the install, or the files stay in
+the image:
+
+    RUN pip install isocodes && isocodes locales --keep fr,en --yes
+
+The removal is not permanent: `pip install --upgrade isocodes` restores every
+language, as does `pip install --force-reinstall isocodes`.
 
 # Usage
 
@@ -57,10 +92,44 @@ True
 >>> island_countries = countries.search(name="Island")
 >>> for country in island_countries[:3]:
 ...     print(f"{country.name} - {country.flag}")
-Åland Islands - 🇦🇽
+Cook Islands - 🇨🇰
 Bouvet Island - 🇧🇻
-Cocos (Keeling) Islands - 🇨🇨
+Faroe Islands - 🇫🇴
 ```
+
+Word order does not matter, which matters because ISO stores many names in
+inverted form. Results are ranked, so the closest match comes first:
+
+```python
+>>> [c.name for c in countries.search(name="Republic of Korea")]
+['Korea, Republic of', "Korea, Democratic People's Republic of"]
+```
+
+#### Misspellings with `search_fuzzy()`
+
+`search()` never guesses. When you want tolerance for typos, ask for it:
+
+```python
+>>> [c.name for c in countries.search_fuzzy("Germny")]
+['Germany', 'Guernsey']
+>>> [c.name for c in countries.search_fuzzy("Untied Kingdom")]
+['United Kingdom']
+>>> countries.search_fuzzy("xyzzy not a place")
+[]
+```
+
+A correctly spelled query is answered by `search()` and never reaches the
+approximate matching, so reaching for this by default is safe:
+
+```python
+>>> [c.name for c in countries.search_fuzzy("Kingdom")]
+['United Kingdom']
+```
+
+`cutoff` controls how close a match has to be, and `limit` caps the results.
+On the command line the same behaviour sits behind `--fuzzy`:
+
+    isocodes countries --name Germny --fuzzy
 
 #### Fast Dictionary Access
 
@@ -311,7 +380,7 @@ isocodes scripts --numeric 215
 ```bash
 isocodes countries --code US
 # Output:
-# alpha_2 | alpha_3 | flag | name          | numeric | official_name           
+# alpha_2 | alpha_3 | flag | name          | numeric | official_name
 # -----------------------------------------------------------------------------
 # US      | USA     | 🇺🇸   | United States | 840     | United States of America
 ```
@@ -393,19 +462,76 @@ isocodes countries --former-name "Soviet Union"
 
 ## Translations
 
-Translations are included in this project with gettext support. The domain names are to be found on https://salsa.debian.org/iso-codes-team/iso-codes
+Names are available in 163 languages, all shipped with the package. `translate()` takes a record or a plain
+name and returns the translated name, falling back to the original when no
+catalogue exists for that language:
 
-### Example
+    >>> from isocodes import countries, currencies
+    >>> germany = countries.find(alpha_2="DE")
+    >>> countries.translate(germany, "fr")
+    'Allemagne'
+    >>> countries.translate(germany, "ja")
+    'ドイツ'
+    >>> countries.translate("France", "de")
+    'Frankreich'
+    >>> currencies.translate(currencies.find(alpha_3="EUR"), "fr")
+    'Euro'
+
+Use `translator()` when translating many names into the same language — it
+returns a reusable callable:
+
+    >>> to_spanish = countries.translator("es")
+    >>> [to_spanish(c.name) for c in countries.search(name="Island")[:2]]
+    ['Islas Cook', 'Isla Bouvet']
+
+`available_languages()` lists the languages currently installed, which is all
+163 unless you have pruned them:
+
+    >>> from isocodes import available_languages
+    >>> len(available_languages())
+    163
+
+The underlying gettext catalogues remain available directly. The domain names
+are listed at https://salsa.debian.org/iso-codes-team/iso-codes
 
     >>> import gettext
     >>> import isocodes
     >>> french = gettext.translation('iso_639-2', isocodes.LOCALE_PATH, languages=['fr'])
     >>> french.install()
     >>> _("French")
-    'français'
+    'Français'
 
 # Develop
 
+## Tests and coverage
+
+    uv run --group test pytest
+
+The suite is held at 100% by `fail_under` in `pyproject.toml`:
+
+    COVERAGE_PROCESS_START=pyproject.toml \
+      uv run --group test --with coverage coverage run -m pytest -q
+    uv run --with coverage coverage combine
+    uv run --with coverage coverage report
+
+`COVERAGE_PROCESS_START` is what lets the CLI tests that shell out be measured.
+
 ## Update iso-codes version
+
+Upstream dropped autotools in 4.19.0 and builds with meson now, so refreshing
+the bundled data needs `git`, `meson` and `ninja`:
+
+    ./update.sh              # the version pinned in the script
+    ./update.sh v4.20.1      # or an explicit tag
+
+The script clones upstream into a temporary directory, builds it, replaces
+`isocodes/share`, then prunes the JSON schemas, the pkg-config file and the
+deprecated XML files, which the Python package does not ship.
+
+Upstream installs every catalogue twice, under a current and an obsolete
+filename (`iso_3166.mo` alongside `iso_3166-1.mo`). Those are symlinks in the
+source tree but a wheel materialises them into full copies, so `update.sh`
+deletes them. The obsolete domain names are mapped onto the current ones in
+`isocodes/__init__.py` instead, so nothing that used them breaks.
 
     bash update.sh

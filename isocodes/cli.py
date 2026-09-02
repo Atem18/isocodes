@@ -12,349 +12,304 @@ This CLI provides access to various ISO standards including:
 """
 
 import argparse
+import dataclasses
 import json
+import shutil
 import sys
-from typing import Any, List, Optional
+from typing import Any, Callable, List, Optional, Tuple
 
-from . import (
-    countries,
-    currencies,
-    former_countries,
-    languages,
-    script_names,
-    subdivisions_countries,
-)
+import isocodes
 
 
 def format_output(
-    data: Any, output_format: str = "table", fields: Optional[List[str]] = None
+    data: List[Any], output_format: str = "table", fields: Optional[List[str]] = None
 ) -> str:
-    """Format output data based on the specified format."""
-    if not data:
-        return "No results found."
+    """Render a list of records in the requested format.
+
+    The empty case is handled per format: no results must still produce valid
+    JSON or CSV, so that callers parsing the output are not surprised.
+    """
+
+    def headers_for(records: List[Any]) -> List[str]:
+        """Column names, in the order --fields asked for when it was given."""
+        available = set()
+        for record in records:
+            available.update(record.keys())
+        if fields:
+            return [key for key in fields if key in available]
+        return sorted(available)
 
     if output_format == "json":
-        if isinstance(data, list):
-            return json.dumps(
-                [dict(item) for item in data], indent=2, ensure_ascii=False
-            )
-        else:
-            return json.dumps(dict(data), indent=2, ensure_ascii=False)
+        return json.dumps(
+            [
+                {key: record[key] for key in headers_for([record])}
+                for record in map(dict, data)
+            ],
+            indent=2,
+            ensure_ascii=False,
+        )
 
     elif output_format == "csv":
-        if isinstance(data, list):
-            if not data:
-                return ""
+        if not data:
+            return ""
 
-            # Get all unique keys from all items
-            all_keys = set()
-            for item in data:
-                all_keys.update(item.keys())
-
-            if fields:
-                headers = [key for key in fields if key in all_keys]
-            else:
-                headers = sorted(all_keys)
-
-            lines = [",".join(headers)]
-            for item in data:
-                values = []
-                for header in headers:
-                    value = str(item.get(header, "")).replace(",", ";")
-                    values.append(value)
-                lines.append(",".join(values))
-            return "\n".join(lines)
-        else:
-            if fields:
-                headers = [key for key in fields if key in data.keys()]
-            else:
-                headers = sorted(data.keys())
-
-            lines = [",".join(headers)]
-            values = []
-            for header in headers:
-                value = str(data.get(header, "")).replace(",", ";")
-                values.append(value)
-            lines.append(",".join(values))
-            return "\n".join(lines)
+        headers = headers_for(data)
+        lines = [",".join(headers)]
+        for item in data:
+            lines.append(
+                ",".join(
+                    str(item.get(header, "")).replace(",", ";") for header in headers
+                )
+            )
+        return "\n".join(lines)
 
     else:  # table format
-        if isinstance(data, list):
-            if not data:
-                return "No results found."
+        if not data:
+            return "No results found."
 
-            # Get all unique keys from all items
-            all_keys = set()
-            for item in data:
-                all_keys.update(item.keys())
+        headers = headers_for(data)
+        widths = {
+            header: max(
+                [len(header)] + [len(str(item.get(header, ""))) for item in data]
+            )
+            for header in headers
+        }
 
-            if fields:
-                headers = [key for key in fields if key in all_keys]
-            else:
-                headers = sorted(all_keys)
-
-            # Calculate column widths
-            col_widths = {}
-            for header in headers:
-                col_widths[header] = len(header)
-                for item in data:
-                    value_len = len(str(item.get(header, "")))
-                    col_widths[header] = max(col_widths[header], value_len)
-
-            # Format table
-            lines = []
-            # Header
-            header_line = " | ".join(h.ljust(col_widths[h]) for h in headers)
-            lines.append(header_line)
-            lines.append("-" * len(header_line))
-
-            # Data rows
-            for item in data:
-                row = " | ".join(
-                    str(item.get(h, "")).ljust(col_widths[h]) for h in headers
+        header_line = " | ".join(header.ljust(widths[header]) for header in headers)
+        lines = [header_line, "-" * len(header_line)]
+        for item in data:
+            lines.append(
+                " | ".join(
+                    str(item.get(header, "")).ljust(widths[header])
+                    for header in headers
                 )
-                lines.append(row)
-
-            return "\n".join(lines)
-        else:
-            # Single item table
-            if fields:
-                headers = [key for key in fields if key in data.keys()]
-            else:
-                headers = sorted(data.keys())
-
-            max_key_len = max(len(h) for h in headers) if headers else 0
-            lines = []
-            for key in headers:
-                value = str(data.get(key, ""))
-                lines.append(f"{key.ljust(max_key_len)} : {value}")
-            return "\n".join(lines)
+            )
+        return "\n".join(lines)
 
 
-def search_countries(args) -> None:
-    """Search countries by various criteria."""
-    results = []
+@dataclasses.dataclass(frozen=True)
+class _Standard:
+    """How one ISO standard is exposed on the command line.
 
-    if args.code:
-        # Try alpha_2 first, then alpha_3
-        result = countries.find(alpha_2=args.code.upper())
-        if not result:
-            result = countries.find(alpha_3=args.code.upper())
-        if result:
-            results.append(result)
+    The six standards differ only in which code fields they carry and how those
+    codes are cased, so they share a parser builder and a search handler.
+    """
 
-    elif args.name:
-        if args.exact:
-            result = countries.find(name=args.name)
-            if result:
-                results.append(result)
-        else:
-            results = countries.search(name=args.name)
+    dataset: str
+    """Attribute on the isocodes package; looked up lazily so that commands
+    which need no data, like `locales` and `--help`, stay fast."""
 
-    elif args.numeric:
-        result = countries.find(numeric=args.numeric)
-        if result:
-            results.append(result)
-
-    elif args.former_name:
-        result = countries.get_by_former_name(args.former_name)
-        if result:
-            results.append(result)
-
-    elif args.list_all:
-        results = countries.items
-
-    else:
-        print("Please specify search criteria. Use --help for options.")
-        return
-
-    if args.limit and len(results) > args.limit:
-        results = results[: args.limit]
-
-    output = format_output(results, args.format, args.fields)
-    print(output)
+    help: str
+    noun: str
+    name_help: str
+    code_help: str
+    code_fields: Tuple[str, ...]
+    normalise: Callable[[str], str]
+    numeric_help: Optional[str] = None
+    former_name_help: Optional[str] = None
+    country_help: Optional[str] = None
 
 
-def search_languages(args) -> None:
-    """Search languages by various criteria."""
-    results = []
+_STANDARDS: "dict[str, _Standard]" = {
+    "countries": _Standard(
+        dataset="countries",
+        name_help="Country name",
+        help="Search countries (ISO 3166-1)",
+        noun="countries",
+        code_help="Country code (alpha-2 or alpha-3)",
+        code_fields=("alpha_2", "alpha_3"),
+        normalise=str.upper,
+        numeric_help="Numeric country code",
+        former_name_help="Former country name",
+    ),
+    "languages": _Standard(
+        dataset="languages",
+        name_help="Language name",
+        help="Search languages (ISO 639-2)",
+        noun="languages",
+        code_help="Language code (alpha-2 or alpha-3)",
+        code_fields=("alpha_2", "alpha_3"),
+        normalise=str.lower,
+    ),
+    "currencies": _Standard(
+        dataset="currencies",
+        name_help="Currency name",
+        help="Search currencies (ISO 4217)",
+        noun="currencies",
+        code_help="Currency code (alpha-3)",
+        code_fields=("alpha_3",),
+        normalise=str.upper,
+        numeric_help="Numeric currency code",
+    ),
+    "subdivisions": _Standard(
+        dataset="subdivisions_countries",
+        name_help="Subdivision name",
+        help="Search country subdivisions (ISO 3166-2)",
+        noun="subdivisions",
+        code_help="Subdivision code",
+        code_fields=("code",),
+        normalise=str.upper,
+        country_help="Country code to list subdivisions for",
+    ),
+    "former-countries": _Standard(
+        dataset="former_countries",
+        name_help="Former country name",
+        help="Search former countries (ISO 3166-3)",
+        noun="former countries",
+        code_help="Former country code",
+        code_fields=("alpha_2", "alpha_3", "alpha_4"),
+        normalise=str.upper,
+    ),
+    "scripts": _Standard(
+        dataset="script_names",
+        name_help="Script name",
+        help="Search script names (ISO 15924)",
+        noun="scripts",
+        code_help="Script code (alpha-4)",
+        code_fields=("alpha_4",),
+        normalise=str.title,
+        numeric_help="Numeric script code",
+    ),
+}
 
-    if args.code:
-        # Try alpha_2 first, then alpha_3
-        result = languages.find(alpha_2=args.code.lower())
-        if not result:
-            result = languages.find(alpha_3=args.code.lower())
-        if result:
-            results.append(result)
 
-    elif args.name:
-        if args.exact:
-            result = languages.find(name=args.name)
-            if result:
-                results.append(result)
-        else:
-            results = languages.search(name=args.name)
-
-    elif args.list_all:
-        results = languages.items
-
-    else:
-        print("Please specify search criteria. Use --help for options.")
-        return
-
-    if args.limit and len(results) > args.limit:
-        results = results[: args.limit]
-
-    output = format_output(results, args.format, args.fields)
-    print(output)
-
-
-def search_currencies(args) -> None:
-    """Search currencies by various criteria."""
-    results = []
+def search_standard(args) -> None:
+    """Search one ISO standard using the criteria the user supplied."""
+    standard = _STANDARDS[args.command]
+    dataset = getattr(isocodes, standard.dataset)
+    results: List[Any] = []
 
     if args.code:
-        result = currencies.find(alpha_3=args.code.upper())
-        if result:
-            results.append(result)
+        code = standard.normalise(args.code)
+        for field in standard.code_fields:
+            match = dataset.find(**{field: code})
+            if match:
+                results.append(match)
+                break
 
     elif args.name:
-        if args.exact:
-            result = currencies.find(name=args.name)
-            if result:
-                results.append(result)
+        if args.fuzzy:
+            results = dataset.search_fuzzy(args.name)
+        elif args.exact:
+            match = dataset.find(name=args.name)
+            if match:
+                results.append(match)
         else:
-            results = currencies.search(name=args.name)
+            results = dataset.search(name=args.name)
 
-    elif args.numeric:
-        result = currencies.find(numeric=args.numeric)
-        if result:
-            results.append(result)
+    elif getattr(args, "numeric", None):
+        match = dataset.find(numeric=args.numeric)
+        if match:
+            results.append(match)
 
-    elif args.list_all:
-        results = currencies.items
+    elif getattr(args, "former_name", None):
+        match = dataset.get_by_former_name(args.former_name)
+        if match:
+            results.append(match)
 
-    else:
-        print("Please specify search criteria. Use --help for options.")
-        return
-
-    if args.limit and len(results) > args.limit:
-        results = results[: args.limit]
-
-    output = format_output(results, args.format, args.fields)
-    print(output)
-
-
-def search_subdivisions(args) -> None:
-    """Search country subdivisions by various criteria."""
-    results = []
-
-    if args.code:
-        result = subdivisions_countries.find(code=args.code.upper())
-        if result:
-            results.append(result)
-
-    elif args.name:
-        if args.exact:
-            result = subdivisions_countries.find(name=args.name)
-            if result:
-                results.append(result)
-        else:
-            results = subdivisions_countries.search(name=args.name)
-
-    elif args.country:
-        # Filter by country code
-        country_code = args.country.upper()
+    elif getattr(args, "country", None):
+        prefix = f"{args.country.upper()}-"
         results = [
-            item
-            for item in subdivisions_countries.items
-            if item.get("code", "").startswith(f"{country_code}-")
+            item for item in dataset.items if item.get("code", "").startswith(prefix)
         ]
 
     elif args.list_all:
-        results = subdivisions_countries.items
-
-    else:
-        print("Please specify search criteria. Use --help for options.")
-        return
+        results = dataset.items
 
     if args.limit and len(results) > args.limit:
         results = results[: args.limit]
 
-    output = format_output(results, args.format, args.fields)
-    print(output)
+    print(format_output(results, args.format, args.fields))
 
 
-def search_former_countries(args) -> None:
-    """Search former countries by various criteria."""
-    results = []
+def _language_sizes() -> dict[str, int]:
+    """Installed language code -> bytes of catalogue data."""
+    root = isocodes.LOCALE_PATH
+    if not root.is_dir():
+        return {}
+    sizes = {}
+    for path in root.iterdir():
+        if (path / "LC_MESSAGES").is_dir():
+            sizes[path.name] = sum(
+                item.stat().st_size for item in path.rglob("*") if item.is_file()
+            )
+    return sizes
 
-    if args.code:
-        # Try alpha_2, alpha_3, or alpha_4
-        result = former_countries.find(alpha_2=args.code.upper())
-        if not result:
-            result = former_countries.find(alpha_3=args.code.upper())
-        if not result:
-            result = former_countries.find(alpha_4=args.code.upper())
-        if result:
-            results.append(result)
 
-    elif args.name:
-        if args.exact:
-            result = former_countries.find(name=args.name)
-            if result:
-                results.append(result)
-        else:
-            results = former_countries.search(name=args.name)
+def _human(size: int) -> str:
+    value = float(size)
+    for unit in ("B", "KB"):
+        if value < 1024:
+            return f"{value:.0f} {unit}" if unit == "B" else f"{value:.1f} {unit}"
+        value /= 1024.0
+    return f"{value:.1f} MB"
 
-    elif args.list_all:
-        results = former_countries.items
 
-    else:
-        print("Please specify search criteria. Use --help for options.")
+def manage_locales(args) -> None:
+    """List or remove the bundled translation catalogues.
+
+    Catalogues ship with the package, so this only ever deletes files that pip
+    put there. It is meant for trimming container images, where the removal
+    happens in the same build step as the install; a later `pip install
+    --upgrade` restores every language.
+    """
+    sizes = _language_sizes()
+    if not sizes:
+        print("No translation catalogues are installed.")
         return
 
-    if args.limit and len(results) > args.limit:
-        results = results[: args.limit]
+    total = sum(sizes.values())
 
-    output = format_output(results, args.format, args.fields)
-    print(output)
-
-
-def search_scripts(args) -> None:
-    """Search script names by various criteria."""
-    results = []
-
-    if args.code:
-        result = script_names.find(alpha_4=args.code.title())
-        if result:
-            results.append(result)
-
-    elif args.name:
-        if args.exact:
-            result = script_names.find(name=args.name)
-            if result:
-                results.append(result)
-        else:
-            results = script_names.search(name=args.name)
-
-    elif args.numeric:
-        result = script_names.find(numeric=args.numeric)
-        if result:
-            results.append(result)
-
-    elif args.list_all:
-        results = script_names.items
-
-    else:
-        print("Please specify search criteria. Use --help for options.")
+    if not args.keep and not args.remove:
+        print(f"{len(sizes)} languages installed, {_human(total)} total\n")
+        for language in sorted(sizes):
+            print(f"  {language:12} {_human(sizes[language]):>9}")
+        print("\nRemove all but a few with: isocodes locales --keep fr,en --yes")
         return
 
-    if args.limit and len(results) > args.limit:
-        results = results[: args.limit]
+    if args.keep:
+        wanted = {code.strip() for code in args.keep.split(",") if code.strip()}
+        unknown = wanted - set(sizes)
+        if unknown:
+            print(
+                f"Error: not installed: {', '.join(sorted(unknown))}. "
+                "Run 'isocodes locales' to see what is available.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        doomed = sorted(set(sizes) - wanted)
+    else:
+        doomed = sorted(
+            code.strip() for code in args.remove.split(",") if code.strip() in sizes
+        )
 
-    output = format_output(results, args.format, args.fields)
-    print(output)
+    if not doomed:
+        print("Nothing to remove.")
+        return
+
+    freed = sum(sizes[code] for code in doomed)
+
+    if not args.yes:
+        print(f"Would remove {len(doomed)} languages, freeing {_human(freed)}:")
+        print("  " + ", ".join(doomed))
+        print(f"\nKeeping: {', '.join(sorted(set(sizes) - set(doomed))) or 'none'}")
+        print("\nRe-run with --yes to apply. This cannot be undone without")
+        print("'pip install --force-reinstall isocodes'.")
+        return
+
+    root = isocodes.LOCALE_PATH
+    for code in doomed:
+        try:
+            shutil.rmtree(root / code)
+        except OSError as error:
+            print(
+                f"Error: could not remove '{code}': {error}. "
+                "The package directory may be read-only.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+    print(f"Removed {len(doomed)} languages, freed {_human(freed)}.")
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -373,6 +328,8 @@ Examples:
   isocodes subdivisions --country US              # List US subdivisions
   isocodes countries --list-all --format json     # List all countries as JSON
   isocodes countries --code US --fields name,flag # Show only specific fields
+  isocodes locales                                # List installed languages
+  isocodes locales --keep fr,en --yes             # Keep only French and English
         """,
     )
 
@@ -388,95 +345,48 @@ Examples:
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-    # Countries subcommand
-    countries_parser = subparsers.add_parser(
-        "countries", help="Search countries (ISO 3166-1)"
-    )
-    countries_group = countries_parser.add_mutually_exclusive_group(required=True)
-    countries_group.add_argument("--code", help="Country code (alpha-2 or alpha-3)")
-    countries_group.add_argument("--name", help="Country name")
-    countries_group.add_argument("--numeric", help="Numeric country code")
-    countries_group.add_argument("--former-name", help="Former country name")
-    countries_group.add_argument(
-        "--list-all", action="store_true", help="List all countries"
-    )
-    countries_parser.add_argument(
-        "--exact", action="store_true", help="Exact name match only"
-    )
+    for name, standard in _STANDARDS.items():
+        command = subparsers.add_parser(name, help=standard.help)
+        group = command.add_mutually_exclusive_group(required=True)
+        group.add_argument("--code", help=standard.code_help)
+        group.add_argument("--name", help=standard.name_help)
+        if standard.numeric_help:
+            group.add_argument("--numeric", help=standard.numeric_help)
+        if standard.former_name_help:
+            group.add_argument("--former-name", help=standard.former_name_help)
+        if standard.country_help:
+            group.add_argument("--country", help=standard.country_help)
+        group.add_argument(
+            "--list-all", action="store_true", help=f"List all {standard.noun}"
+        )
+        matching = command.add_mutually_exclusive_group()
+        matching.add_argument(
+            "--exact", action="store_true", help="Exact name match only"
+        )
+        matching.add_argument(
+            "--fuzzy", action="store_true", help="Tolerate misspellings in --name"
+        )
 
-    # Languages subcommand
-    languages_parser = subparsers.add_parser(
-        "languages", help="Search languages (ISO 639-2)"
+    # Translation catalogues
+    locales_parser = subparsers.add_parser(
+        "locales",
+        help="List or remove bundled translation catalogues",
+        description=(
+            "Every language ships with the package. Removing the ones you do "
+            "not need is useful for trimming container images; do it in the "
+            "same build step as the install, because 'pip install --upgrade' "
+            "restores them all."
+        ),
     )
-    languages_group = languages_parser.add_mutually_exclusive_group(required=True)
-    languages_group.add_argument("--code", help="Language code (alpha-2 or alpha-3)")
-    languages_group.add_argument("--name", help="Language name")
-    languages_group.add_argument(
-        "--list-all", action="store_true", help="List all languages"
+    locales_group = locales_parser.add_mutually_exclusive_group()
+    locales_group.add_argument(
+        "--keep", help="Comma-separated languages to keep; all others are removed"
     )
-    languages_parser.add_argument(
-        "--exact", action="store_true", help="Exact name match only"
-    )
-
-    # Currencies subcommand
-    currencies_parser = subparsers.add_parser(
-        "currencies", help="Search currencies (ISO 4217)"
-    )
-    currencies_group = currencies_parser.add_mutually_exclusive_group(required=True)
-    currencies_group.add_argument("--code", help="Currency code (alpha-3)")
-    currencies_group.add_argument("--name", help="Currency name")
-    currencies_group.add_argument("--numeric", help="Numeric currency code")
-    currencies_group.add_argument(
-        "--list-all", action="store_true", help="List all currencies"
-    )
-    currencies_parser.add_argument(
-        "--exact", action="store_true", help="Exact name match only"
-    )
-
-    # Subdivisions subcommand
-    subdivisions_parser = subparsers.add_parser(
-        "subdivisions", help="Search country subdivisions (ISO 3166-2)"
-    )
-    subdivisions_group = subdivisions_parser.add_mutually_exclusive_group(required=True)
-    subdivisions_group.add_argument("--code", help="Subdivision code")
-    subdivisions_group.add_argument("--name", help="Subdivision name")
-    subdivisions_group.add_argument(
-        "--country", help="Country code to list subdivisions for"
-    )
-    subdivisions_group.add_argument(
-        "--list-all", action="store_true", help="List all subdivisions"
-    )
-    subdivisions_parser.add_argument(
-        "--exact", action="store_true", help="Exact name match only"
-    )
-
-    # Former countries subcommand
-    former_parser = subparsers.add_parser(
-        "former-countries", help="Search former countries (ISO 3166-3)"
-    )
-    former_group = former_parser.add_mutually_exclusive_group(required=True)
-    former_group.add_argument("--code", help="Former country code")
-    former_group.add_argument("--name", help="Former country name")
-    former_group.add_argument(
-        "--list-all", action="store_true", help="List all former countries"
-    )
-    former_parser.add_argument(
-        "--exact", action="store_true", help="Exact name match only"
-    )
-
-    # Scripts subcommand
-    scripts_parser = subparsers.add_parser(
-        "scripts", help="Search script names (ISO 15924)"
-    )
-    scripts_group = scripts_parser.add_mutually_exclusive_group(required=True)
-    scripts_group.add_argument("--code", help="Script code (alpha-4)")
-    scripts_group.add_argument("--name", help="Script name")
-    scripts_group.add_argument("--numeric", help="Numeric script code")
-    scripts_group.add_argument(
-        "--list-all", action="store_true", help="List all scripts"
-    )
-    scripts_parser.add_argument(
-        "--exact", action="store_true", help="Exact name match only"
+    locales_group.add_argument("--remove", help="Comma-separated languages to remove")
+    locales_parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="Actually delete. Without it, the removal is only described.",
     )
 
     return parser
@@ -497,18 +407,10 @@ def main() -> None:
         args.fields = [field.strip() for field in args.fields.split(",")]
 
     try:
-        if args.command == "countries":
-            search_countries(args)
-        elif args.command == "languages":
-            search_languages(args)
-        elif args.command == "currencies":
-            search_currencies(args)
-        elif args.command == "subdivisions":
-            search_subdivisions(args)
-        elif args.command == "former-countries":
-            search_former_countries(args)
-        elif args.command == "scripts":
-            search_scripts(args)
+        if args.command in _STANDARDS:
+            search_standard(args)
+        elif args.command == "locales":
+            manage_locales(args)
         else:
             parser.print_help()
     except KeyboardInterrupt:
