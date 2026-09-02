@@ -5,6 +5,8 @@ on:
   # coverage workflow, which already ran on both.
   push:
     branches: ["main"]
+  # Called by the release workflow, so a tag cannot reach PyPI untested.
+  workflow_call:
   workflow_dispatch:
     inputs:
       publish_to_testpypi:
@@ -70,7 +72,15 @@ jobs:
 
   test-publish:
     name: Test publish to TestPyPI
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_to_testpypi
+    # Every push to main gets a dev release on TestPyPI, so packaging and the
+    # publish credentials are exercised before a tag reaches the real PyPI.
+    # Manual runs still have to opt in, and bring their own suffix.
+    # The ref check matters once the release workflow calls this one: a tag
+    # push is still event_name 'push', and a release must not divert to
+    # TestPyPI on its way to PyPI.
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+      || (github.event_name == 'workflow_dispatch' && inputs.publish_to_testpypi)
     needs: [test, build]
     runs-on: ubuntu-latest
     environment: testpypi
@@ -84,21 +94,52 @@ jobs:
         uses: astral-sh/setup-uv@v7
       - name: Generate test version
         id: version
+        env:
+          # TestPyPI refuses a version it has already seen, so pushes take the
+          # run number: it never repeats and it rises with every build.
+          SUFFIX: >-
+            ${{ github.event_name == 'workflow_dispatch'
+            && inputs.version_suffix
+            || format('dev{0}', github.run_number) }}
         run: |
           BASE_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
-          SUFFIX="${{ inputs.version_suffix }}"
           TEST_VERSION="${BASE_VERSION}.${SUFFIX}"
-          echo "version=${TEST_VERSION}" >> $GITHUB_OUTPUT
+          echo "version=${TEST_VERSION}" >> "$GITHUB_OUTPUT"
           echo "Generated test version: ${TEST_VERSION}"
       - name: Update version for testing
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
-          sed -i 's/^version = .*/version = "${{ steps.version.outputs.version }}"/' pyproject.toml
+          sed -i "s/^version = .*/version = \"${VERSION}\"/" pyproject.toml
       - name: Build wheel
         run: uv build
       - name: Publish to TestPyPI
-        run: uv publish --index testpypi
+        # --check-url makes a re-run of the same workflow idempotent: a re-run
+        # keeps its run number, so the version is one TestPyPI already holds.
+        run: uv publish --index testpypi --check-url https://test.pypi.org/simple/
       - name: Test installation
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
-          sleep 30  # Wait for TestPyPI to process
-          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ isocodes==${{ steps.version.outputs.version }}
-          python -c "from isocodes import countries; print('Installation test passed!')"
+          uv venv /tmp/verify
+          # A fresh upload takes a moment to become installable, and the length
+          # of that moment is not ours to predict. --refresh-package stops uv
+          # serving the earlier "not found" back to us from its cache.
+          installed=false
+          for attempt in $(seq 1 8); do
+            if uv pip install \
+                 --python /tmp/verify/bin/python \
+                 --default-index https://test.pypi.org/simple/ \
+                 --refresh-package isocodes \
+                 "isocodes==${VERSION}"; then
+              installed=true
+              break
+            fi
+            echo "isocodes ${VERSION} not on TestPyPI yet (attempt ${attempt}); waiting 15s"
+            sleep 15
+          done
+          if [ "${installed}" != true ]; then
+            echo "isocodes ${VERSION} never became installable from TestPyPI"
+            exit 1
+          fi
+          /tmp/verify/bin/python -c "from isocodes import countries; print(countries.get(alpha_2='US'))"
