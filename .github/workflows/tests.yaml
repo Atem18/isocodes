@@ -95,14 +95,21 @@ jobs:
       - name: Generate test version
         id: version
         env:
-          # TestPyPI refuses a version it has already seen, so pushes take the
-          # run number: it never repeats and it rises with every build.
-          SUFFIX: >-
+          RUN_NUMBER: ${{ github.run_number }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          SUFFIX_OVERRIDE: >-
             ${{ github.event_name == 'workflow_dispatch'
-            && inputs.version_suffix
-            || format('dev{0}', github.run_number) }}
+            && inputs.version_suffix || '' }}
         run: |
           BASE_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
+          if [ -n "${SUFFIX_OVERRIDE}" ]; then
+            SUFFIX="${SUFFIX_OVERRIDE}"
+          else
+            # TestPyPI refuses a version it already holds, and re-running a
+            # workflow keeps its run number. Folding in the attempt keeps the
+            # suffix unique across re-runs while still rising with every build.
+            SUFFIX="dev$(( RUN_NUMBER * 1000 + RUN_ATTEMPT ))"
+          fi
           TEST_VERSION="${BASE_VERSION}.${SUFFIX}"
           echo "version=${TEST_VERSION}" >> "$GITHUB_OUTPUT"
           echo "Generated test version: ${TEST_VERSION}"
@@ -114,9 +121,12 @@ jobs:
       - name: Build wheel
         run: uv build
       - name: Publish to TestPyPI
-        # --check-url makes a re-run of the same workflow idempotent: a re-run
-        # keeps its run number, so the version is one TestPyPI already holds.
-        run: uv publish --index testpypi --check-url https://test.pypi.org/simple/
+        # No --check-url here: uv rejects it alongside --index, and derives the
+        # check from the index's own url anyway. That check compares hashes
+        # rather than just names, and a rebuilt wheel is not byte-identical, so
+        # a repeat version errors instead of being skipped. The attempt-aware
+        # suffix above is what keeps re-runs working.
+        run: uv publish --index testpypi
       - name: Test installation
         env:
           VERSION: ${{ steps.version.outputs.version }}
