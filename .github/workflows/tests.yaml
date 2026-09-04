@@ -75,9 +75,10 @@ jobs:
     # Every push to main gets a dev release on TestPyPI, so packaging and the
     # publish credentials are exercised before a tag reaches the real PyPI.
     # Manual runs still have to opt in, and bring their own suffix.
-    # The ref check matters once the release workflow calls this one: a tag
-    # push is still event_name 'push', and a release must not divert to
-    # TestPyPI on its way to PyPI.
+    # Both arms are false when the release workflow calls this one, where the
+    # event is 'release': a release must not divert to TestPyPI on its way to
+    # PyPI. The ref check keeps that true even if the caller is ever triggered
+    # by a tag push again, which would also arrive as event_name 'push'.
     if: >-
       (github.event_name == 'push' && github.ref == 'refs/heads/main')
       || (github.event_name == 'workflow_dispatch' && inputs.publish_to_testpypi)
